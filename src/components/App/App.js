@@ -15,8 +15,8 @@ function App() {
           <Route exact path="/">
             <Main />
           </Route>
-            <Movies />
           <Route path="/movies">
+            <Movies />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />
@@ -31,7 +31,7 @@ function App() {
             <Register />
           </Route>
           <Route path="*">
-          <PageNotFound />
+            <PageNotFound />
           </Route>
         </Switch>
       </div>

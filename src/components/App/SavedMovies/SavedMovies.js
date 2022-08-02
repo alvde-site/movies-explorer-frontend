@@ -5,7 +5,7 @@ function SavedMovies() {
 
   return (
     <>
-      <p>компонент страницы с сохранёнными карточками фильмов.</p>
+      <p>по роуту /saved-movies отображается страница «Сохранённые фильмы»;</p>
       <MoviesCardList />
       <MoviesCard />
     </>
