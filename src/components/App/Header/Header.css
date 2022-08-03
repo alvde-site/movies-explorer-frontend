@@ -15,46 +15,6 @@
   background: url(../../../images/svg/header-logo.svg) center/contain no-repeat;
 }
 
-.header__auth {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  list-style-type: none;
-}
-
-.header__signup {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(0,0,0,1);
-  line-height: 16px;
-  margin-right: 30px;
-  text-decoration: none;
-}
-
-.header__signup:hover {
-  color: rgba(0,0,0,.7);
-}
-
-.header__signin {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #fff;
-  border-radius: 3px;
-  padding: 8px 20px;
-  text-decoration: none;
-  background-color: #3456F3;
-}
-
-.header__signin:hover {
-  background-color: #3456F3;
-  opacity: 0.8;
-}
-
 @media (max-width: 768px) {
   .header {
     padding: 18px 30px;
@@ -64,10 +24,5 @@
 @media (max-width: 425px) {
   .header {
     padding: 18px 14px;
-  }
-
-  .header__signup {
-    margin-right: 14px;
-    font-size: 10px;
   }
 }
