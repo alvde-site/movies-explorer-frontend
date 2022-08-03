@@ -6,6 +6,7 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
+import AuthLInks from "./Header/AuthLinks/AuthLinks";
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main headerLinks={<AuthLInks />}/>
           </Route>
           <Route path="/movies">
             <Movies />

@@ -8,11 +8,11 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main() {
+function Main({headerLinks}) {
 
   return (
     <>
-      <Header />
+      <Header headerLinks={headerLinks}/>
       <Navigation />
       <Promo />
       <NavTab />
