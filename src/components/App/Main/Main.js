@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Promo from "./Promo/Promo";
 import NavTab from "./NavTab/NavTab";
@@ -12,9 +11,8 @@ function Main({headerLinks}) {
 
   return (
     <>
-      <Header headerLinks={headerLinks}/>
       <Navigation />
-      <Promo />
+      <Promo headerLinks={headerLinks}/>
       <NavTab />
       <AboutProject />
       <Techs />

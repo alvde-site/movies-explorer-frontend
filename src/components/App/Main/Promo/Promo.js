@@ -1,8 +1,10 @@
-function Promo() {
+import Header from "../../Header/Header";
+
+function Promo({headerLinks}) {
 
   return (
     <>
-      <p>компонент с вёрсткой баннера страницы «О проекте».</p>
+      <Header headerLinks={headerLinks}/>
     </>
   );
 }
