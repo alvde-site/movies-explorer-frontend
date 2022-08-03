@@ -12,7 +12,6 @@ function Main() {
 
   return (
     <>
-      <p>по роуту / отображается страница «О проекте»;</p>
       <Header />
       <Navigation />
       <Promo />
