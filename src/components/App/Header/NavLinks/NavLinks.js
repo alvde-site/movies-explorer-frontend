@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function NavLinks() {
 
   return (
-    <ul className="header__links">
+    <ul className="header__nav-links header__nav-links_hidden_onsmall">
       <li>
         <Link to="/movies" className="header__link">Фильмы</Link>
       </li>
