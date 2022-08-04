@@ -6,12 +6,11 @@ import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function Movies() {
+function Movies({loggedIn}) {
 
   return (
     <>
-      <p>по роуту /movies отображается страница «Фильмы»;</p>
-      <Header />
+      <Header loggedIn={loggedIn}/>
       <Navigation />
       <SearchForm />
       <Preloader />

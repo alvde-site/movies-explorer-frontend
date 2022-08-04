@@ -6,18 +6,18 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-import AuthLInks from "./Header/AuthLinks/AuthLinks";
 
 
 function App() {
+  const loggedIn = true;
   return (
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main headerLinks={<AuthLInks />}/>
+            <Main loggedIn={loggedIn}/>
           </Route>
           <Route path="/movies">
-            <Movies />
+            <Movies loggedIn={loggedIn}/>
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />

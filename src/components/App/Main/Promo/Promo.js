@@ -1,11 +1,11 @@
 import Header from "../../Header/Header";
 
-function Promo({headerLinks}) {
+function Promo({loggedIn}) {
 
   return (
-    <>
-      <Header headerLinks={headerLinks}/>
-    </>
+    <div className="promo">
+      <Header loggedIn={loggedIn}/>
+    </div>
   );
 }
 

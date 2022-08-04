@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function AuthLInks() {
   return (
-    <ul className="header__auth">
+    <ul className="header__links">
       <li>
         <Link className="header__signup">Регистрация</Link>
       </li>

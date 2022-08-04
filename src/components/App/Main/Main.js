@@ -7,12 +7,12 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main({headerLinks}) {
+function Main({loggedIn}) {
 
   return (
     <>
       <Navigation />
-      <Promo headerLinks={headerLinks}/>
+      <Promo loggedIn={loggedIn}/>
       <NavTab />
       <AboutProject />
       <Techs />

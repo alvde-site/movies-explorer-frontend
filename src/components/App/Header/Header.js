@@ -1,8 +1,11 @@
-function Header({headerLinks}) {
+import AuthLinks from "./AuthLinks/AuthLinks";
+import NavLinks from "./NavLinks/NavLinks";
+
+function Header({loggedIn}) {
   return (
     <header className="header">
       <div className="header__logo"></div>
-      {headerLinks}
+      {loggedIn ? <NavLinks /> : <AuthLinks />}
     </header>
   );
 }
