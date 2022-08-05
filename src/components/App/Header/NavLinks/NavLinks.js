@@ -18,7 +18,7 @@ function NavLinks({onToggleBurger, isToggleBurger}) {
         <Link to="/" className="header__account"><span>Аккаунт</span><span className="header__account-icon"></span></Link>
       </li>
     </ul>
-    <div className={`burger-menu ${isToggleBurger ? "open" : ""} header__burger`} onClick={handleBurger}>
+    <div className={`burger-menu ${isToggleBurger ? "burger-menu_opened" : ""} header__burger`} onClick={handleBurger}>
               <span></span>
               <span></span>
               <span></span>

@@ -96,19 +96,17 @@
   bottom: 0;
 }
 
-.burger-menu.open span:nth-child(1) {
+.burger-menu.burger-menu_opened span:nth-child(1) {
   transform: rotate(45deg);
-  width: 83%;
-  left: 17%;
+  width: 100%;
 }
-.burger-menu.open span:nth-child(2) {
+.burger-menu.burger-menu_opened span:nth-child(2) {
   width: 0%;
   opacity: 0;
 }
-.burger-menu.open span:nth-child(3) {
+.burger-menu.burger-menu_opened span:nth-child(3) {
   transform: rotate(-45deg);
-  width: 83%;
-  left: 17%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
