@@ -1,0 +1,144 @@
+.about {
+  min-height: 608px;
+  padding: 110px 70px;
+}
+
+.about__title {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #000;
+  margin: 0 0 70px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000;
+}
+
+.about__description {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+  margin: 0 0 110px;
+  padding: 0;
+  list-style: none;
+}
+
+.about__description-title {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #000;
+  margin: 0 0 26px;
+}
+
+.about__description-text {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+  margin: 0;
+}
+
+.about__duration {
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  row-gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__duration-item {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0;
+  padding: 9px 0;
+  text-align: center;
+}
+
+.about__duration-item_theme_blue {
+  color: #fff;
+  background: #3456F3;
+}
+
+.about__duration-item_theme_grey {
+  background: #F2F2F2;
+}
+
+.about__duration-item_theme_white {
+  color: #A0A0A0;
+}
+
+@media (max-width: 768px) {
+  .about {
+    min-height: 585px;
+    padding: 90px 50px;
+  }
+
+  .about__description {
+    column-gap: 30px;
+    margin: 0 0 93px;
+  }
+
+  .about__description-title {
+    margin: 0 0 22px;
+  }
+
+  .about__description-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about__duration {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+@media (max-width: 425px) {
+  .about {
+    min-height: 641px;
+    padding: 70px 18px;
+  }
+
+  .about__title {
+    margin: 0 0 60px;
+  }
+
+  .about__description {
+    grid-template-columns: 1fr;
+    row-gap: 56px;
+    margin: 0 0 60px;
+  }
+
+  .about__description-title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 16px;
+  }
+
+  .about__description-text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about__duration {
+    grid-template-columns: 100px 1fr;
+    row-gap: 0px;
+  }
+
+  .about__duration-item {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 10px 0;
+  }
+}

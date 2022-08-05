@@ -54,6 +54,10 @@
   text-overflow: ellipsis;
 }
 
+.promo__more:hover {
+  opacity: .7;
+}
+
 .promo__image {
   width: 310px;
   height: 304px;

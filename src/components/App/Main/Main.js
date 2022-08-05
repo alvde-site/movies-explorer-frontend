@@ -13,12 +13,12 @@ function Main({loggedIn}) {
     <>
       <Navigation />
       <Promo loggedIn={loggedIn}/>
-      <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
       <Footer />
+      <NavTab />
     </>
   );
 }
