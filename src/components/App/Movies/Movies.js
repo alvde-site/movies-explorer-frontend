@@ -6,11 +6,14 @@ import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function Movies({loggedIn}) {
-
+function Movies({ loggedIn,  onToggleBurger, isToggleBurger }) {
   return (
     <>
-      <Header loggedIn={loggedIn}/>
+      <Header
+        loggedIn={loggedIn}
+        onToggleBurger={onToggleBurger}
+        isToggleBurger={isToggleBurger}
+      />
       <Navigation />
       <SearchForm />
       <Preloader />
