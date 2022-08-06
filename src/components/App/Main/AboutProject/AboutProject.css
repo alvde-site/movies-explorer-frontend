@@ -1,5 +1,4 @@
 .about-project {
-  min-height: 608px;
   padding: 110px 70px;
 }
 
@@ -81,7 +80,6 @@
 
 @media (max-width: 768px) {
   .about-project {
-    min-height: 585px;
     padding: 90px 50px;
   }
 
@@ -106,7 +104,6 @@
 
 @media (max-width: 425px) {
   .about-project {
-    min-height: 641px;
     padding: 70px 18px;
   }
 

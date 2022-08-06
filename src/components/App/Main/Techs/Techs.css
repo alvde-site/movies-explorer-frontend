@@ -101,6 +101,7 @@
   .techs {
     min-height: 651px;
     padding: 70px 18px;
+    background: #FAFAFA;
   }
 
   .techs__title {
