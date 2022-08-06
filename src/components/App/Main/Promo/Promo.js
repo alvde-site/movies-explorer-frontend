@@ -13,7 +13,7 @@ function Promo({loggedIn}) {
           <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
           <Link className="promo__more">Узнать больше</Link>
         </div>
-        <img className="promo__image" src={webland} alt="web-land"/>
+        <img className="promo__image" src={webland} alt="Вэб-страна"/>
       </div>
     </section>
   );
