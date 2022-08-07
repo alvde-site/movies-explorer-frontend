@@ -16,11 +16,12 @@
   text-decoration: none;
 }
 
+.header__link_active {
+  font-weight: 500;
+}
+
 .header__link:hover {
   opacity: .7;
-}
-.header__link:active {
-  font-weight: 500;
 }
 
 .header__account {

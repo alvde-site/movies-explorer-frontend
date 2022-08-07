@@ -1,13 +1,21 @@
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
+import Footer from "../Footer/Footer";
 
-function SavedMovies() {
-
+function SavedMovies({ loggedIn, onToggleBurger, isToggleBurger }) {
   return (
     <>
-      <p>по роуту /saved-movies отображается страница «Сохранённые фильмы»;</p>
+      <Header
+        loggedIn={loggedIn}
+        onToggleBurger={onToggleBurger}
+        isToggleBurger={isToggleBurger}
+      />
+      <Navigation />
       <MoviesCardList />
       <MoviesCard />
+      <Footer />
     </>
   );
 }

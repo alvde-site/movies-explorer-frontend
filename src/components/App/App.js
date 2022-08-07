@@ -13,8 +13,8 @@ function App() {
   const [isToggleBurger, setIsToggleBurger] = useState(false);
 
   function handleToggleBurger() {
-    console.log('нажал')
-   setIsToggleBurger(!isToggleBurger);
+    console.log("нажал");
+    setIsToggleBurger(!isToggleBurger);
   }
 
   return (
@@ -26,12 +26,16 @@ function App() {
         <Route path="/movies">
           <Movies
             loggedIn={loggedIn}
-              onToggleBurger={handleToggleBurger}
-              isToggleBurger={isToggleBurger}
+            onToggleBurger={handleToggleBurger}
+            isToggleBurger={isToggleBurger}
           />
         </Route>
         <Route path="/saved-movies">
-          <SavedMovies />
+          <SavedMovies
+            loggedIn={loggedIn}
+            onToggleBurger={handleToggleBurger}
+            isToggleBurger={isToggleBurger}
+          />
         </Route>
         <Route path="/profile">
           <Profile />

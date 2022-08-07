@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function NavLinks({onToggleBurger, isToggleBurger}) {
   function handleBurger() {
@@ -9,10 +9,10 @@ function NavLinks({onToggleBurger, isToggleBurger}) {
     <>
     <ul className="header__nav-links header__nav-links_hidden_onsmall">
       <li>
-        <Link to="/movies" className="header__link">Фильмы</Link>
+        <NavLink to="/movies" className="header__link" activeClassName="header__link_active">Фильмы</NavLink>
       </li>
       <li>
-        <Link to="/saved-movies" className="header__link">Сохраненные фильмы</Link>
+        <NavLink to="/saved-movies" className="header__link" activeClassName="header__link_active">Сохраненные фильмы</NavLink>
       </li>
       <li>
         <Link to="/" className="header__account"><span>Аккаунт</span><span className="header__account-icon"></span></Link>

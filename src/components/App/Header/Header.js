@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks/NavLinks";
 function Header({ loggedIn,  onToggleBurger, isToggleBurger }) {
   return (
     <header className="header">
-      <Link className="header__logo"></Link>
+      <Link to="/" className="header__logo"></Link>
       {loggedIn ? (
         <NavLinks
           onToggleBurger={onToggleBurger}
