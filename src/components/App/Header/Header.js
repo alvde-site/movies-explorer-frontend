@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import AuthLinks from "./AuthLinks/AuthLinks";
 import NavLinks from "./NavLinks/NavLinks";
 
 function Header({ loggedIn,  onToggleBurger, isToggleBurger }) {
   return (
     <header className="header">
-      <div className="header__logo"></div>
+      <Link className="header__logo"></Link>
       {loggedIn ? (
         <NavLinks
           onToggleBurger={onToggleBurger}
