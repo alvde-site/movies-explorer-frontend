@@ -1,4 +1,8 @@
 
+.portfolio {
+  padding: 0 70px 125px;
+}
+
 .portfolio__title {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -41,6 +45,10 @@
 }
 
 @media (max-width: 768px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+
   .portfolio__item {
     font-size: 28px;
   }
@@ -55,6 +63,10 @@
 }
 
 @media (max-width: 425px) {
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+
   .portfolio__title {
     font-size: 14px;
     margin: 0 0 40px;
