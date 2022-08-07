@@ -1,5 +1,4 @@
 .techs {
-  min-height: 625px;
   padding: 100px 70px;
   background: #f5f5f5;
 }
@@ -72,7 +71,6 @@
 
 @media (max-width: 768px) {
   .techs {
-    min-height: 567px;
     padding: 90px 50px;
   }
 
@@ -99,7 +97,6 @@
 
 @media (max-width: 425px) {
   .techs {
-    min-height: 651px;
     padding: 70px 18px;
     background: #FAFAFA;
   }

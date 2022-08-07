@@ -7,16 +7,17 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main({loggedIn}) {
-
+function Main({ loggedIn }) {
   return (
     <>
       <Navigation />
-      <Promo loggedIn={loggedIn}/>
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+      <Promo loggedIn={loggedIn} />
+      <main className="content">
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
       <NavTab />
     </>
