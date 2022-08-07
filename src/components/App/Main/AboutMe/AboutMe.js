@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import me from "../../../../images/me.jpg";
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe() {
   return (
@@ -25,12 +26,7 @@ function AboutMe() {
         </div>
         <img className="about-me__image" src={me} alt="Моя фотография" />
       </div>
-      <h4 className="about-me__portfolio">Портфолио</h4>
-      <ul className="about-me__portfolio-items">
-        <li><Link  className="about-me__portfolio-item">Статичный сайт</Link></li>
-        <li><Link  className="about-me__portfolio-item">Адаптивный сайт</Link></li>
-        <li><Link  className="about-me__portfolio-item about-me__portfolio-item_last">Одностраничное приложение</Link></li>
-      </ul>
+      <Portfolio />
     </section>
   );
 }

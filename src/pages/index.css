@@ -2,11 +2,17 @@
 @import url(../vendor/fonts/inter.css);
 @import url(../components/App/App.css);
 
-/* main */
-@import url(../components/App/Main/Promo/Promo.css);
+/* header */
 @import url(../components/App/Header/Header.css);
 @import url(../components/App/Header/AuthLinks/AuthLinks.css);
 @import url(../components/App/Header/NavLinks/NavLinks.css);
+
+/* main */
+@import url(../components/App/Main/Promo/Promo.css);
 @import url(../components/App/Main/AboutProject/AboutProject.css);
 @import url(../components/App/Main/Techs/Techs.css);
 @import url(../components/App/Main/AboutMe/AboutMe.css);
+@import url(../components/App/Main/Portfolio/Portfolio.css);
+
+/* footer */
+@import url(../components/App/Footer/Footer.css);

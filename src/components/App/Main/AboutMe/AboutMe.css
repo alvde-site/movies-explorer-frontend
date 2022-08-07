@@ -90,48 +90,6 @@
   border-radius: 10px;
 }
 
-.about-me__portfolio {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  color: #A0A0A0;;
-  margin: 0 0 50px;
-}
-
-.about-me__portfolio-items {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.about-me__portfolio-item {
-  display: inline-block;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 50px;
-  letter-spacing: -0.04em;
-  color: #000;
-  width: 100%;
-  border-bottom: 1px solid #E6E6E6;
-  padding-bottom: 19px;
-  margin: 0 0 20px;
-  text-decoration: none;
-  background: url(../../../../images/portfolio-link.svg) right/16px no-repeat;
-}
-
-.about-me__portfolio-item:hover {
-  opacity: .7;
-}
-
-.about-me__portfolio-item_last {
-  border: 1px solid red;
-  margin: 0;
-}
-
 @media (max-width: 768px) {
   .about-me {
     padding: 90px 50px;
@@ -160,10 +118,6 @@
 
   .about-me__image {
     max-width: 255px;
-  }
-
-  .about-me__portfolio-item {
-    font-size: 28px;
   }
 }
 
@@ -217,16 +171,5 @@
   .about-me__image {
     max-width: 100%;
     margin: 0 0 40px;
-  }
-
-  .about-me__portfolio {
-    font-size: 14px;
-    margin: 0 0 40px;
-  }
-
-  .about-me__portfolio-item {
-    font-size: 18px;
-    line-height: 28px;
-    background: url(../../../../images/portfolio-link.svg) right/10px no-repeat;
   }
 }
