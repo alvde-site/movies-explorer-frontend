@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import me from "../../../../images/me.jpg";
+import me from "../../../../images/me-foto.jpg";
 
 function AboutMe() {
   return (

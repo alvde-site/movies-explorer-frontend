@@ -84,9 +84,12 @@
 }
 
 .about-me__image {
-  max-width: 270px;
-  height: auto;
+  width: 270px;
+  height: 327px;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border:  1px solid red;
 }
 
 @media (max-width: 768px) {
@@ -112,7 +115,8 @@
   }
 
   .about-me__image {
-    max-width: 255px;
+    width: 255px;
+    height: 307px;
   }
 }
 
@@ -126,7 +130,8 @@
   }
 
   .about-me__image {
-    max-width: 292px;
+    width: 292px;
+    height: 352px;
     margin: 0 auto 40px;
   }
 }
