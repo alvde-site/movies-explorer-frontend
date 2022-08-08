@@ -20,7 +20,7 @@ function App() {
     if (loggedIn) {
       history.push("/");
     }
-  });
+  }, [history, loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {

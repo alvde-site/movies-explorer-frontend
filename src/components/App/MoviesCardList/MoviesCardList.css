@@ -1,15 +1,28 @@
 .movies-cards {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 270px);
+  column-gap: 20px;
+  row-gap: 32px;
+  justify-content: center;
+  margin: 0 auto;
+  list-style: none;
   padding: 70px 70px 30px;
 }
 
 @media (max-width: 768px) {
   .movies-cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 36px;
     padding: 70px 30px 30px;
   }
 }
 
 @media (max-width: 425px) {
   .movies-cards {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
     padding: 40px 10px 30px;
   }
 }
