@@ -1,0 +1,15 @@
+.movies-cards {
+  padding: 70px 70px 30px;
+}
+
+@media (max-width: 768px) {
+  .movies-cards {
+    padding: 70px 30px 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .movies-cards {
+    padding: 40px 10px 30px;
+  }
+}

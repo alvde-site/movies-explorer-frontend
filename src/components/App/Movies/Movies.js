@@ -21,12 +21,14 @@ function Movies({
         isToggleBurger={isToggleBurger}
       />
       <main className="content">
+        <section className="movies">
         <SearchForm
           onToggleFilter={onToggleFilter}
           isToggleFilter={isToggleFilter}
         />
         <MoviesCardList />
         <MoviesCard />
+        </section>
       </main>
       <Footer />
       <Navigation />
