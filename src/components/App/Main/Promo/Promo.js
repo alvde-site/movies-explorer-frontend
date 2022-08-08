@@ -5,13 +5,13 @@ import webland from "../../../../images/web-land.png";
 function Promo({loggedIn}) {
 
   return (
-    <section className="promo">
+    <section className="promo"  aria-label="Промо-блок">
       <Header loggedIn={loggedIn}/>
       <div className="promo__container">
         <div className="promo__contain">
           <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
           <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-          <Link className="promo__more">Узнать больше</Link>
+          <Link to="#" className="promo__more">Узнать больше</Link>
         </div>
         <img className="promo__image" src={webland} alt="Вэб-страна"/>
       </div>

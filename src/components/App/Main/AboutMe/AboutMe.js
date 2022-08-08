@@ -16,10 +16,10 @@ function AboutMe() {
           </p>
           <ul className="about-me__social">
             <li>
-              <Link className="about-me__social-link">Facebook</Link>
+              <Link to="#" className="about-me__social-link">Facebook</Link>
             </li>
             <li>
-              <Link className="about-me__social-link about-me__social-link_last">Github</Link>
+              <Link to="#" className="about-me__social-link about-me__social-link_last">Github</Link>
             </li>
           </ul>
         </div>

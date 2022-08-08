@@ -1,11 +1,12 @@
-function MoviesCardList() {
+import MoviesCard from "../MoviesCard/MoviesCard";
 
+function MoviesCardList({  cardsData }) {
   return (
-    <>
-    <div className="movies-cards">
-
-    </div>
-    </>
+    <ul className="movies-cards">
+      {cardsData.map((card) => {
+        return <MoviesCard card={card}/>;
+      })}
+    </ul>
   );
 }
 

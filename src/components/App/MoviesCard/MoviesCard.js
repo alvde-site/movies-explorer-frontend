@@ -1,9 +1,9 @@
-function MoviesCard() {
+function MoviesCard({card}) {
 
   return (
-    <>
-      <p>компонент одной карточки фильма.</p>
-    </>
+    <li className="card">
+
+    </li>
   );
 }
 
