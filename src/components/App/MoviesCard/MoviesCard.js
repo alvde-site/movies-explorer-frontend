@@ -1,8 +1,8 @@
-function MoviesCard({card}) {
+function MoviesCard({card, index}) {
 
   return (
-    <li className="card">
-
+    <li key={index} className="card">
+    {`${card}`}
     </li>
   );
 }
