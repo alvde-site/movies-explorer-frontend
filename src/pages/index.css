@@ -16,6 +16,7 @@
 
 /* movies */
 @import url(../components/App/Movies/SearchForm/SearchForm.css);
+@import url(../components/App/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
 
 /* footer */
 @import url(../components/App/Footer/Footer.css);

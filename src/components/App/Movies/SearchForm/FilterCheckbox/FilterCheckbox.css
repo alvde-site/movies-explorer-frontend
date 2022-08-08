@@ -1,0 +1,19 @@
+.form__filter {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  left: 0;
+  bottom: 0;
+}
+
+.form__filter-item {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  background-image: url(../../../../../images/svg/shortfilmstumb-disable.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

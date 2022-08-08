@@ -5,7 +5,7 @@
 .form__field {
   display: inline-block;
   width: 100%;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .form__input {
@@ -22,14 +22,15 @@
 }
 
 .form__input::placeholder {
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .form__submit {
   width: 80px;
   height: 34px;
   border: none;
-  background: url(../../../../images/svg/find-button.svg) right/contain no-repeat;
+  background: url(../../../../images/svg/find-button.svg) right/contain
+    no-repeat;
 }
 
 @media (max-width: 768px) {

@@ -9,9 +9,9 @@ function Footer() {
       <div className="footer__lower-column">
         <p className="footer__copyright">© 2022</p>
         <ul className="footer__social">
-          <li><Link className="footer__social-link">Яндекс.Практикум</Link></li>
-          <li><Link className="footer__social-link">Github</Link></li>
-          <li><Link className="footer__social-link footer__social-link_last">Facebook</Link></li>
+          <li><Link to="#" className="footer__social-link">Яндекс.Практикум</Link></li>
+          <li><Link  to="#" className="footer__social-link">Github</Link></li>
+          <li><Link  to="#" className="footer__social-link footer__social-link_last">Facebook</Link></li>
         </ul>
       </div>
     </footer>

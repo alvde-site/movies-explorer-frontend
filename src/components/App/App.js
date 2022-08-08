@@ -11,10 +11,15 @@ import Register from "./Register/Register";
 function App() {
   const loggedIn = true;
   const [isToggleBurger, setIsToggleBurger] = useState(false);
+  const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
 
   function handleToggleBurger() {
     console.log("нажал");
     setIsToggleBurger(!isToggleBurger);
+  }
+
+  function handleToggleFilter() {
+    setIsToggleMoviesFilter(!isToggleMoviesFilter);
   }
 
   return (
@@ -28,6 +33,8 @@ function App() {
             loggedIn={loggedIn}
             onToggleBurger={handleToggleBurger}
             isToggleBurger={isToggleBurger}
+            onToggleFilter={handleToggleFilter}
+            isToggleFilter={isToggleMoviesFilter}
           />
         </Route>
         <Route path="/saved-movies">

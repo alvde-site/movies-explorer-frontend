@@ -6,7 +6,13 @@ import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function Movies({ loggedIn, onToggleBurger, isToggleBurger }) {
+function Movies({
+  loggedIn,
+  onToggleBurger,
+  isToggleBurger,
+  onToggleFilter,
+  isToggleFilter,
+}) {
   return (
     <>
       <Header
@@ -15,7 +21,10 @@ function Movies({ loggedIn, onToggleBurger, isToggleBurger }) {
         isToggleBurger={isToggleBurger}
       />
       <main className="content">
-        <SearchForm />
+        <SearchForm
+          onToggleFilter={onToggleFilter}
+          isToggleFilter={isToggleFilter}
+        />
         <MoviesCardList />
         <MoviesCard />
       </main>
