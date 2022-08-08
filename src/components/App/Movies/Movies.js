@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function Movies({ loggedIn,  onToggleBurger, isToggleBurger }) {
+function Movies({ loggedIn, onToggleBurger, isToggleBurger }) {
   return (
     <>
       <Header
@@ -14,12 +14,14 @@ function Movies({ loggedIn,  onToggleBurger, isToggleBurger }) {
         onToggleBurger={onToggleBurger}
         isToggleBurger={isToggleBurger}
       />
-      <Navigation />
-      <SearchForm />
-      <Preloader />
-      <MoviesCardList />
-      <MoviesCard />
+      <main className="content">
+        <SearchForm />
+        <MoviesCardList />
+        <MoviesCard />
+      </main>
       <Footer />
+      <Navigation />
+      <Preloader />
     </>
   );
 }

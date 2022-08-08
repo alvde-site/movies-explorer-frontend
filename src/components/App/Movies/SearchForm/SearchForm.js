@@ -1,10 +1,19 @@
-function SearchForm() {
-
+function SearchForm({ onSubmit }) {
   return (
-    <>
-      <p>SearchForm — форма поиска, куда пользователь будет вводить запрос. Обратите внимание на фильтр с чекбоксом «Только короткометражки». Для него можно воспользоваться отдельным управляемым компонентом FilterCheckbox.</p>
-
-    </>
+    <form action="#" name="form" className="form" onSubmit={onSubmit}>
+      <label htmlFor="searchmovie" className="form__field">
+        <input
+          id="searchmovie"
+          type="text"
+          className="form__input"
+          name="search"
+          placeholder="Фильм"
+          required
+        />
+        <span id="error-searchmovie" className="form__input-error"></span>
+        <button className="form__submit" type="submit"></button>
+      </label>
+    </form>
   );
 }
 
