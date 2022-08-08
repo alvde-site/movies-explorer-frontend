@@ -7,7 +7,7 @@ function FilterCheckbox({ isToggleFilter, onToggleFilter }) {
       <input
         id="filtermovies"
         type="checkbox"
-        className="form__filter"
+        className="form__filter-input"
         name="filter"
       />
       <span
