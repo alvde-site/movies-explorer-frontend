@@ -16,7 +16,7 @@ function FilterCheckbox({ isToggleFilter, onToggleFilter }) {
         style={
           isToggleFilter
             ? { backgroundImage: `url(${shortFilmsActiveIcon})` }
-            : { backgroundColor: `url(${shortFilmsDisableIcon})` }
+            : { backgroundImage: `url(${shortFilmsDisableIcon})` }
         }
       ></span>
       <p className="form__filter-desc">Короткометражки</p>

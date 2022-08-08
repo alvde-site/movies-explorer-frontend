@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
 import Movies from "./Movies/Movies";
@@ -14,13 +14,14 @@ function App() {
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
-  const history = useHistory();
+  const [isSelectedMovie, setIsSelectedMovie] = useState(false);
+//  const history = useHistory();
 
-  useEffect(() => {
-    if (loggedIn) {
-      history.push("/");
-    }
-  }, [history, loggedIn]);
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     history.push("/");
+  //   }
+  // }, [history, loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -29,12 +30,15 @@ function App() {
   }, [loggedIn]);
 
   function handleToggleBurger() {
-    console.log("нажал");
     setIsToggleBurger(!isToggleBurger);
   }
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
+  }
+
+  function handleSelectMovie() {
+    setIsSelectedMovie(!isSelectedMovie);
   }
 
   return (
@@ -51,6 +55,8 @@ function App() {
             onToggleFilter={handleToggleFilter}
             isToggleFilter={isToggleMoviesFilter}
             cardsData={cards}
+            onSelect={handleSelectMovie}
+            isSelected={isSelectedMovie}
           />
         </Route>
         <Route path="/saved-movies">

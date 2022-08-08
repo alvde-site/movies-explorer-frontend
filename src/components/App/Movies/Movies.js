@@ -12,6 +12,8 @@ function Movies({
   onToggleFilter,
   isToggleFilter,
   cardsData,
+  onSelect,
+  isSelected
 }) {
   return (
     <>
@@ -26,7 +28,7 @@ function Movies({
           onToggleFilter={onToggleFilter}
           isToggleFilter={isToggleFilter}
         />
-        <MoviesCardList  cardsData={cardsData}/>
+        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected}/>
         </section>
       </main>
       <Footer />

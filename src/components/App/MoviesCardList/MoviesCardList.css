@@ -12,7 +12,7 @@
 
 @media (max-width: 768px) {
   .movies-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, 339px);
     column-gap: 30px;
     row-gap: 36px;
     padding: 70px 30px 30px;
