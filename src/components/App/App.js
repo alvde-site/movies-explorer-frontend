@@ -60,7 +60,6 @@ function App() {
               isToggleFilter={isToggleMoviesFilter}
               cardsData={cards}
               onSelect={handleSelectMovie}
-              //  isSelected={isSelectedMovie}
             />
           </Route>
           <Route path="/saved-movies">
@@ -68,6 +67,9 @@ function App() {
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
               isToggleBurger={isToggleBurger}
+              onToggleFilter={handleToggleFilter}
+              isToggleFilter={isToggleMoviesFilter}
+              cardsData={cards}
             />
           </Route>
           <Route path="/profile">
