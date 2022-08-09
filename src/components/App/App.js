@@ -41,6 +41,7 @@ function App() {
     } else {
       card.isClicked = false;
     }
+    setIsSavedCards((state) => state.filter((c) => c.isClicked));
     setCards((state) => state.map((c) => (c._id === card._id ? card : c)));
   }
 
