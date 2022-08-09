@@ -15,7 +15,7 @@ function NavLinks({onToggleBurger, isToggleBurger}) {
         <NavLink to="/saved-movies" className="header__link" activeClassName="header__link_active">Сохраненные фильмы</NavLink>
       </li>
       <li>
-        <Link to="/" className="header__account"><span>Аккаунт</span><span className="header__account-icon"></span></Link>
+        <Link to="/profile" className="header__account"><span>Аккаунт</span><span className="header__account-icon"></span></Link>
       </li>
     </ul>
     <div className={`burger-menu ${isToggleBurger ? "burger-menu_opened" : ""} header__burger`} onClick={handleBurger}>

@@ -35,9 +35,9 @@ function App() {
   }
 
   function handleSelectMovie(card) {
-    if(!card.isClicked) {
+    if (!card.isClicked) {
       card.isClicked = true;
-      setIsSavedCards([...isSavedCards, card])
+      setIsSavedCards([...isSavedCards, card]);
     } else {
       card.isClicked = false;
     }
@@ -76,7 +76,11 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile
+              loggedIn={loggedIn}
+              onToggleBurger={handleToggleBurger}
+              isToggleBurger={isToggleBurger}
+            />
           </Route>
           <Route path="/signin">
             <Login />

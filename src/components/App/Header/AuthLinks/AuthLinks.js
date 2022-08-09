@@ -4,10 +4,10 @@ function AuthLInks() {
   return (
     <ul className="header__links">
       <li>
-        <Link className="header__signup">Регистрация</Link>
+        <Link to="/signup" className="header__signup">Регистрация</Link>
       </li>
       <li>
-        <Link className="header__signin">Войти</Link>
+        <Link to="/signin" className="header__signin">Войти</Link>
       </li>
     </ul>
   );
