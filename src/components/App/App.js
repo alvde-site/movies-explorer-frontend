@@ -8,6 +8,8 @@ import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import {cardsData} from "../../utils/constants";
+import {usersData} from "../../utils/constants"
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const loggedIn = true;
@@ -15,17 +17,12 @@ function App() {
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
   const [isSelectedMovie, setIsSelectedMovie] = useState(false);
-//  const history = useHistory();
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     history.push("/");
-  //   }
-  // }, [history, loggedIn]);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     if (loggedIn) {
       setCards(cardsData);
+      setCurrentUser(usersData);
     }
   }, [loggedIn]);
 
@@ -42,6 +39,8 @@ function App() {
   }
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
+      {/* Поддерево, в котором будет доступен контекст */}
     <div className="page">
       <Switch>
         <Route exact path="/">
@@ -80,6 +79,7 @@ function App() {
         </Route>
       </Switch>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 

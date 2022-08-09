@@ -41,7 +41,7 @@
   margin: 0;
 }
 
-.card__select {
+.card__select-button {
   display: inline-block;
   border: none;
   width: 16px;
@@ -53,6 +53,14 @@
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
+}
+
+.card__select:hover {
+  opacity: .7;
+}
+
+.card__select-button_active {
+  background-image: url(../../../images/svg/selected-film.svg);
 }
 
 @media (max-width: 768px) {
