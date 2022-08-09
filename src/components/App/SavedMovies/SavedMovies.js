@@ -27,7 +27,7 @@ function SavedMovies({
           onToggleFilter={onToggleFilter}
           isToggleFilter={isToggleFilter}
         />
-        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected}/>
+        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected} cardButtonClassType="card__select-button_type_remove"/>
         </section>
       </main>
       <Footer />

@@ -28,7 +28,7 @@ function Movies({
           onToggleFilter={onToggleFilter}
           isToggleFilter={isToggleFilter}
         />
-        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected}/>
+        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected} cardButtonClassType="card__select-button_type_active"/>
         </section>
       </main>
       <Footer />

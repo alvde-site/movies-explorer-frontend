@@ -1,17 +1,11 @@
-// import { useContext } from "react";
-// import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
-
-function MoviesCard({ card, index, onSelect }) {
-  // const currentUser = useContext(CurrentUserContext);
+function MoviesCard({ card, index, onSelect, cardButtonClassType }) {
 
   const cardDurationMovie = `${Math.floor(card.duration / 60)}ч${
     card.duration % 60 ? (card.duration % 60) + "м" : ""
   }`;
-  // const isSelected = card.selects.some((i) => i._id === currentUser._id);
 
   const cardSelectButtonClassName = `card__select-button ${
-    // isSelected && "card__select-button_active"
-    card.isClicked && "card__select-button_active"
+    card.isClicked && cardButtonClassType
   }`;
 
   function handleSelectClick() {

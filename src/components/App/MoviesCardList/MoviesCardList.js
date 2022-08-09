@@ -1,6 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ cardsData, onSelect, isSelected }) {
+function MoviesCardList({ cardsData, onSelect, isSelected,cardButtonClassType }) {
   return (
     <div className="movies-list">
       <ul className="movies-list__cards">
@@ -11,6 +11,7 @@ function MoviesCardList({ cardsData, onSelect, isSelected }) {
               key={index}
               onSelect={onSelect}
               isSelected={isSelected}
+              cardButtonClassType={cardButtonClassType}
             />
           );
         })}

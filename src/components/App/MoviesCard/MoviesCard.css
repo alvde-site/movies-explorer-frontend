@@ -59,8 +59,20 @@
   opacity: .7;
 }
 
-.card__select-button_active {
+.card__select-button_type_active {
   background-image: url(../../../images/svg/selected-film.svg);
+}
+
+.card__select-button_type_active:hover {
+  opacity: .7;
+}
+
+.card__select-button_type_remove {
+  background-image: url(../../../images/svg/remove-button.svg);
+}
+
+.card__select-button_type_remove:hover {
+  opacity: .7;
 }
 
 @media (max-width: 768px) {
