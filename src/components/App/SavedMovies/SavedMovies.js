@@ -12,7 +12,7 @@ function SavedMovies({
   isToggleFilter,
   cardsData,
   onSelect,
-  isSelected,
+  isSelected
 }) {
   return (
     <>

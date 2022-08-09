@@ -16,7 +16,7 @@ function App() {
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
-  // const [isSelectedMovie, setIsSelectedMovie] = useState(false);
+  const [isSavedCards, setIsSavedCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
@@ -37,6 +37,7 @@ function App() {
   function handleSelectMovie(card) {
     if(!card.isClicked) {
       card.isClicked = true;
+      setIsSavedCards([...isSavedCards, card])
     } else {
       card.isClicked = false;
     }
@@ -69,7 +70,8 @@ function App() {
               isToggleBurger={isToggleBurger}
               onToggleFilter={handleToggleFilter}
               isToggleFilter={isToggleMoviesFilter}
-              cardsData={cards}
+              onSelect={handleSelectMovie}
+              cardsData={isSavedCards}
             />
           </Route>
           <Route path="/profile">
