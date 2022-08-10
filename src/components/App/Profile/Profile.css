@@ -73,7 +73,7 @@
 }
 
 .profileform__submit {
-  /* display: none; */
+  display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -94,7 +94,7 @@
 }
 
 .profileform__edit {
-  display: none;
+  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -112,7 +112,7 @@
 }
 
 .profileform__logout {
-  display: none;
+  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
