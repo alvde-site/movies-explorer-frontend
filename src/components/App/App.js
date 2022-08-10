@@ -12,7 +12,7 @@ import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
-  const loggedIn = false;
+  const loggedIn = true;
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
@@ -51,7 +51,11 @@ function App() {
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main loggedIn={loggedIn} />
+            <Main
+              loggedIn={loggedIn}
+              onToggleBurger={handleToggleBurger}
+              isToggleBurger={isToggleBurger}
+            />
           </Route>
           <Route path="/movies">
             <Movies

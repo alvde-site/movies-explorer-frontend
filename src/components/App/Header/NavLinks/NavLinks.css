@@ -65,6 +65,7 @@
 }
 
 .burger-menu {
+  z-index: 2;
   width: 28px;
   height: 22px;
   position: relative;

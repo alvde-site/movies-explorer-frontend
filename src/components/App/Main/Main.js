@@ -1,17 +1,19 @@
 import Navigation from "../Navigation/Navigation";
 import Promo from "./Promo/Promo";
-import NavTab from "./NavTab/NavTab";
 import AboutProject from "./AboutProject/AboutProject";
 import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main({ loggedIn }) {
+function Main({ loggedIn, onToggleBurger, isToggleBurger }) {
   return (
     <>
-      <Navigation />
-      <Promo loggedIn={loggedIn} />
+      <Promo
+        loggedIn={loggedIn}
+        onToggleBurger={onToggleBurger}
+        isToggleBurger={isToggleBurger}
+      />
       <main className="content">
         <AboutProject />
         <Techs />
@@ -19,7 +21,7 @@ function Main({ loggedIn }) {
         <Portfolio />
       </main>
       <Footer />
-      <NavTab />
+      <Navigation isToggleBurger={isToggleBurger}/>
     </>
   );
 }

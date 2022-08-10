@@ -32,7 +32,7 @@ function Movies({
         </section>
       </main>
       <Footer />
-      <Navigation />
+      <Navigation isToggleBurger={isToggleBurger}/>
       <Preloader />
     </>
   );

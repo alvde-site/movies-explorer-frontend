@@ -31,7 +31,7 @@ function SavedMovies({
         </section>
       </main>
       <Footer />
-      <Navigation />
+      <Navigation isToggleBurger={isToggleBurger}/>
     </>
   );
 }

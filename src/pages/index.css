@@ -32,3 +32,6 @@
 
 /* Старница не найдена */
 @import url(../components/App/PageNotFound/PageNotFound.css);
+
+/* Окно навигации */
+@import url(../components/App/Navigation/Navigation.css);
