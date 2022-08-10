@@ -29,3 +29,6 @@
 
 /* footer */
 @import url(../components/App/Footer/Footer.css);
+
+/* Старница не найдена */
+@import url(../components/App/PageNotFound/PageNotFound.css);
