@@ -73,7 +73,7 @@
 }
 
 .profileform__submit {
-  display: none;
+  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -82,9 +82,10 @@
   color: #fff;
   border: none;
   margin: 20px 0 0;
-  padding: 13px 167px 15px;
+  padding: 15px 0;
   background-color: #3456F3;
   border-radius: 3px;
+  width: 100%;
 }
 
 .profileform__submit_disable {
@@ -93,6 +94,7 @@
 }
 
 .profileform__edit {
+  display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -110,6 +112,7 @@
 }
 
 .profileform__logout {
+  display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -140,6 +143,11 @@
 
   .profileform__title {
     margin: 0 0 64px;
+  }
+
+  .profileform__submit {
+    font-size: 12px;
+    line-height: 15px;
   }
 
   .profileform__edit {
