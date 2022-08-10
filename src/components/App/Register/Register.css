@@ -20,11 +20,10 @@
 }
 
 .auth-form {
+  display: flex;
+  flex-direction: column;
   min-width: 396px;
-}
-
-.auth-form__inputs {
-  margin-bottom: 134px;
+  min-height: 482px;
 }
 
 .auth-form__title {
@@ -35,7 +34,6 @@
   line-height: 29px;
   color: #000;
   margin: 0 0 40px;
-  /* white-space: nowrap; */
 }
 
 .auth-form__field {
@@ -96,7 +94,7 @@
   line-height: 17px;
   color: #fff;
   border: none;
-  margin: 0 0 16px;
+  margin: auto 0 16px;
   padding: 15px 0;
   background-color: #3456F3;
   border-radius: 3px;
@@ -157,10 +155,7 @@
 
   .auth-form {
     min-width: 260px;
-  }
-
-  .auth-form__inputs {
-    margin-bottom: 237px;
+    min-height: 606px;
   }
 
   .auth-form__title {

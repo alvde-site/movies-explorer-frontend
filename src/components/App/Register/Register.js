@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Register(props) {
+function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,6 @@ function Register(props) {
         onSubmit={handleSubmit}
       >
         <h2 className="auth-form__title">Добро пожаловать!</h2>
-        <div className="auth-form__inputs">
           <fieldset className="auth-form__field">
             <label htmlFor="registername" className="auth-form__label">
               Имя
@@ -93,7 +92,6 @@ function Register(props) {
               Что-то пошло не так...
             </span>
           </fieldset>
-        </div>
         <button className="auth-form__submit" type="submit">
           Зарегистрироваться
         </button>
