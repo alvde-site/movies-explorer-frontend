@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Footer() {
   return (
     <footer className="footer">
@@ -9,9 +7,9 @@ function Footer() {
       <div className="footer__lower-column">
         <p className="footer__copyright">© 2022</p>
         <ul className="footer__social">
-          <li><Link to="#" className="footer__social-link">Яндекс.Практикум</Link></li>
-          <li><Link  to="#" className="footer__social-link">Github</Link></li>
-          <li><Link  to="#" className="footer__social-link footer__social-link_last">Facebook</Link></li>
+          <li><a href="https://practicum.yandex.ru/" rel="noreferrer" target="_blank" className="footer__social-link">Яндекс.Практикум</a></li>
+          <li><a href="https://github.com/alvde-site" rel="noreferrer" target="_blank" className="footer__social-link">Github</a></li>
+          <li><a href="https://m.facebook.com/100001562434337/" rel="noreferrer" target="_blank" className="footer__social-link footer__social-link_last">Facebook</a></li>
         </ul>
       </div>
     </footer>
