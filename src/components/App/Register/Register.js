@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 
-function Register({props}) {
+function Register(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,20 +24,22 @@ function Register({props}) {
 
   return (
     <div className="authorization">
+      <Link to="/" className="authorization__logo"></Link>
       <form
         action="#"
-        name={`${props.name}form`}
+        name="authform"
         className="auth-form auth-form_handle_auth"
         onSubmit={handleSubmit}
       >
-        <h2 className="auth-form__title">{props.title}</h2>
-        <label htmlFor="registername" className="auth-form__field">
+        <h2 className="auth-form__title">Добро пожаловать!</h2>
+        <fieldset  className="auth-form__field">
+          <label htmlFor="registername" className="auth-form__label">Имя</label>
           <input
             id="registerename"
-            type="email"
+            type="text"
             className="auth-form__input auth-form__input_register_name"
             name="registername"
-            placeholder="name"
+            placeholder="Имя"
             required
             minLength="2"
             maxLength="30"
@@ -48,9 +50,10 @@ function Register({props}) {
             id="error-registername"
             className="auth-form__input-error"
           ></span>
-        </label>
+        </fieldset>
 
-        <label htmlFor="registeremail" className="auth-form__field">
+        <fieldset className="auth-form__field">
+        <label htmlFor="registeremail" className="auth-form__label">E-mail</label>
           <input
             id="registeremail"
             type="email"
@@ -67,9 +70,10 @@ function Register({props}) {
             id="error-registeremail"
             className="auth-form__input-error"
           ></span>
-        </label>
+        </fieldset>
 
-        <label htmlFor="registerpassword" className="auth-form__field">
+        <fieldset className="auth-form__field">
+        <label htmlFor="registerpassword" className="auth-form__label">Пароль</label>
           <input
             id="registerpassword"
             type="password"
@@ -84,11 +88,11 @@ function Register({props}) {
             id="error-registerpassword"
             className="auth-form__input-error"
           ></span>
-        </label>
+        </fieldset>
         <button className="auth-form__submit" type="submit"></button>
         <div className="auth-form__signin">
           <p className="auth-form__question">Уже зарегистрированы?</p>
-          <Link to="/sign-in" className="auth-form__login-link">
+          <Link to="/signin" className="auth-form__login-link">
             Войти
           </Link>
         </div>
