@@ -20,5 +20,8 @@
 @import url(../components/App/MoviesCardList/MoviesCardList.css);
 @import url(../components/App/MoviesCard/MoviesCard.css);
 
+/* profile */
+@import url(../components/App/Profile/Profile.css);
+
 /* footer */
 @import url(../components/App/Footer/Footer.css);

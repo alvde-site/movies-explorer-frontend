@@ -6,10 +6,10 @@ import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
   const [name, setName] = useState("Виталий");
   const [email, setEmail] = useState("pochta@yandex.ru");
-   // Подписка на контекст
-   const currentUser = useContext(CurrentUserContext);
+  // Подписка на контекст
+  const currentUser = useContext(CurrentUserContext);
 
-   // После загрузки текущего пользователя из API
+  // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
   useEffect(() => {
     setName(currentUser.name);
@@ -31,35 +31,56 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
         onToggleBurger={onToggleBurger}
         isToggleBurger={isToggleBurger}
       />
-      <form action="#" name="profileform" className="profileform" onSubmit={onSubmit}>
-      <h2 className="profileform__title">{`Привет, ${name}!`}</h2>
-      <label htmlFor="nameprofileform" className="profileform__field">Имя</label>
-        <input
-          id="nameprofileform"
-          type="text"
-          className="profileform__input"
-          name="name"
-          value={name || "Виталий"}
-          onChange={handleNameChange}
-          readOnly
-        />
-        <span id="error-nameprofile" className="profileform__input-error"></span>
-        <label htmlFor="emailprofileform" className="profileform__field">E-mail</label>
-        <input
-          id="emailprofileform"
-          type="email"
-          className="profileform__input"
-          name="email"
-          value={email || "pochta@yandex.ru"}
-          onChange={handleEmailChange}
-          readOnly
-        />
-        <span id="error-emailprofile" className="profileform__input-error"></span>
-        <span id="error-submitprofile" className="profileform__submit-error">При обновлении профиля произошла ошибка.</span>
-        <button className="profileform__submit" type="submit">Сохранить</button>
-        <button className="profileform__edit" type="submit">Редактировать</button>
-        <Link to="/" className="profileform__exit" type="submit">Выйти из аккаунта</Link>
-    </form>
+      <form
+        action="#"
+        name="profileform"
+        className="profileform"
+        onSubmit={onSubmit}
+      >
+        <h2 className="profileform__title">{`Привет, ${name}!`}</h2>
+        <fieldset className="profileform__fieldset profileform__fieldset_type_name">
+          <label htmlFor="nameprofileform" className="profileform__field">
+            Имя
+          </label>
+          <input
+            id="nameprofileform"
+            type="text"
+            className="profileform__input"
+            name="name"
+            value={name || "Виталий"}
+            onChange={handleNameChange}
+            readOnly
+          />
+        </fieldset>
+        <fieldset className="profileform__fieldset">
+          <label htmlFor="emailprofileform" className="profileform__field">
+            E-mail
+          </label>
+          <input
+            id="emailprofileform"
+            type="email"
+            className="profileform__input"
+            name="email"
+            value={email || "pochta@yandex.ru"}
+            onChange={handleEmailChange}
+            readOnly
+          />
+        </fieldset>
+        <fieldset className="profileform__submit-fieldset">
+          <span id="error-submitprofile" className="profileform__submit-error">
+            При обновлении профиля произошла ошибка.
+          </span>
+          <button className="profileform__submit" type="submit">
+            Сохранить
+          </button>
+          <button className="profileform__edit" type="submit">
+            Редактировать
+          </button>
+          <Link to="/" className="profileform__logout">
+            Выйти из аккаунта
+          </Link>
+        </fieldset>
+      </form>
     </>
   );
 }
