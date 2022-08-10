@@ -37,7 +37,7 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
-  color: #A0A0A0;
+  color: #a0a0a0;
   margin: 0;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .card__select:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .card__select-button_type_active {
@@ -64,7 +64,7 @@
 }
 
 .card__select-button_type_active:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .card__select-button_type_remove {
@@ -72,7 +72,7 @@
 }
 
 .card__select-button_type_remove:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 @media (max-width: 768px) {

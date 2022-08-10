@@ -1,6 +1,11 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ cardsData, onSelect, isSelected,cardButtonClassType }) {
+function MoviesCardList({
+  cardsData,
+  onSelect,
+  isSelected,
+  cardButtonClassType,
+}) {
   return (
     <div className="movies-list">
       <ul className="movies-list__cards">

@@ -15,10 +15,24 @@ function AboutMe() {
           </p>
           <ul className="about-me__social">
             <li>
-              <a href="https://m.facebook.com/100001562434337/" rel="noreferrer" target="_blank" className="about-me__social-link">Facebook</a>
+              <a
+                href="https://m.facebook.com/100001562434337/"
+                rel="noreferrer"
+                target="_blank"
+                className="about-me__social-link"
+              >
+                Facebook
+              </a>
             </li>
             <li>
-              <a href="https://github.com/alvde-site" rel="noreferrer" target="_blank" className="about-me__social-link about-me__social-link_last">Github</a>
+              <a
+                href="https://github.com/alvde-site"
+                rel="noreferrer"
+                target="_blank"
+                className="about-me__social-link about-me__social-link_last"
+              >
+                Github
+              </a>
             </li>
           </ul>
         </div>

@@ -6,22 +6,22 @@
 }
 
 .header__signup {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  color: rgba(0,0,0,1);
+  color: rgba(0, 0, 0, 1);
   line-height: 16px;
   margin-right: 30px;
   text-decoration: none;
 }
 
 .header__signup:hover {
-  color: rgba(0,0,0,.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .header__signin {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -30,11 +30,11 @@
   border-radius: 3px;
   padding: 8px 20px;
   text-decoration: none;
-  background-color: #3456F3;
+  background-color: #3456f3;
 }
 
 .header__signin:hover {
-  background-color: #3456F3;
+  background-color: #3456f3;
   opacity: 0.8;
 }
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import AuthLinks from "./AuthLinks/AuthLinks";
 import NavLinks from "./NavLinks/NavLinks";
 
-function Header({ loggedIn,  onToggleBurger, isToggleBurger }) {
+function Header({ loggedIn, onToggleBurger, isToggleBurger }) {
   return (
     <header className="header">
       <Link to="/" className="header__logo"></Link>
@@ -12,7 +12,7 @@ function Header({ loggedIn,  onToggleBurger, isToggleBurger }) {
           isToggleBurger={isToggleBurger}
         />
       ) : (
-        <AuthLinks/>
+        <AuthLinks />
       )}
     </header>
   );

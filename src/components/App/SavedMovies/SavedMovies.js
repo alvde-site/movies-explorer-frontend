@@ -12,7 +12,7 @@ function SavedMovies({
   isToggleFilter,
   cardsData,
   onSelect,
-  isSelected
+  isSelected,
 }) {
   return (
     <>
@@ -23,15 +23,20 @@ function SavedMovies({
       />
       <main className="content">
         <section className="movies" aria-label="Фильмы">
-        <SearchForm
-          onToggleFilter={onToggleFilter}
-          isToggleFilter={isToggleFilter}
-        />
-        <MoviesCardList  cardsData={cardsData} onSelect={onSelect} isSelected={isSelected} cardButtonClassType="card__select-button_type_remove"/>
+          <SearchForm
+            onToggleFilter={onToggleFilter}
+            isToggleFilter={isToggleFilter}
+          />
+          <MoviesCardList
+            cardsData={cardsData}
+            onSelect={onSelect}
+            isSelected={isSelected}
+            cardButtonClassType="card__select-button_type_remove"
+          />
         </section>
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger}/>
+      <Navigation isToggleBurger={isToggleBurger} />
     </>
   );
 }

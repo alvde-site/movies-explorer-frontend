@@ -15,7 +15,10 @@ function SearchForm({ onSubmit, onToggleFilter, isToggleFilter }) {
         <span id="error-searchmovie" className="form__input-error"></span>
         <button className="form__submit" type="submit"></button>
       </label>
-      <FilterCheckbox onToggleFilter={onToggleFilter} isToggleFilter={isToggleFilter}/>
+      <FilterCheckbox
+        onToggleFilter={onToggleFilter}
+        isToggleFilter={isToggleFilter}
+      />
     </form>
   );
 }

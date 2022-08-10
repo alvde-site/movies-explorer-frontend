@@ -1,5 +1,4 @@
 function MoviesCard({ card, index, onSelect, cardButtonClassType }) {
-
   const cardDurationMovie = `${Math.floor(card.duration / 60)}ч${
     card.duration % 60 ? (card.duration % 60) + "м" : ""
   }`;

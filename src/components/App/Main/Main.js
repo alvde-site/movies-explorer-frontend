@@ -21,7 +21,7 @@ function Main({ loggedIn, onToggleBurger, isToggleBurger }) {
         <Portfolio />
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger}/>
+      <Navigation isToggleBurger={isToggleBurger} />
     </>
   );
 }

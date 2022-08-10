@@ -23,10 +23,18 @@ function AboutProject() {
         </li>
       </ul>
       <ul className="about-project__duration">
-        <li className="about-project__duration-item about-project__duration-item_theme_blue">1 неделя</li>
-        <li className="about-project__duration-item about-project__duration-item_theme_grey">4 недели</li>
-        <li className="about-project__duration-item about-project__duration-item_theme_white">Back-end</li>
-        <li className="about-project__duration-item about-project__duration-item_theme_white">Front-end</li>
+        <li className="about-project__duration-item about-project__duration-item_theme_blue">
+          1 неделя
+        </li>
+        <li className="about-project__duration-item about-project__duration-item_theme_grey">
+          4 недели
+        </li>
+        <li className="about-project__duration-item about-project__duration-item_theme_white">
+          Back-end
+        </li>
+        <li className="about-project__duration-item about-project__duration-item_theme_white">
+          Front-end
+        </li>
       </ul>
     </section>
   );
