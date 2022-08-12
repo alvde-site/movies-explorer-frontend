@@ -29,10 +29,16 @@ function AboutProject() {
         <li className="about-project__duration-item about-project__duration-item_theme_grey">
           4 недели
         </li>
-        <li className="about-project__duration-item about-project__duration-item_theme_white" lang="en">
+        <li
+          className="about-project__duration-item about-project__duration-item_theme_white"
+          lang="en"
+        >
           Back-end
         </li>
-        <li className="about-project__duration-item about-project__duration-item_theme_white" lang="en">
+        <li
+          className="about-project__duration-item about-project__duration-item_theme_white"
+          lang="en"
+        >
           Front-end
         </li>
       </ul>

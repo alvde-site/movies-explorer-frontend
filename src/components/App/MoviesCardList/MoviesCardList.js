@@ -21,7 +21,9 @@ function MoviesCardList({
           );
         })}
       </ul>
-      <button className="movies-list__more-button">Ещё</button>
+      <button className="movies-list__more-button" type="button">
+        Ещё
+      </button>
     </div>
   );
 }

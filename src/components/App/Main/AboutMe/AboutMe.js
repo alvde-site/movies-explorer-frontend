@@ -21,7 +21,7 @@ function AboutMe() {
                 target="_blank"
                 className="about-me__social-link"
               >
-              ВКонтакте
+                ВКонтакте
               </a>
             </li>
             <li>

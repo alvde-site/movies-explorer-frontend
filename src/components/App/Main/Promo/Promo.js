@@ -3,7 +3,7 @@ import webland from "../../../../images/web-land.png";
 
 function Promo({ loggedIn, isToggleBurger, onToggleBurger }) {
   return (
-    <section className="promo" aria-label="Промо-блок">
+    <header className="promo" aria-label="Промо-блок">
       <Header
         loggedIn={loggedIn}
         onToggleBurger={onToggleBurger}
@@ -23,7 +23,7 @@ function Promo({ loggedIn, isToggleBurger, onToggleBurger }) {
         </div>
         <img className="promo__image" src={webland} alt="Вэб-страна" />
       </div>
-    </section>
+    </header>
   );
 }
 

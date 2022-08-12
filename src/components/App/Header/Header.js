@@ -4,7 +4,7 @@ import NavLinks from "./NavLinks/NavLinks";
 
 function Header({ loggedIn, onToggleBurger, isToggleBurger }) {
   return (
-    <header className="header">
+    <section className="header">
       <Link to="/" className="header__logo"></Link>
       {loggedIn ? (
         <NavLinks
@@ -14,7 +14,7 @@ function Header({ loggedIn, onToggleBurger, isToggleBurger }) {
       ) : (
         <AuthLinks />
       )}
-    </header>
+    </section>
   );
 }
 

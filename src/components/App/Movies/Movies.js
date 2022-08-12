@@ -16,11 +16,13 @@ function Movies({
 }) {
   return (
     <>
-      <Header
+    <header>
+    <Header
         loggedIn={loggedIn}
         onToggleBurger={onToggleBurger}
         isToggleBurger={isToggleBurger}
       />
+    </header>
       <main className="content">
         <section className="movies" aria-label="Фильмы">
           <SearchForm

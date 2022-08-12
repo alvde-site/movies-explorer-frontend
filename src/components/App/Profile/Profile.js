@@ -26,11 +26,14 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
 
   return (
     <>
-      <Header
-        loggedIn={loggedIn}
-        onToggleBurger={onToggleBurger}
-        isToggleBurger={isToggleBurger}
-      />
+      <header>
+        <Header
+          loggedIn={loggedIn}
+          onToggleBurger={onToggleBurger}
+          isToggleBurger={isToggleBurger}
+        />
+      </header>
+
       <form
         action="#"
         name="profileform"
@@ -73,7 +76,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
           <button className="profileform__submit" type="submit">
             Сохранить
           </button>
-          <button className="profileform__edit" type="submit">
+          <button className="profileform__edit" type="button">
             Редактировать
           </button>
           <Link to="/" className="profileform__logout">

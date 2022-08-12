@@ -23,6 +23,7 @@ function MoviesCard({ card, index, onSelect, cardButtonClassType }) {
           className={cardSelectButtonClassName}
           aria-label="Выбрать фильм"
           onClick={handleSelectClick}
+          type="button"
         ></button>
       </div>
     </li>
