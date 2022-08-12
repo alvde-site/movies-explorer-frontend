@@ -44,15 +44,17 @@
 .card__select-button {
   display: inline-block;
   border: none;
+  border-radius: 50%;
   width: 16px;
   height: 16px;
   background-color: transparent;
   background-image: url(../../../images/svg/unselected-film.svg);
-  background-position: center;
-  background-size: contain;
+  background-position: 50% 21%;
+  background-size: 170%;
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
 }
 
 .card__select:hover {
