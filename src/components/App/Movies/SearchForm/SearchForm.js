@@ -12,6 +12,7 @@ function SearchForm({ onSubmit, onToggleFilter, isToggleFilter }) {
           placeholder="Фильм"
           required
         />
+        <span className="form__input_focus"></span>
         <span id="error-searchmovie" className="form__input-error"></span>
         <button className="form__submit" type="submit"></button>
       </label>
