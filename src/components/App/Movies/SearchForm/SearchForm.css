@@ -18,7 +18,12 @@
   width: calc(100% - 80px);
   padding: 13px 0;
   border: none;
+  border-bottom: 1px solid transparent;
   outline: none;
+}
+
+.form__input:focus {
+  border-bottom: 1px solid #3456f3;
 }
 
 .form__input::placeholder {
@@ -31,6 +36,10 @@
   border: none;
   background: url(../../../../images/svg/find-button.svg) right/contain
     no-repeat;
+}
+
+.form__submit:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {

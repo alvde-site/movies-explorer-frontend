@@ -12,7 +12,7 @@ import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
-  const loggedIn = true;
+  const loggedIn = false;
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
