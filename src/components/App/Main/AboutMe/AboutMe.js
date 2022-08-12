@@ -16,12 +16,12 @@ function AboutMe() {
           <ul className="about-me__social">
             <li>
               <a
-                href="https://m.facebook.com/100001562434337/"
+                href="https://vk.com/sashatro"
                 rel="noreferrer"
                 target="_blank"
                 className="about-me__social-link"
               >
-                Facebook
+              ВКонтакте
               </a>
             </li>
             <li>
@@ -30,6 +30,7 @@ function AboutMe() {
                 rel="noreferrer"
                 target="_blank"
                 className="about-me__social-link about-me__social-link_last"
+                lang="en"
               >
                 Github
               </a>
