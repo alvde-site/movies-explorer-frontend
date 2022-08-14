@@ -1,0 +1,139 @@
+.header__nav-links {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  list-style-type: none;
+}
+
+.header__link {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+.header__account {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  border-radius: 40px;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  margin-left: 50px;
+  padding: 3px 3px 3px 11px;
+  text-decoration: none;
+}
+
+.header__account:hover {
+  opacity: 0.7;
+}
+
+.header__account-icon {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: #f4f4f4 url(../../../../images/svg/account-icon.svg) center/10px
+    no-repeat;
+  border-radius: 50px;
+  margin-left: 7px;
+}
+
+.header__burger {
+  margin: 11px 8px 11px;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header__burger {
+    display: block;
+  }
+}
+
+.burger-menu {
+  z-index: 2;
+  width: 28px;
+  height: 22px;
+  position: relative;
+  transform: rotate(0deg);
+  cursor: pointer;
+}
+
+.burger-menu span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: black;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in-out;
+  transform-origin: left center;
+}
+
+.burger-menu span:nth-child(1) {
+  top: 0px;
+}
+.burger-menu span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burger-menu span:nth-child(3) {
+  bottom: 0;
+}
+
+.burger-menu.burger-menu_opened span:nth-child(1) {
+  transform: rotate(45deg);
+  width: 100%;
+  transform-origin: 8% 200%;
+}
+.burger-menu.burger-menu_opened span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+.burger-menu.burger-menu_opened span:nth-child(3) {
+  transform: rotate(-45deg);
+  width: 100%;
+  transform-origin: 10% -100%;
+}
+
+@media (max-width: 768px) {
+  .header__nav-links_hidden_onsmall {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .burger-menu {
+    width: 24px;
+    height: 21px;
+  }
+  .burger-menu.burger-menu_opened span:nth-child(1) {
+    width: 100%;
+    transform-origin: 3% 220%;
+  }
+  .burger-menu.burger-menu_opened span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+  }
+  .burger-menu.burger-menu_opened span:nth-child(3) {
+    width: 100%;
+    transform-origin: 2% -90%;
+  }
+}

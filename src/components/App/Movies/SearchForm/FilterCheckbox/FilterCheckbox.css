@@ -1,0 +1,67 @@
+.form__filter-field {
+  display: flex;
+  padding-top: 36px;
+}
+
+.form__filter-input {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  left: 0;
+  bottom: 0;
+}
+
+.form__filter-item {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  background-image: url(../../../../../images/svg/shortfilmstumb-disable.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 14px 0 0;
+}
+
+.form__filter-desc {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000;
+}
+
+.form__filter-desc {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .form__filter-field {
+    flex-direction: row-reverse;
+    justify-content: end;
+    padding-top: 29px;
+  }
+
+  .form__filter-item {
+    margin: 0 0 0 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .form__filter-desc {
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+  .form__filter-field {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 40px;
+  }
+
+  .form__filter-item {
+    margin: 0 13px 0 0;
+  }
+}

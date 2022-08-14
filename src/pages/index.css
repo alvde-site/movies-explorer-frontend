@@ -1,0 +1,37 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/inter.css);
+@import url(../components/App/App.css);
+
+/* signup & signin */
+@import url(../components/App/Register/Register.css);
+@import url(../components/App/Login/Login.css);
+
+/* header */
+@import url(../components/App/Header/Header.css);
+@import url(../components/App/Header/AuthLinks/AuthLinks.css);
+@import url(../components/App/Header/NavLinks/NavLinks.css);
+
+/* main */
+@import url(../components/App/Main/Promo/Promo.css);
+@import url(../components/App/Main/AboutProject/AboutProject.css);
+@import url(../components/App/Main/Techs/Techs.css);
+@import url(../components/App/Main/AboutMe/AboutMe.css);
+@import url(../components/App/Main/Portfolio/Portfolio.css);
+
+/* movies */
+@import url(../components/App/Movies/SearchForm/SearchForm.css);
+@import url(../components/App/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
+@import url(../components/App/MoviesCardList/MoviesCardList.css);
+@import url(../components/App/MoviesCard/MoviesCard.css);
+
+/* profile */
+@import url(../components/App/Profile/Profile.css);
+
+/* footer */
+@import url(../components/App/Footer/Footer.css);
+
+/* Старница не найдена */
+@import url(../components/App/PageNotFound/PageNotFound.css);
+
+/* Окно навигации */
+@import url(../components/App/Navigation/Navigation.css);

@@ -1,0 +1,34 @@
+.header {
+  box-sizing: border-box;
+  position: relative;
+  min-height: 74px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 70px;
+}
+
+.header__logo {
+  display: inline-block;
+  text-decoration: none;
+  width: 38px;
+  height: 38px;
+  background: url(../../../images/svg/header-logo.svg) center/contain no-repeat;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .header {
+    padding: 18px 14px;
+  }
+}
