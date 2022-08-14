@@ -66,6 +66,7 @@
 @media (max-width: 425px) {
   .portfolio {
     padding: 0 14px 70px;
+    background: #fafafa;
   }
 
   .portfolio__title {
