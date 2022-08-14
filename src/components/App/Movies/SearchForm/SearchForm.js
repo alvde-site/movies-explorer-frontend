@@ -13,7 +13,7 @@ function SearchForm({ onSubmit, onToggleFilter, isToggleFilter }) {
           required
         />
         <span className="form__input_focus"></span>
-        <span id="error-searchmovie" className="form__input-error"></span>
+        <span id="error-searchmovie" className="form__input-error">Нужно ввести ключевое слово</span>
         <button className="form__submit" type="submit"></button>
       </label>
       <FilterCheckbox

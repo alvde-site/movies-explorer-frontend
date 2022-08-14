@@ -23,6 +23,10 @@
   outline: none;
 }
 
+.form__input::placeholder {
+  color: #a0a0a0;
+}
+
 .form__input:focus + .form__input_focus {
   display: block;
 }
@@ -37,8 +41,21 @@
   background-color: #3456f3;
 }
 
-.form__input::placeholder {
-  color: #a0a0a0;
+.form__input-error {
+  display: none;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  position: absolute;
+  bottom: calc(-13px - 6px);
+  left: 0;
+}
+
+.form__input-error_active {
+  display: inline-block;
 }
 
 .form__submit {
