@@ -20,7 +20,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isSavedCards, setIsSavedCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [isInitialMovies, setiIsInitialMovies] = useState([]);
+  const [initialMovies, setInitialMovies] = useState([]);
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
 
   useEffect(() => {
@@ -50,28 +50,35 @@ function App() {
   }
 
   function handleSearchMovie(value) {
-    if(!value) {
+    // Не введено ключевое слова для поиска фильма
+    if (!value) {
       setIsEmptySearchValue(true);
       return;
     } else {
       setIsEmptySearchValue(false);
     }
-    MoviesApiSet.getInitialMovies()
-      .then((res) => {
-        if (!isInitialMovies.length) {
-          setiIsInitialMovies(res);
-          return res
-        } else {
-          return isInitialMovies;
-        }
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(`${err}`);
-      })
-      .finally(() => {});
+
+    if (!initialMovies.length) {
+      MoviesApiSet.getInitialMovies()
+        .then((movies) => {
+          setInitialMovies(movies);
+          const foundMovies = movies.filter(m=>m.nameRU.toLowerCase().includes(value.toLowerCase()));
+          console.log("По умолчанию", foundMovies)
+          // return movies;
+        })
+        // .then((res) => {
+        //   console.log("по умолчанию", res);
+        // })
+        .catch((err) => {
+          console.log(`${err}`);
+        })
+        .finally(() => {});
+    } else {
+      const foundMovies = initialMovies.filter(m=>m.nameRU.toLowerCase().includes(value.toLowerCase()));
+          console.log("уже было настроено", foundMovies)
+    }
+
+    // Получение фильмов по умолчанию с сервера
   }
 
   function handleSearchSavedMovie(value) {
