@@ -10,6 +10,8 @@ import Register from "./Register/Register";
 import { cardsData } from "../../utils/constants";
 import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { MainApiSet } from "../../utils/MainApi";
+import { MoviesApiSet } from "../../utils/MoviesApi";
 
 function App() {
   const loggedIn = true;
@@ -47,6 +49,16 @@ function App() {
 
   function handleSearchMovie(value) {
     console.log(value);
+    MoviesApiSet.getInitialMovies()
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
+    .finally(() => {
+
+    });
   }
 
   function handleSearchSavedMovie(value) {
