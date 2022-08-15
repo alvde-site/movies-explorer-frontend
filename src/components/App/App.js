@@ -45,6 +45,14 @@ function App() {
     setCards((state) => state.map((c) => (c._id === card._id ? card : c)));
   }
 
+  function handleSearchMovie(value) {
+    console.log(value);
+  }
+
+  function handleSearchSavedMovie(value) {
+    console.log(value)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -66,6 +74,7 @@ function App() {
               isToggleFilter={isToggleMoviesFilter}
               cardsData={cards}
               onSelect={handleSelectMovie}
+              onSearch={handleSearchMovie}
             />
           </Route>
           <Route path="/saved-movies">
@@ -77,6 +86,7 @@ function App() {
               isToggleFilter={isToggleMoviesFilter}
               onSelect={handleSelectMovie}
               cardsData={isSavedCards}
+              onSearch={handleSearchSavedMovie}
             />
           </Route>
           <Route path="/profile">
