@@ -7,7 +7,7 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-import { cardsData } from "../../utils/constants";
+// import { cardsData } from "../../utils/constants";
 import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 // import { MainApiSet } from "../../utils/MainApi";
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      setCards(cardsData);
+      // setCards(cardsData);
       setCurrentUser(usersData);
     }
   }, [loggedIn]);
@@ -61,9 +61,41 @@ function App() {
     if (!initialMovies.length) {
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
-          setInitialMovies(movies);
-          const foundMovies = movies.filter(m=>m.nameRU.toLowerCase().includes(value.toLowerCase()));
-          console.log("По умолчанию", foundMovies)
+          const formattedMovies = movies.map(
+            ({
+              id,
+              country,
+              director,
+              duration,
+              year,
+              description,
+              image,
+              trailerLink,
+              nameRU,
+              nameEN,
+            }) => {
+              return {
+                movieId: id,
+                country,
+                director,
+                duration,
+                year,
+                description,
+                image: `https://api.nomoreparties.co${image.url}`,
+                trailerLink,
+                thumbnail: `https://api.nomoreparties.co${image.url}`,
+                owner: "62e64f626edb3e7531ece9fd",
+                nameRU,
+                nameEN,
+              };
+            }
+          );
+          setInitialMovies(formattedMovies);
+          const foundMovies = formattedMovies.filter((m) =>
+            m.nameRU.toLowerCase().includes(value.toLowerCase())
+          );
+          setCards(foundMovies);
+          console.log("По умолчанию", foundMovies);
           // return movies;
         })
         // .then((res) => {
@@ -74,8 +106,11 @@ function App() {
         })
         .finally(() => {});
     } else {
-      const foundMovies = initialMovies.filter(m=>m.nameRU.toLowerCase().includes(value.toLowerCase()));
-          console.log("уже было настроено", foundMovies)
+      const foundMovies = initialMovies.filter((m) =>
+        m.nameRU.toLowerCase().includes(value.toLowerCase())
+      );
+      setCards(foundMovies);
+      console.log("уже было настроено", foundMovies);
     }
 
     // Получение фильмов по умолчанию с сервера
