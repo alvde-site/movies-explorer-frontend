@@ -20,6 +20,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isSavedCards, setIsSavedCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [isInitialMovies, setiIsInitialMovies] = useState([]);
+  const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
 
   useEffect(() => {
     if (loggedIn) {
@@ -48,21 +50,32 @@ function App() {
   }
 
   function handleSearchMovie(value) {
-    console.log(value);
+    if(!value) {
+      setIsEmptySearchValue(true);
+      return;
+    } else {
+      setIsEmptySearchValue(false);
+    }
     MoviesApiSet.getInitialMovies()
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(`${err}`);
-    })
-    .finally(() => {
-
-    });
+      .then((res) => {
+        if (!isInitialMovies.length) {
+          setiIsInitialMovies(res);
+          return res
+        } else {
+          return isInitialMovies;
+        }
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+      .finally(() => {});
   }
 
   function handleSearchSavedMovie(value) {
-    console.log(value)
+    console.log(value);
   }
 
   return (
@@ -87,6 +100,7 @@ function App() {
               cardsData={cards}
               onSelect={handleSelectMovie}
               onSearch={handleSearchMovie}
+              isEmptyValue={isEmptySearchValue}
             />
           </Route>
           <Route path="/saved-movies">
@@ -99,6 +113,7 @@ function App() {
               onSelect={handleSelectMovie}
               cardsData={isSavedCards}
               onSearch={handleSearchSavedMovie}
+              isEmptyValue={isEmptySearchValue}
             />
           </Route>
           <Route path="/profile">

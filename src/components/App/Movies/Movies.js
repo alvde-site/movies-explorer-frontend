@@ -14,6 +14,7 @@ function Movies({
   onSelect,
   isSelected,
   onSearch,
+  isEmptyValue
 }) {
   return (
     <>
@@ -30,6 +31,7 @@ function Movies({
             onToggleFilter={onToggleFilter}
             isToggleFilter={isToggleFilter}
             onSearch={onSearch}
+            isEmptyValue={isEmptyValue}
           />
           <MoviesCardList
             cardsData={cardsData}

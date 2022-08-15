@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, onToggleFilter, isToggleFilter }) {
+function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue }) {
   const [search, setSearch] = useState("");
 
   function handleSubmit(e) {
@@ -22,12 +22,11 @@ function SearchForm({ onSearch, onToggleFilter, isToggleFilter }) {
           className="form__input"
           name="search"
           placeholder="Фильм"
-          required
           value={search || ""}
           onChange={handleSearchChange}
         />
         <span className="form__input_focus"></span>
-        <span id="error-searchmovie" className="form__input-error">
+        <span id="error-searchmovie" className={`form__input-error ${isEmptyValue ? "form__input-error_active" : ""}`}>
           Нужно ввести ключевое слово
         </span>
         <button className="form__submit" type="submit"></button>
