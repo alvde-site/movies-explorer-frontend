@@ -1,16 +1,14 @@
-import { useState } from "react";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue }) {
-  const [search, setSearch] = useState("");
+function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue, searchValue, onSearchValue }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSearch(search);
+    onSearch(searchValue);
   }
 
   function handleSearchChange(e) {
-    setSearch(e.target.value);
+    onSearchValue(e.target.value);
   }
 
   return (
@@ -22,7 +20,7 @@ function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue }) 
           className="form__input"
           name="search"
           placeholder="Фильм"
-          value={search || ""}
+          value={searchValue || ""}
           onChange={handleSearchChange}
         />
         <span className="form__input_focus"></span>

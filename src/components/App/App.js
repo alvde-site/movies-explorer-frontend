@@ -22,11 +22,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [initialMovies, setInitialMovies] = useState([]);
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (loggedIn) {
-      if(JSON.parse(localStorage.getItem("movies"))) {
+      if (JSON.parse(localStorage.getItem("movies"))) {
         setCards(JSON.parse(localStorage.getItem("movies")));
+      }
+      if(JSON.parse(localStorage.moviessetting)) {
+        setIsToggleMoviesFilter(
+          JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
+        );
+        setSearch(JSON.parse(localStorage.moviessetting).value);
       }
       setCurrentUser(usersData);
     }
@@ -101,11 +108,20 @@ function App() {
               m // Фильтрация по введенному значению в поиске
             ) => m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
-
+          // const setFoundMovies = [...foundMovies, {isToggleMoviesFilter, value}]
           localStorage.setItem("movies", JSON.stringify(foundMovies));
+          localStorage.setItem(
+            "moviessetting",
+            // JSON.stringify({ isToggleMoviesFilter, value })
+            JSON.stringify({ isToggleMoviesFilter, value })
+          );
 
           setCards(foundMovies);
-          console.log("По умолчанию", foundMovies);
+          setIsToggleMoviesFilter(
+            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
+          );
+          setSearch(JSON.parse(localStorage.moviessetting).value);
+          // console.log("По умолчанию", setFoundMovies);
           // return movies;
         })
         // .then((res) => {
@@ -119,12 +135,22 @@ function App() {
       const foundMovies = initialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
-      localStorage.setItem("movies", JSON.stringify(foundMovies));
+      localStorage.movies = JSON.stringify(foundMovies);
+      localStorage.moviessetting = JSON.stringify({
+        isToggleMoviesFilter,
+        value,
+      });
+      // (
+      //   "moviessetting",
+      //   // JSON.stringify({ isToggleMoviesFilter, value })
+      //   JSON.stringify('asdf')
+      // );
       setCards(JSON.parse(localStorage.getItem("movies")));
-      console.log("Загружено с localStorage", JSON.parse(localStorage.getItem("movies")));
+      setIsToggleMoviesFilter(
+        JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
+      );
+      setSearch(JSON.parse(localStorage.moviessetting).value);
     }
-
-    // Получение фильмов по умолчанию с сервера
   }
 
   function handleSearchSavedMovie(value) {
@@ -154,6 +180,8 @@ function App() {
               onSelect={handleSelectMovie}
               onSearch={handleSearchMovie}
               isEmptyValue={isEmptySearchValue}
+              searchValue={search}
+              onSearchValue={setSearch}
             />
           </Route>
           <Route path="/saved-movies">

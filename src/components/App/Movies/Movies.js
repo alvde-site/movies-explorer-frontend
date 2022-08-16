@@ -14,17 +14,19 @@ function Movies({
   onSelect,
   isSelected,
   onSearch,
-  isEmptyValue
+  isEmptyValue,
+  searchValue,
+  onSearchValue,
 }) {
   return (
     <>
-    <header>
-    <Header
-        loggedIn={loggedIn}
-        onToggleBurger={onToggleBurger}
-        isToggleBurger={isToggleBurger}
-      />
-    </header>
+      <header>
+        <Header
+          loggedIn={loggedIn}
+          onToggleBurger={onToggleBurger}
+          isToggleBurger={isToggleBurger}
+        />
+      </header>
       <main className="content">
         <section className="movies" aria-label="Фильмы">
           <SearchForm
@@ -32,6 +34,8 @@ function Movies({
             isToggleFilter={isToggleFilter}
             onSearch={onSearch}
             isEmptyValue={isEmptyValue}
+            searchValue={searchValue}
+            onSearchValue={onSearchValue}
           />
           <MoviesCardList
             cardsData={cardsData}
