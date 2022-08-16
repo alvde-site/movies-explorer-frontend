@@ -25,7 +25,9 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      // setCards(cardsData);
+      if(JSON.parse(localStorage.getItem("movies"))) {
+        setCards(JSON.parse(localStorage.getItem("movies")));
+      }
       setCurrentUser(usersData);
     }
   }, [loggedIn]);
@@ -50,7 +52,7 @@ function App() {
   }
 
   function handleSearchMovie(value) {
-    // Не введено ключевое слова для поиска фильма
+    // Проверка на отсутствие ключевого слова для поиска фильма
     if (!value) {
       setIsEmptySearchValue(true);
       return;
@@ -59,9 +61,11 @@ function App() {
     }
 
     if (!initialMovies.length) {
+      // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
           const formattedMovies = movies.map(
+            //  Сохраняем массив фильмом в моем формате
             ({
               id,
               country,
@@ -90,10 +94,16 @@ function App() {
               };
             }
           );
+
           setInitialMovies(formattedMovies);
-          const foundMovies = formattedMovies.filter((m) =>
-            m.nameRU.toLowerCase().includes(value.toLowerCase())
+          const foundMovies = formattedMovies.filter(
+            (
+              m // Фильтрация по введенному значению в поиске
+            ) => m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
+
+          localStorage.setItem("movies", JSON.stringify(foundMovies));
+
           setCards(foundMovies);
           console.log("По умолчанию", foundMovies);
           // return movies;
@@ -109,8 +119,9 @@ function App() {
       const foundMovies = initialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
-      setCards(foundMovies);
-      console.log("уже было настроено", foundMovies);
+      localStorage.setItem("movies", JSON.stringify(foundMovies));
+      setCards(JSON.parse(localStorage.getItem("movies")));
+      console.log("Загружено с localStorage", JSON.parse(localStorage.getItem("movies")));
     }
 
     // Получение фильмов по умолчанию с сервера
