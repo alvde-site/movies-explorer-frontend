@@ -63,7 +63,7 @@ function App() {
           JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
         );
       }
-      if (JSON.parse(localStorage.moviessetting)) {
+      if (localStorage.moviessetting) {
         setIsToggleMoviesFilter(
           JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
         );
