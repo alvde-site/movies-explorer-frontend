@@ -25,12 +25,32 @@ function App() {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
-  const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("")
+  const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
+  const [numberOfMovies, setNumberOfMovies] = useState(12);
+  const [deviceWidth, setDeviceWidth] = useState(1280)
+
+
+  useEffect(()=> {
+    setDeviceWidth(Math.max(window.screen.width, window.innerWidth));
+    handleNumberOfMovies(deviceWidth)
+  }, [deviceWidth]);
+
+  function handleNumberOfMovies(width) {
+    if (width >= 1280) {
+      setNumberOfMovies(16);
+    } else if(1280 < width || width >= 990) {
+      setNumberOfMovies(12);
+    } else {
+      setNumberOfMovies(8);
+    }
+  }
 
   useEffect(() => {
     if (loggedIn) {
       if (JSON.parse(localStorage.getItem("movies"))) {
-        setCards(JSON.parse(localStorage.getItem("movies")));
+        setCards(
+          JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
+        );
       }
       if (JSON.parse(localStorage.moviessetting)) {
         setIsToggleMoviesFilter(
@@ -40,7 +60,17 @@ function App() {
       }
       setCurrentUser(usersData);
     }
-  }, [loggedIn]);
+  }, [loggedIn, numberOfMovies]);
+
+  function handleAddMovies() {
+    if(deviceWidth >= 1280) {
+      setNumberOfMovies(numberOfMovies + 4);
+    } else if(1280 < deviceWidth || deviceWidth >= 990) {
+      setNumberOfMovies(numberOfMovies + 3);
+    } else {
+      setNumberOfMovies(numberOfMovies + 2);
+    }
+  }
 
   function handleToggleBurger() {
     setIsToggleBurger(!isToggleBurger);
@@ -116,22 +146,23 @@ function App() {
             "moviessetting",
             JSON.stringify({ isToggleMoviesFilter, value })
           );
-          if(!foundMovies.length) {
-            setCards(foundMovies);
-            setIsNotFoundMoviesText("Ничего не найдено")
+          if (!foundMovies.length) {
+            setCards(foundMovies.slice(0, numberOfMovies));
+            setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
           }
-          setCards(foundMovies);
+          setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
-          setCards(foundMovies);
           setIsToggleMoviesFilter(
             JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
           );
           setSearch(JSON.parse(localStorage.moviessetting).value);
         })
         .catch((err) => {
-          setIsNotFoundMoviesText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
+          setIsNotFoundMoviesText(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
           setIsNotFoundMovies(true);
           console.log(`${err}`);
         })
@@ -149,13 +180,19 @@ function App() {
       });
       setIsLoading(false);
 
-      if(!foundMovies.length) {
-        setCards(JSON.parse(localStorage.getItem("movies")));
-        setIsNotFoundMoviesText("Ничего не найдено")
+      if (!foundMovies.length) {
+        setDeviceWidth(Math.max(window.screen.width, window.innerWidth))
+        handleNumberOfMovies(deviceWidth)
+        setCards(
+          JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
+        );
+        setIsNotFoundMoviesText("Ничего не найдено");
         setIsNotFoundMovies(true);
         return;
       }
-      setCards(JSON.parse(localStorage.getItem("movies")));
+      setCards(
+        JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
+      );
       setIsNotFoundMovies(false);
       setIsToggleMoviesFilter(
         JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
@@ -196,6 +233,7 @@ function App() {
               isLoading={isLoading}
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
+              onAddMovies={handleAddMovies}
             />
           </Route>
           <Route path="/saved-movies">

@@ -21,6 +21,7 @@ function Movies({
   isLoading,
   isNotFoundMovies,
   notFoundMoviesText,
+  onAddMovies
 }) {
   return (
     <>
@@ -51,6 +52,7 @@ function Movies({
               cardButtonClassType="card__select-button_type_active"
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
+              onAddMovies={onAddMovies}
             />
           )}
         </section>

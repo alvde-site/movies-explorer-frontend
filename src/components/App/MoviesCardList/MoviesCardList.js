@@ -7,8 +7,13 @@ function MoviesCardList({
   isSelected,
   cardButtonClassType,
   isNotFoundMovies,
-  notFoundMoviesText
+  notFoundMoviesText,
+  onAddMovies
 }) {
+  function handleAddMovies(){
+    onAddMovies();
+  }
+
   return (
     <div className="movies-list">
       {isNotFoundMovies ? (
@@ -28,7 +33,7 @@ function MoviesCardList({
               );
             })}
           </ul>
-          <button className="movies-list__more-button" type="button">
+          <button className="movies-list__more-button" type="button" onClick={handleAddMovies}>
             Ещё
           </button>
         </>
