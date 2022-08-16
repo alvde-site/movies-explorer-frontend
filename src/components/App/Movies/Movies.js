@@ -3,6 +3,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
+import Preloader from "../Preloader/Preloader";
 
 function Movies({
   loggedIn,
@@ -17,6 +18,8 @@ function Movies({
   isEmptyValue,
   searchValue,
   onSearchValue,
+  isLoading,
+  isNotFoundMovies,
 }) {
   return (
     <>
@@ -37,12 +40,17 @@ function Movies({
             searchValue={searchValue}
             onSearchValue={onSearchValue}
           />
-          <MoviesCardList
-            cardsData={cardsData}
-            onSelect={onSelect}
-            isSelected={isSelected}
-            cardButtonClassType="card__select-button_type_active"
-          />
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <MoviesCardList
+              cardsData={cardsData}
+              onSelect={onSelect}
+              isSelected={isSelected}
+              cardButtonClassType="card__select-button_type_active"
+              isNotFoundMovies={isNotFoundMovies}
+            />
+          )}
         </section>
       </main>
       <Footer />

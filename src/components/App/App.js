@@ -23,13 +23,15 @@ function App() {
   const [initialMovies, setInitialMovies] = useState([]);
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
 
   useEffect(() => {
     if (loggedIn) {
       if (JSON.parse(localStorage.getItem("movies"))) {
         setCards(JSON.parse(localStorage.getItem("movies")));
       }
-      if(JSON.parse(localStorage.moviessetting)) {
+      if (JSON.parse(localStorage.moviessetting)) {
         setIsToggleMoviesFilter(
           JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
         );
@@ -67,6 +69,8 @@ function App() {
       setIsEmptySearchValue(false);
     }
 
+    setIsLoading(true);
+
     if (!initialMovies.length) {
       // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
@@ -103,34 +107,33 @@ function App() {
           );
 
           setInitialMovies(formattedMovies);
-          const foundMovies = formattedMovies.filter(
-            (
-              m // Фильтрация по введенному значению в поиске
-            ) => m.nameRU.toLowerCase().includes(value.toLowerCase())
+          const foundMovies = formattedMovies.filter((m) =>
+            m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
-          // const setFoundMovies = [...foundMovies, {isToggleMoviesFilter, value}]
           localStorage.setItem("movies", JSON.stringify(foundMovies));
           localStorage.setItem(
             "moviessetting",
-            // JSON.stringify({ isToggleMoviesFilter, value })
             JSON.stringify({ isToggleMoviesFilter, value })
           );
-
+          if(!foundMovies.length) {
+            setCards(foundMovies);
+            setIsNotFoundMovies(true);
+            return;
+          }
+          setCards(foundMovies);
+          setIsNotFoundMovies(false);
           setCards(foundMovies);
           setIsToggleMoviesFilter(
             JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
           );
           setSearch(JSON.parse(localStorage.moviessetting).value);
-          // console.log("По умолчанию", setFoundMovies);
-          // return movies;
         })
-        // .then((res) => {
-        //   console.log("по умолчанию", res);
-        // })
         .catch((err) => {
           console.log(`${err}`);
         })
-        .finally(() => {});
+        .finally(() => {
+          setIsLoading(false);
+        });
     } else {
       const foundMovies = initialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
@@ -140,12 +143,15 @@ function App() {
         isToggleMoviesFilter,
         value,
       });
-      // (
-      //   "moviessetting",
-      //   // JSON.stringify({ isToggleMoviesFilter, value })
-      //   JSON.stringify('asdf')
-      // );
+      setIsLoading(false);
+
+      if(!foundMovies.length) {
+        setCards(JSON.parse(localStorage.getItem("movies")));
+        setIsNotFoundMovies(true);
+        return;
+      }
       setCards(JSON.parse(localStorage.getItem("movies")));
+      setIsNotFoundMovies(false);
       setIsToggleMoviesFilter(
         JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
       );
@@ -182,6 +188,8 @@ function App() {
               isEmptyValue={isEmptySearchValue}
               searchValue={search}
               onSearchValue={setSearch}
+              isLoading={isLoading}
+              isNotFoundMovies={isNotFoundMovies}
             />
           </Route>
           <Route path="/saved-movies">

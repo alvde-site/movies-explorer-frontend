@@ -22,6 +22,7 @@
 @import url(../components/App/Movies/SearchForm/SearchForm.css);
 @import url(../components/App/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
 @import url(../components/App/MoviesCardList/MoviesCardList.css);
+@import url(../components/App/MoviesCardList/NotFoundMovies/NotFoundMovies.css);
 @import url(../components/App/MoviesCard/MoviesCard.css);
 
 /* profile */
