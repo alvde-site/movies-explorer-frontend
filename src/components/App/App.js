@@ -29,6 +29,17 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(12);
   const [deviceWidth, setDeviceWidth] = useState(1280)
 
+  const updateDeviceWidth = () => {
+    const timer = setTimeout(()=> {
+          setDeviceWidth(Math.max(window.screen.width, window.innerWidth));
+        }, 1000);
+        return ()=> clearTimeout(timer);
+  }
+
+  useEffect(()=> {
+    window.addEventListener("resize", updateDeviceWidth);
+    return () => window.removeEventListener("resize", updateDeviceWidth);
+  });
 
   useEffect(()=> {
     setDeviceWidth(Math.max(window.screen.width, window.innerWidth));
