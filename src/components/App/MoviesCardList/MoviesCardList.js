@@ -7,11 +7,12 @@ function MoviesCardList({
   isSelected,
   cardButtonClassType,
   isNotFoundMovies,
+  notFoundMoviesText
 }) {
   return (
     <div className="movies-list">
       {isNotFoundMovies ? (
-        <NotFoundMovies />
+        <NotFoundMovies notFoundMoviesText={notFoundMoviesText}/>
       ) : (
         <>
           <ul className="movies-list__cards">

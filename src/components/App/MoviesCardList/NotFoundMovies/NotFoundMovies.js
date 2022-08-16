@@ -1,6 +1,6 @@
-function NotFoundMovies() {
+function NotFoundMovies({notFoundMoviesText}) {
   return (
-    <p className="movies-list__not-found">Ничего не найдено</p>
+    <p className="movies-list__not-found">{notFoundMoviesText}</p>
   );
 }
 

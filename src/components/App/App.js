@@ -25,6 +25,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
+  const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("")
 
   useEffect(() => {
     if (loggedIn) {
@@ -117,6 +118,7 @@ function App() {
           );
           if(!foundMovies.length) {
             setCards(foundMovies);
+            setIsNotFoundMoviesText("Ничего не найдено")
             setIsNotFoundMovies(true);
             return;
           }
@@ -129,6 +131,8 @@ function App() {
           setSearch(JSON.parse(localStorage.moviessetting).value);
         })
         .catch((err) => {
+          setIsNotFoundMoviesText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
+          setIsNotFoundMovies(true);
           console.log(`${err}`);
         })
         .finally(() => {
@@ -147,6 +151,7 @@ function App() {
 
       if(!foundMovies.length) {
         setCards(JSON.parse(localStorage.getItem("movies")));
+        setIsNotFoundMoviesText("Ничего не найдено")
         setIsNotFoundMovies(true);
         return;
       }
@@ -190,6 +195,7 @@ function App() {
               onSearchValue={setSearch}
               isLoading={isLoading}
               isNotFoundMovies={isNotFoundMovies}
+              notFoundMoviesText={notFoundMoviesText}
             />
           </Route>
           <Route path="/saved-movies">
