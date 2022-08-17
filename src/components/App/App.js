@@ -138,7 +138,7 @@ function App() {
     localStorage.setItem("movies", JSON.stringify(movies));
           localStorage.setItem(
             "moviessetting",
-            JSON.stringify({ isToggleMoviesFilter, val })
+            JSON.stringify({ isToggleMoviesFilter, value: val })
           );
   }
 
