@@ -29,7 +29,6 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
-  // const [isShortMovies, setIsShortMovies] = useState([]);
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(() => {
@@ -67,10 +66,12 @@ function App() {
       } else {
         setIsDisableMoreButton(true);
       }
-      if (localStorage.moviessetting) {
+      if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
         setIsToggleMoviesFilter(
           JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
         );
+        setSearch(JSON.parse(localStorage.moviessetting).value);
+      } else {
         setSearch(JSON.parse(localStorage.moviessetting).value);
       }
       setCurrentUser(usersData);
