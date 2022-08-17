@@ -99,16 +99,15 @@ function App() {
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
-    handleToggleShortMovies();
     // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
   }
 
-  function handleToggleShortMovies() {
+  function handleToggleShortMovies(isToggle) {
     const movies = JSON.parse(localStorage.movies);
     const shortMovies = JSON.parse(localStorage.movies).filter(
       (m) => m.duration <= 40
     );
-    if(isToggleMoviesFilter) {
+    if(isToggle) {
       setCards(shortMovies);
     } else {
       setCards(movies);
@@ -279,6 +278,7 @@ function App() {
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={handleAddMovies}
               isDisableMoreButton={isDisableMoreButton}
+              onToggleMovies={handleToggleShortMovies}
             />
           </Route>
           <Route path="/saved-movies">

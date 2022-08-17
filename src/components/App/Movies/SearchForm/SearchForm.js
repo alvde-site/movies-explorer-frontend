@@ -1,7 +1,14 @@
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue, searchValue, onSearchValue }) {
-
+function SearchForm({
+  onSearch,
+  onToggleFilter,
+  isToggleFilter,
+  isEmptyValue,
+  searchValue,
+  onSearchValue,
+  onToggleMovies,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
     onSearch(searchValue);
@@ -24,7 +31,12 @@ function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue, se
           onChange={handleSearchChange}
         />
         <span className="form__input_focus"></span>
-        <span id="error-searchmovie" className={`form__input-error ${isEmptyValue ? "form__input-error_active" : ""}`}>
+        <span
+          id="error-searchmovie"
+          className={`form__input-error ${
+            isEmptyValue ? "form__input-error_active" : ""
+          }`}
+        >
           Нужно ввести ключевое слово
         </span>
         <button className="form__submit" type="submit"></button>
@@ -32,6 +44,7 @@ function SearchForm({ onSearch, onToggleFilter, isToggleFilter, isEmptyValue, se
       <FilterCheckbox
         onToggleFilter={onToggleFilter}
         isToggleFilter={isToggleFilter}
+        onToggleMovies={onToggleMovies}
       />
     </form>
   );
