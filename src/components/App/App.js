@@ -99,15 +99,20 @@ function App() {
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
+    handleToggleShortMovies();
+    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
+  }
+
+  function handleToggleShortMovies() {
+    const movies = JSON.parse(localStorage.movies);
     const shortMovies = JSON.parse(localStorage.movies).filter(
       (m) => m.duration <= 40
     );
-    setCards(() => {
-      return !isToggleMoviesFilter
-        ? shortMovies
-        : JSON.parse(localStorage.movies);
-    });
-    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
+    if(isToggleMoviesFilter) {
+      setCards(shortMovies);
+    } else {
+      setCards(movies);
+    }
   }
 
   function handleSelectMovie(card) {
