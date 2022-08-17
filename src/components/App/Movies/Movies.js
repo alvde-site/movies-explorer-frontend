@@ -23,7 +23,6 @@ function Movies({
   notFoundMoviesText,
   onAddMovies,
   isDisableMoreButton,
-  onToggleMovies,
 }) {
   return (
     <>
@@ -43,7 +42,6 @@ function Movies({
             isEmptyValue={isEmptyValue}
             searchValue={searchValue}
             onSearchValue={onSearchValue}
-            onToggleMovies={onToggleMovies}
           />
           {isLoading ? (
             <Preloader />

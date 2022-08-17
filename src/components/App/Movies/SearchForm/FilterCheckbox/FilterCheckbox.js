@@ -1,10 +1,9 @@
 import shortFilmsDisableIcon from "../../../../../images/svg/shortfilmstumb-disable.svg";
 import shortFilmsActiveIcon from "../../../../../images/svg/shortfilmstumb-active.svg";
 
-function FilterCheckbox({ isToggleFilter, onToggleFilter, onToggleMovies }) {
+function FilterCheckbox({ isToggleFilter, onToggleFilter }) {
   function handleToggleMovies() {
     onToggleFilter();
-    onToggleMovies(!isToggleFilter);
   }
   return (
     <label htmlFor="filtermovies" className="form__filter-field">

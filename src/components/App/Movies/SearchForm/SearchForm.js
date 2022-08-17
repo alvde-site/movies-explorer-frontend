@@ -7,7 +7,6 @@ function SearchForm({
   isEmptyValue,
   searchValue,
   onSearchValue,
-  onToggleMovies,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -44,7 +43,6 @@ function SearchForm({
       <FilterCheckbox
         onToggleFilter={onToggleFilter}
         isToggleFilter={isToggleFilter}
-        onToggleMovies={onToggleMovies}
       />
     </form>
   );

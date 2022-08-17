@@ -97,21 +97,32 @@ function App() {
     setIsToggleBurger(!isToggleBurger);
   }
 
-  function handleToggleFilter() {
-    setIsToggleMoviesFilter(!isToggleMoviesFilter);
-    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
-  }
 
-  function handleToggleShortMovies(isToggle) {
-    const movies = JSON.parse(localStorage.movies);
+  useEffect(()=>{
+    if(localStorage.movies) {
+      const movies = JSON.parse(localStorage.movies);
     const shortMovies = JSON.parse(localStorage.movies).filter(
       (m) => m.duration <= 40
     );
-    if(isToggle) {
+    if(isToggleMoviesFilter) {
       setCards(shortMovies);
+      localStorage.setItem(
+        "moviessetting",
+        JSON.stringify({ isToggleMoviesFilter, value: JSON.parse(localStorage.moviessetting).value })
+      );
     } else {
       setCards(movies);
+      localStorage.setItem(
+        "moviessetting",
+        JSON.stringify({ isToggleMoviesFilter, value: JSON.parse(localStorage.moviessetting).value })
+      );
     }
+    }
+  }, [isToggleMoviesFilter]);
+
+  function handleToggleFilter() {
+    setIsToggleMoviesFilter(!isToggleMoviesFilter);
+    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
   }
 
   function handleSelectMovie(card) {
@@ -277,9 +288,7 @@ function App() {
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={handleAddMovies}
-              isDisableMoreButton={isDisableMoreButton}
-              onToggleMovies={handleToggleShortMovies}
-            />
+              isDisableMoreButton={isDisableMoreButton}            />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies
