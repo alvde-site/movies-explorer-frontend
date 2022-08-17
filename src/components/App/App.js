@@ -27,7 +27,8 @@ function App() {
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
   const [numberOfMovies, setNumberOfMovies] = useState(12);
-  const [deviceWidth, setDeviceWidth] = useState(1280)
+  const [deviceWidth, setDeviceWidth] = useState(1280);
+  const [isDisableMoreButton, setIsDisableMoreButton] = useState(true);
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(()=> {
@@ -245,6 +246,7 @@ function App() {
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={handleAddMovies}
+              isDisableMoreButton={isDisableMoreButton}
             />
           </Route>
           <Route path="/saved-movies">

@@ -8,16 +8,17 @@ function MoviesCardList({
   cardButtonClassType,
   isNotFoundMovies,
   notFoundMoviesText,
-  onAddMovies
+  onAddMovies,
+  isDisableMoreButton,
 }) {
-  function handleAddMovies(){
+  function handleAddMovies() {
     onAddMovies();
   }
 
   return (
     <div className="movies-list">
       {isNotFoundMovies ? (
-        <NotFoundMovies notFoundMoviesText={notFoundMoviesText}/>
+        <NotFoundMovies notFoundMoviesText={notFoundMoviesText} />
       ) : (
         <>
           <ul className="movies-list__cards">
@@ -33,7 +34,13 @@ function MoviesCardList({
               );
             })}
           </ul>
-          <button className="movies-list__more-button" type="button" onClick={handleAddMovies}>
+          <button
+            className={`movies-list__more-button ${
+              isDisableMoreButton ? "movies-list__more-button_disable" : ""
+            }`}
+            type="button"
+            onClick={handleAddMovies}
+          >
             Ещё
           </button>
         </>

@@ -21,7 +21,8 @@ function Movies({
   isLoading,
   isNotFoundMovies,
   notFoundMoviesText,
-  onAddMovies
+  onAddMovies,
+  isDisableMoreButton
 }) {
   return (
     <>
@@ -53,6 +54,7 @@ function Movies({
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={onAddMovies}
+              isDisableMoreButton={isDisableMoreButton}
             />
           )}
         </section>
