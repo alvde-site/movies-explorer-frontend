@@ -26,7 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
-  const [numberOfMovies, setNumberOfMovies] = useState(12);
+  const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
 
@@ -87,7 +87,7 @@ function App() {
   }
 
   function handleDisableMoreButton(count, movies){
-    setIsDisableMoreButton(()=>count >= movies.length)
+    setIsDisableMoreButton(()=>count > movies.length)
   }
 
   function handleToggleBurger() {
@@ -165,11 +165,13 @@ function App() {
             JSON.stringify({ isToggleMoviesFilter, value })
           );
           if (!foundMovies.length) {
+            handleNumberOfMovies(deviceWidth)
             setCards(foundMovies.slice(0, numberOfMovies));
             setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
           }
+          handleNumberOfMovies(deviceWidth)
           setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
           setIsToggleMoviesFilter(
@@ -208,6 +210,7 @@ function App() {
         setIsNotFoundMovies(true);
         return;
       }
+      handleNumberOfMovies(deviceWidth)
       setCards(
         JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
       );
