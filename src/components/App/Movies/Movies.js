@@ -23,7 +23,6 @@ function Movies({
   notFoundMoviesText,
   onAddMovies,
   isDisableMoreButton,
-  setIsDisableMoreButton
 }) {
   return (
     <>

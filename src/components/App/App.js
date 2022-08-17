@@ -29,6 +29,7 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
+  const [isShortMovies, setIsShortMovies] = useState([]);
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(()=> {
@@ -96,6 +97,8 @@ function App() {
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
+    setIsShortMovies(JSON.parse(localStorage.movies).filter((m) => m.duration <= 40));
+    setCards(()=> {return !isToggleMoviesFilter ? isShortMovies : JSON.parse(localStorage.movies)});
   }
 
   function handleSelectMovie(card) {
