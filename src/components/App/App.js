@@ -66,14 +66,17 @@ function App() {
       } else {
         setIsDisableMoreButton(true);
       }
-      if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
-        setIsToggleMoviesFilter(
-          JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
-        );
-        setSearch(JSON.parse(localStorage.moviessetting).value);
-      } else {
-        setSearch(JSON.parse(localStorage.moviessetting).value);
+      if(localStorage.moviessetting) {
+        if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
+          setIsToggleMoviesFilter(
+            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
+          );
+          setSearch(JSON.parse(localStorage.moviessetting).value);
+        } else {
+          setSearch(JSON.parse(localStorage.moviessetting).value);
+        }
       }
+
       setCurrentUser(usersData);
     }
   }, [loggedIn, numberOfMovies]);
