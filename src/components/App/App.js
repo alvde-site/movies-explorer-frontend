@@ -29,7 +29,7 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
-  const [isShortMovies, setIsShortMovies] = useState([]);
+  // const [isShortMovies, setIsShortMovies] = useState([]);
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(()=> {
@@ -64,6 +64,8 @@ function App() {
         setCards(
           JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
         );
+      } else {
+        setIsDisableMoreButton(true);
       }
       if (localStorage.moviessetting) {
         setIsToggleMoviesFilter(
@@ -97,8 +99,9 @@ function App() {
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
-    setIsShortMovies(JSON.parse(localStorage.movies).filter((m) => m.duration <= 40));
-    setCards(()=> {return !isToggleMoviesFilter ? isShortMovies : JSON.parse(localStorage.movies)});
+    const shortMovies = JSON.parse(localStorage.movies).filter((m) => m.duration <= 40);
+    setCards(()=> {return !isToggleMoviesFilter ? shortMovies : JSON.parse(localStorage.movies)});
+    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
   }
 
   function handleSelectMovie(card) {
@@ -168,12 +171,14 @@ function App() {
             JSON.stringify({ isToggleMoviesFilter, value })
           );
           if (!foundMovies.length) {
+            handleDisableMoreButton(numberOfMovies, foundMovies)
             handleNumberOfMovies(deviceWidth)
             setCards(foundMovies.slice(0, numberOfMovies));
             setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
           }
+          handleDisableMoreButton(numberOfMovies, foundMovies)
           handleNumberOfMovies(deviceWidth)
           setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
@@ -204,6 +209,7 @@ function App() {
       setIsLoading(false);
 
       if (!foundMovies.length) {
+        handleDisableMoreButton(numberOfMovies, foundMovies)
         setDeviceWidth(Math.max(window.screen.width, window.innerWidth))
         handleNumberOfMovies(deviceWidth)
         setCards(
@@ -213,6 +219,7 @@ function App() {
         setIsNotFoundMovies(true);
         return;
       }
+      handleDisableMoreButton(numberOfMovies, foundMovies)
       handleNumberOfMovies(deviceWidth)
       setCards(
         JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
