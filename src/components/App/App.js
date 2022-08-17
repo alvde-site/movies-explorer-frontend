@@ -28,7 +28,7 @@ function App() {
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
   const [numberOfMovies, setNumberOfMovies] = useState(12);
   const [deviceWidth, setDeviceWidth] = useState(1280);
-  const [isDisableMoreButton, setIsDisableMoreButton] = useState(true);
+  const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(()=> {
@@ -82,6 +82,12 @@ function App() {
     } else {
       setNumberOfMovies(numberOfMovies + 2);
     }
+
+    handleDisableMoreButton(numberOfMovies, cards);
+  }
+
+  function handleDisableMoreButton(count, movies){
+    setIsDisableMoreButton(()=>count >= movies.length)
   }
 
   function handleToggleBurger() {

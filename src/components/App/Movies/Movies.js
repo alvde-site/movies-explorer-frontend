@@ -22,7 +22,8 @@ function Movies({
   isNotFoundMovies,
   notFoundMoviesText,
   onAddMovies,
-  isDisableMoreButton
+  isDisableMoreButton,
+  setIsDisableMoreButton
 }) {
   return (
     <>
