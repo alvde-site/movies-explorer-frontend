@@ -1,20 +1,23 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+function Login({
+  onInputChange,
+  values,
+  errors,
+  isValid,
+  onLogin,
+  submitError,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
+    onLogin({
+      email: values["loginemail"],
+      password: values["loginpassword"],
+    });
   }
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
+  function handleInputChange(e) {
+    onInputChange(e);
   }
 
   return (
@@ -28,53 +31,81 @@ function Login() {
       >
         <h2 className="auth-form__title">Рады видеть!</h2>
         <fieldset className="auth-form__field">
-          <label htmlFor="registeremail" className="auth-form__label">
+          <label htmlFor="loginemail" className="auth-form__label">
             E-mail
           </label>
           <input
-            id="registeremail"
+            id="loginemail"
             type="email"
-            className="auth-form__input auth-form__input_register_email"
-            name="registeremail"
+            className={`auth-form__input ${
+              errors["loginemail"] && "auth-form__input_type_error"
+            } auth-form__input_register_email`}
+            name="loginemail"
             required
             minLength="2"
             maxLength="30"
-            value={email || ""}
-            onChange={handleEmailChange}
+            value={values["loginemail"] || ""}
+            onChange={handleInputChange}
           />
-          <span
-            id="error-registeremail"
-            className="auth-form__input-error"
-          ></span>
+          <span id="error-loginemail" className="auth-form__input-error">
+            {errors["registeremail"] || ""}
+          </span>
         </fieldset>
         <fieldset className="auth-form__field">
-          <label htmlFor="registerpassword" className="auth-form__label">
+          <label htmlFor="loginpassword" className="auth-form__label">
             Пароль
           </label>
           <input
-            id="registerpassword"
+            id="loginpassword"
             type="password"
-            className="auth-form__input auth-form__input_type_error auth-form__input_register_password"
-            name="link"
+            className={`auth-form__input ${
+              errors["loginpassword"] && "auth-form__input_type_error"
+            } auth-form__input_register_password`}
+            name="loginpassword"
             required
-            value={password || ""}
-            onChange={handlePasswordChange}
+            minLength="2"
+            maxLength="30"
+            value={values["loginpassword"] || ""}
+            onChange={handleInputChange}
           />
-          <span id="error-registerpassword" className="auth-form__input-error">
-            Что-то пошло не так...
+          <span id="error-loginpassword" className="auth-form__input-error">
+          {errors["loginpassword"] || ""}
           </span>
         </fieldset>
-        <button className="auth-form__submit" type="submit">
-          Войти
+
+
+
+
+
+        <fieldset className="auth-form__submit-fieldset">
+          <span
+            id="error-submitregister"
+            className={`auth-form__submit-error ${
+              submitError && "auth-form__submit-error_active"
+            }`}
+          >
+            {submitError}
+          </span>
+
+
+          <button
+            className={`auth-form__submit ${
+              !isValid && "auth-form__submit_disable"
+            }`}
+            type="submit"
+            disabled={!isValid}
+          >
+            Войти
         </button>
-        <div className="auth-form__signin">
-          <div className="auth-form__redirect">
+          <div className="auth-form__signin">
+            <div className="auth-form__redirect">
             <p className="auth-form__question">Ещё не зарегистрированы?</p>
             <Link to="/signup" className="auth-form__login-link">
               Регистрация
             </Link>
+            </div>
           </div>
-        </div>
+        </fieldset>
       </form>
     </div>
   );

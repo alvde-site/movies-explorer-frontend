@@ -33,7 +33,7 @@ function App() {
   const [submitError, setSubmitError] = useState("");
 
   const history = useHistory();
-  const { values, handleChange, errors, isValid, /*resetForm*/} =
+  const { values, handleChange, errors, isValid /*resetForm*/ } =
     useFormWithValidation();
 
   const updateDeviceWidth = () => {
@@ -63,58 +63,29 @@ function App() {
     }
   }
 
+  function handleLogin({email, password}) {
+    console.log("логин");
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // сейчас работаю
-  function onRegister({ name, email, password }) {
+  function handleRegister({ name, email, password }) {
     // setIsLoading(true);
-    MainApiSet
-      .register({ name, email, password })
+    MainApiSet.register({ name, email, password })
       .then((res) => {
-         console.log(res)
-         setLoggedIn(true);
-         history.push("/movies");
+        console.log(res);
+        setLoggedIn(true);
+        history.push("/movies");
       })
       .catch((err) => {
-        if(err === "Ошибка 409") {
-          setSubmitError("Пользователь с таким email уже существует")
+        if (err === "Ошибка 409") {
+          setSubmitError("Пользователь с таким email уже существует");
         } else {
-          setSubmitError("При регистрации пользователя произошла ошибка")
+          setSubmitError("При регистрации пользователя произошла ошибка");
         }
       })
       .finally(() => {
         // setIsLoading(false);
       });
   }
-// сейчас работаю конец
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   useEffect(() => {
     if (loggedIn) {
@@ -376,7 +347,14 @@ function App() {
             />
           </Route>
           <Route path="/signin">
-            <Login />
+            <Login
+              onInputChange={handleChange}
+              values={values}
+              errors={errors}
+              isValid={isValid}
+              onLogin={handleLogin}
+              submitError={submitError}
+            />
           </Route>
           <Route path="/signup">
             <Register
@@ -384,7 +362,7 @@ function App() {
               values={values}
               errors={errors}
               isValid={isValid}
-              onRegister={onRegister}
+              onRegister={handleRegister}
               submitError={submitError}
             />
           </Route>
