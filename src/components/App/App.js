@@ -67,7 +67,7 @@ function App() {
     // setIsLoading(true);
     MainApiSet.login({ email, password })
       .then((res) => {
-        if(res.message) {
+        if (res.message) {
           setSubmitError(res.message);
           return;
         }
@@ -180,6 +180,19 @@ function App() {
 
   function handleSelectMovie(card) {
     if (!card.isClicked) {
+      MainApiSet.createMovie(card)
+        .then((cardData) => {
+          console.log(cardData)
+          // const newCard = { ...cardData, isOpen: false };
+          // setCards([newCard, ...cards]);
+          // closeAllPopups();
+        })
+        .catch((err) => {
+          console.log(`${err}`);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
       card.isClicked = true;
       setIsSavedCards([...isSavedCards, card]);
     } else {
