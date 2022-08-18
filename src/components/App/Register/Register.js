@@ -27,7 +27,7 @@ function Register({onInputChange, values, errors}) {
           <input
             id="registerename"
             type="text"
-            className="auth-form__input auth-form__input_register_name"
+            className={`auth-form__input ${errors["registername"] && "auth-form__input_type_error"} auth-form__input_register_name`}
             name="registername"
             required
             minLength="2"
@@ -47,7 +47,7 @@ function Register({onInputChange, values, errors}) {
           <input
             id="registeremail"
             type="email"
-            className="auth-form__input auth-form__input_register_email"
+            className={`auth-form__input ${errors["registeremail"] && "auth-form__input_type_error"} auth-form__input_register_email`}
             name="registeremail"
             required
             minLength="2"
@@ -67,7 +67,7 @@ function Register({onInputChange, values, errors}) {
           <input
             id="registerpassword"
             type="password"
-            className="auth-form__input auth-form__input_type_error auth-form__input_register_password"
+            className={`auth-form__input ${errors["registerpassword"] && "auth-form__input_type_error"} auth-form__input_register_password`}
             name="registerpassword"
             required
             minLength="2"
