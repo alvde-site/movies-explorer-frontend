@@ -31,7 +31,6 @@ function App() {
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
 
-  // const { values, handleChange } = useForm();
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   const updateDeviceWidth = () => {
@@ -324,7 +323,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/signup">
-            <Register onInputChange={handleChange} values={values} />
+            <Register onInputChange={handleChange} values={values} errors={errors}/>
           </Route>
           <Route path="*">
             <PageNotFound />

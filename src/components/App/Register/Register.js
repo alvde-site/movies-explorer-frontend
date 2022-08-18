@@ -1,10 +1,6 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Register({onInputChange, values}) {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+function Register({onInputChange, values, errors}) {
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,18 +9,6 @@ function Register({onInputChange, values}) {
   function handleInputChange(e) {
     onInputChange(e);
   }
-
-  // function handleNameChange(e) {
-  //   setName(e.target.value);
-  // }
-
-  // function handleEmailChange(e) {
-  //   setEmail(e.target.value);
-  // }
-
-  // function handlePasswordChange(e) {
-  //   setPassword(e.target.value);
-  // }
 
   return (
     <div className="authorization">
@@ -54,7 +38,7 @@ function Register({onInputChange, values}) {
           <span
             id="error-registername"
             className="auth-form__input-error"
-          ></span>
+          >{errors["registername"] || ""}</span>
         </fieldset>
         <fieldset className="auth-form__field">
           <label htmlFor="registeremail" className="auth-form__label">
@@ -74,7 +58,7 @@ function Register({onInputChange, values}) {
           <span
             id="error-registeremail"
             className="auth-form__input-error"
-          ></span>
+          >{errors["registeremail"] || ""}</span>
         </fieldset>
         <fieldset className="auth-form__field">
           <label htmlFor="registerpassword" className="auth-form__label">
@@ -92,7 +76,7 @@ function Register({onInputChange, values}) {
             onChange={handleInputChange}
           />
           <span id="error-registerpassword" className="auth-form__input-error">
-            Что-то пошло не так...
+          {errors["registerpassword"] || ""}
           </span>
         </fieldset>
         <button className="auth-form__submit" type="submit">
