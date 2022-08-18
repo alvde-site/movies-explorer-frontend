@@ -10,9 +10,11 @@ function MoviesCardList({
   notFoundMoviesText,
   onAddMovies,
   isDisableMoreButton,
+  numberOfMovies,
+  cards
 }) {
   function handleAddMovies() {
-    onAddMovies();
+    onAddMovies(numberOfMovies, cards);
   }
 
   return (

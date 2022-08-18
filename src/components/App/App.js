@@ -81,21 +81,24 @@ function App() {
     }
   }, [loggedIn, numberOfMovies]);
 
-  function handleAddMovies() {
+  useEffect(()=>{
+    setIsDisableMoreButton(() => numberOfMovies > cards.length);
+  },[numberOfMovies, cards]);
+
+  function handleAddMovies(number, cards) {
     if (deviceWidth >= 1280) {
-      setNumberOfMovies(numberOfMovies + 4);
+      setNumberOfMovies(number + 4);
     } else if (1280 < deviceWidth || deviceWidth >= 990) {
-      setNumberOfMovies(numberOfMovies + 3);
+      setNumberOfMovies(number + 3);
     } else {
-      setNumberOfMovies(numberOfMovies + 2);
+      setNumberOfMovies(number + 2);
     }
-
-    handleDisableMoreButton(numberOfMovies, cards);
+   // handleDisableMoreButton(number, cards);
   }
 
-  function handleDisableMoreButton(count, movies) {
-    setIsDisableMoreButton(() => count > movies.length);
-  }
+  // function handleDisableMoreButton(count, movies) {
+  //   setIsDisableMoreButton(() => count > movies.length);
+  // }
 
   function handleToggleBurger() {
     setIsToggleBurger(!isToggleBurger);
@@ -141,7 +144,7 @@ function App() {
   }
 
   function handleSavedStates(foundMovies) {
-    handleDisableMoreButton(numberOfMovies, foundMovies);
+    // handleDisableMoreButton(numberOfMovies, foundMovies);
     setDeviceWidth(Math.max(window.screen.width, window.innerWidth));
     handleNumberOfMovies(deviceWidth);
     setCards(
@@ -214,14 +217,14 @@ function App() {
           );
           handleSaveToLocalStorage(foundMovies, value)
           if (!foundMovies.length) {
-            handleDisableMoreButton(numberOfMovies, foundMovies);
+            //handleDisableMoreButton(numberOfMovies, foundMovies);
             handleNumberOfMovies(deviceWidth);
             setCards(foundMovies.slice(0, numberOfMovies));
             setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
           }
-          handleDisableMoreButton(numberOfMovies, foundMovies);
+          //handleDisableMoreButton(numberOfMovies, foundMovies);
           handleNumberOfMovies(deviceWidth);
           setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
@@ -292,7 +295,9 @@ function App() {
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={handleAddMovies}
-              isDisableMoreButton={isDisableMoreButton}            />
+              isDisableMoreButton={isDisableMoreButton}
+              numberOfMovies={numberOfMovies}
+              cards={cards}        />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies
