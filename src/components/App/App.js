@@ -12,7 +12,7 @@ import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 // import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
-import { useForm, useFormWithValidation } from "../../utils/formValidator";
+import { useFormWithValidation } from "../../utils/formValidator";
 
 function App() {
   const loggedIn = false;
@@ -31,7 +31,8 @@ function App() {
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
 
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(() => {
@@ -323,7 +324,12 @@ function App() {
             <Login />
           </Route>
           <Route path="/signup">
-            <Register onInputChange={handleChange} values={values} errors={errors}/>
+            <Register
+              onInputChange={handleChange}
+              values={values}
+              errors={errors}
+              isValid={isValid}
+            />
           </Route>
           <Route path="*">
             <PageNotFound />

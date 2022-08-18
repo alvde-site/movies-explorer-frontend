@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Register({onInputChange, values, errors}) {
+function Register({onInputChange, values, errors, isValid}) {
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,7 +79,7 @@ function Register({onInputChange, values, errors}) {
           {errors["registerpassword"] || ""}
           </span>
         </fieldset>
-        <button className="auth-form__submit" type="submit">
+        <button className={`auth-form__submit ${!isValid && "auth-form__submit_disable"}`} type="submit" disabled={!isValid}>
           Зарегистрироваться
         </button>
         <div className="auth-form__signin">
