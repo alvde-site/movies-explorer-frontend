@@ -1,18 +1,18 @@
 import React, { useCallback } from "react";
 
 //хук управления формой
-export function useForm() {
-  const [values, setValues] = React.useState({});
+// export function useForm() {
+//   const [values, setValues] = React.useState({});
 
-  const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setValues({...values, [name]: value});
-  };
+//   const handleChange = (event) => {
+//     const target = event.target;
+//     const value = target.value;
+//     const name = target.name;
+//     setValues(values => ({...values, [name]: value}));
+//   };
 
-  return {values, handleChange, setValues};
-}
+//   return {values, handleChange, setValues};
+// }
 
 //хук управления формой и валидации формы
 export function useFormWithValidation() {
@@ -27,6 +27,7 @@ export function useFormWithValidation() {
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
+    console.log(isValid)
   };
 
   const resetForm = useCallback(

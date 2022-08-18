@@ -12,7 +12,6 @@ function Register({onInputChange, values}) {
 
   function handleInputChange(e) {
     onInputChange(e);
-    console.log(values)
   }
 
   // function handleNameChange(e) {
@@ -87,6 +86,8 @@ function Register({onInputChange, values}) {
             className="auth-form__input auth-form__input_type_error auth-form__input_register_password"
             name="registerpassword"
             required
+            minLength="2"
+            maxLength="30"
             value={values["registerpassword"] || ""}
             onChange={handleInputChange}
           />
