@@ -72,6 +72,10 @@
   color: #ff004c;
 }
 
+.profileform__submit-error_active {
+  display: block;
+}
+
 .profileform__submit {
   display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;

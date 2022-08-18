@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
-function Register({ onInputChange, values, errors, isValid, onRegister }) {
+function Register({
+  onInputChange,
+  values,
+  errors,
+  isValid,
+  onRegister,
+  submitError,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
     onRegister({
@@ -89,8 +96,13 @@ function Register({ onInputChange, values, errors, isValid, onRegister }) {
         </fieldset>
 
         <fieldset className="auth-form__submit-fieldset">
-          <span id="error-submitregister" className="auth-form__submit-error">
-            При обновлении профиля произошла ошибка.
+          <span
+            id="error-submitregister"
+            className={`auth-form__submit-error ${
+              submitError && "auth-form__submit-error_active"
+            }`}
+          >
+            {submitError}
           </span>
           <button
             className={`auth-form__submit ${

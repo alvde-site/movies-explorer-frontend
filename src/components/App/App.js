@@ -30,6 +30,7 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const history = useHistory();
   const { values, handleChange, errors, isValid, /*resetForm*/} =
@@ -87,7 +88,11 @@ function App() {
          history.push("/movies");
       })
       .catch((err) => {
-        console.log(`${err}`);
+        if(err === "Ошибка 409") {
+          setSubmitError("Пользователь с таким email уже существует")
+        } else {
+          setSubmitError("При регистрации пользователя произошла ошибка")
+        }
       })
       .finally(() => {
         // setIsLoading(false);
@@ -380,6 +385,7 @@ function App() {
               errors={errors}
               isValid={isValid}
               onRegister={onRegister}
+              submitError={submitError}
             />
           </Route>
           <Route path="*">

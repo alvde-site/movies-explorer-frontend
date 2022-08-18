@@ -121,6 +121,10 @@
   color: #ff004c;
 }
 
+.auth-form__submit-error_active {
+  display: block;
+}
+
 .auth-form__submit:hover {
   opacity: .8;
 }
