@@ -14,11 +14,6 @@ export function useForm() {
   return {values, handleChange, setValues};
 }
 
-export function test() {
-  const tests = "asdf"
-  return { tests }
-}
-
 //хук управления формой и валидации формы
 export function useFormWithValidation() {
   const [values, setValues] = React.useState({});

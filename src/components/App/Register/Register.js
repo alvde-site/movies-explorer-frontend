@@ -1,26 +1,31 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Register({onInputChange, values}) {
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
-  function handleNameChange(e) {
-    setName(e.target.value);
+  function handleInputChange(e) {
+    onInputChange(e);
+    console.log(values)
   }
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+  // function handleNameChange(e) {
+  //   setName(e.target.value);
+  // }
 
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
+  // function handleEmailChange(e) {
+  //   setEmail(e.target.value);
+  // }
+
+  // function handlePasswordChange(e) {
+  //   setPassword(e.target.value);
+  // }
 
   return (
     <div className="authorization">
@@ -44,8 +49,8 @@ function Register() {
             required
             minLength="2"
             maxLength="30"
-            value={name || ""}
-            onChange={handleNameChange}
+            value={values["registername"] || ""}
+            onChange={handleInputChange}
           />
           <span
             id="error-registername"
@@ -64,8 +69,8 @@ function Register() {
             required
             minLength="2"
             maxLength="30"
-            value={email || ""}
-            onChange={handleEmailChange}
+            value={values["registeremail"] || ""}
+            onChange={handleInputChange}
           />
           <span
             id="error-registeremail"
@@ -80,10 +85,10 @@ function Register() {
             id="registerpassword"
             type="password"
             className="auth-form__input auth-form__input_type_error auth-form__input_register_password"
-            name="link"
+            name="registerpassword"
             required
-            value={password || ""}
-            onChange={handlePasswordChange}
+            value={values["registerpassword"] || ""}
+            onChange={handleInputChange}
           />
           <span id="error-registerpassword" className="auth-form__input-error">
             Что-то пошло не так...

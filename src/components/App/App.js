@@ -12,7 +12,7 @@ import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 // import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
-// import { test } from "../../utils/formValidator";
+import { useForm } from "../../utils/formValidator";
 
 function App() {
   const loggedIn = false;
@@ -30,6 +30,8 @@ function App() {
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
+
+  const { values, handleChange } = useForm();
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(() => {
@@ -321,7 +323,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/signup">
-            <Register />
+            <Register onInputChange={handleChange} values={values} />
           </Route>
           <Route path="*">
             <PageNotFound />
