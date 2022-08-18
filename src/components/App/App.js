@@ -140,7 +140,7 @@ function App() {
       card.isClicked = false;
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
-    setCards((state) => state.map((c) => (c._id === card._id ? card : c)));
+    setCards((state) => state.map((c) => (c.movieId === card.movieId ? card : c)));
   }
 
   function handleSavedStates(foundMovies) {
