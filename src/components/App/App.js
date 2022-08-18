@@ -15,7 +15,7 @@ import { useFormWithValidation } from "../../utils/formValidator";
 import { /*Route, Switch, Redirect,*/ useHistory } from "react-router-dom";
 
 function App() {
-  const loggedIn = false;
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
@@ -83,7 +83,8 @@ function App() {
       .register({ name, email, password })
       .then((res) => {
          console.log(res)
-         history.push("/signin");
+         setLoggedIn(true);
+         history.push("/movies");
       })
       .catch((err) => {
         console.log(`${err}`);
