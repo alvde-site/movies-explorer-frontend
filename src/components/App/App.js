@@ -12,9 +12,10 @@ import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 // import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
+// import { test } from "../../utils/formValidator";
 
 function App() {
-  const loggedIn = true;
+  const loggedIn = false;
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
@@ -93,12 +94,7 @@ function App() {
     } else {
       setNumberOfMovies(number + 2);
     }
-    // handleDisableMoreButton(number, cards);
   }
-
-  // function handleDisableMoreButton(count, movies) {
-  //   setIsDisableMoreButton(() => count > movies.length);
-  // }
 
   function handleToggleBurger() {
     setIsToggleBurger(!isToggleBurger);
@@ -134,7 +130,6 @@ function App() {
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
-    // handleDisableMoreButton(numberOfMovies, JSON.parse(localStorage.movies));
   }
 
   function handleSelectMovie(card) {
@@ -150,8 +145,7 @@ function App() {
     );
   }
 
-  function handleSavedStates(foundMovies) {
-    // handleDisableMoreButton(numberOfMovies, foundMovies);
+  function handleSavedStates() {
     setDeviceWidth(Math.max(window.screen.width, window.innerWidth));
     handleNumberOfMovies(deviceWidth);
     setCards(
@@ -187,7 +181,7 @@ function App() {
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
           const formattedMovies = movies.map(
-            //  Сохраняем массив фильмом в моем формате
+            //  Сохраняем массив фильмом в нужном формате
             ({
               id,
               country,
@@ -223,14 +217,12 @@ function App() {
           );
           handleSaveToLocalStorage(foundMovies, value);
           if (!foundMovies.length) {
-            //handleDisableMoreButton(numberOfMovies, foundMovies);
             handleNumberOfMovies(deviceWidth);
             setCards(foundMovies.slice(0, numberOfMovies));
             setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
           }
-          //handleDisableMoreButton(numberOfMovies, foundMovies);
           handleNumberOfMovies(deviceWidth);
           setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
