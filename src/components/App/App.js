@@ -66,7 +66,7 @@ function App() {
       } else {
         setIsDisableMoreButton(true);
       }
-      if(localStorage.moviessetting) {
+      if (localStorage.moviessetting) {
         if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
           setIsToggleMoviesFilter(
             JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
@@ -81,9 +81,9 @@ function App() {
     }
   }, [loggedIn, numberOfMovies]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisableMoreButton(() => numberOfMovies > cards.length);
-  },[numberOfMovies, cards]);
+  }, [numberOfMovies, cards]);
 
   function handleAddMovies(number, cards) {
     if (deviceWidth >= 1280) {
@@ -93,7 +93,7 @@ function App() {
     } else {
       setNumberOfMovies(number + 2);
     }
-   // handleDisableMoreButton(number, cards);
+    // handleDisableMoreButton(number, cards);
   }
 
   // function handleDisableMoreButton(count, movies) {
@@ -104,28 +104,33 @@ function App() {
     setIsToggleBurger(!isToggleBurger);
   }
 
-
-  useEffect(()=>{
-    if(localStorage.movies) {
+  useEffect(() => {
+    if (localStorage.movies) {
       const movies = JSON.parse(localStorage.movies);
-    const shortMovies = JSON.parse(localStorage.movies).filter(
-      (m) => m.duration <= 40
-    );
-    if(isToggleMoviesFilter) {
-      setCards(shortMovies);
-      localStorage.setItem(
-        "moviessetting",
-        JSON.stringify({ isToggleMoviesFilter, value: JSON.parse(localStorage.moviessetting).value })
+      const shortMovies = JSON.parse(localStorage.movies).filter(
+        (m) => m.duration <= 40
       );
-    } else {
-      setCards(movies);
-      localStorage.setItem(
-        "moviessetting",
-        JSON.stringify({ isToggleMoviesFilter, value: JSON.parse(localStorage.moviessetting).value })
-      );
+      if (isToggleMoviesFilter) {
+        setCards(shortMovies);
+        localStorage.setItem(
+          "moviessetting",
+          JSON.stringify({
+            isToggleMoviesFilter,
+            value: JSON.parse(localStorage.moviessetting).value,
+          })
+        );
+      } else {
+        setCards(movies.slice(0, numberOfMovies));
+        localStorage.setItem(
+          "moviessetting",
+          JSON.stringify({
+            isToggleMoviesFilter,
+            value: JSON.parse(localStorage.moviessetting).value,
+          })
+        );
+      }
     }
-    }
-  }, [isToggleMoviesFilter]);
+  }, [isToggleMoviesFilter, numberOfMovies]);
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
@@ -140,7 +145,9 @@ function App() {
       card.isClicked = false;
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
-    setCards((state) => state.map((c) => (c.movieId === card.movieId ? card : c)));
+    setCards((state) =>
+      state.map((c) => (c.movieId === card.movieId ? card : c))
+    );
   }
 
   function handleSavedStates(foundMovies) {
@@ -156,14 +163,13 @@ function App() {
     setSearch(JSON.parse(localStorage.moviessetting).value);
   }
 
-  function handleSaveToLocalStorage(movies, val){
+  function handleSaveToLocalStorage(movies, val) {
     localStorage.setItem("movies", JSON.stringify(movies));
-          localStorage.setItem(
-            "moviessetting",
-            JSON.stringify({ isToggleMoviesFilter, value: val })
-          );
+    localStorage.setItem(
+      "moviessetting",
+      JSON.stringify({ isToggleMoviesFilter, value: val })
+    );
   }
-
 
   function handleSearchMovie(value) {
     // Проверка на отсутствие ключевого слова для поиска фильма
@@ -215,7 +221,7 @@ function App() {
           const foundMovies = formattedMovies.filter((m) =>
             m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
-          handleSaveToLocalStorage(foundMovies, value)
+          handleSaveToLocalStorage(foundMovies, value);
           if (!foundMovies.length) {
             //handleDisableMoreButton(numberOfMovies, foundMovies);
             handleNumberOfMovies(deviceWidth);
@@ -261,7 +267,6 @@ function App() {
     }
   }
 
-
   function handleSearchSavedMovie(value) {
     console.log(value);
   }
@@ -297,7 +302,8 @@ function App() {
               onAddMovies={handleAddMovies}
               isDisableMoreButton={isDisableMoreButton}
               numberOfMovies={numberOfMovies}
-              cards={cards}        />
+              cards={cards}
+            />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies
