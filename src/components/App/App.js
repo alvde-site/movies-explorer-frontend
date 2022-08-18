@@ -72,7 +72,7 @@ function App() {
           return;
         }
         if (res.token) {
-          console.log(res);
+          setLoggedIn(true);
           localStorage.setItem("token", res.token);
           history.push("/movies");
         }
@@ -88,8 +88,7 @@ function App() {
   function handleRegister({ name, password, email }) {
     // setIsLoading(true);
     MainApiSet.register({ name, password, email })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setLoggedIn(true);
         history.push("/movies");
       })
