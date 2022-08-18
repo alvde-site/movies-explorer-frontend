@@ -71,6 +71,7 @@
 
 .card__select-button_type_remove {
   background-image: url(../../../images/svg/remove-button.svg);
+  background-position: 50% 45%;
 }
 
 .card__select-button_type_remove:hover {
