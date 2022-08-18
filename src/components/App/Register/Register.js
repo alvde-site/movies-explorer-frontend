@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 
-function Register({onInputChange, values, errors, isValid, onRegister}) {
-
+function Register({ onInputChange, values, errors, isValid, onRegister }) {
   function handleSubmit(e) {
     e.preventDefault();
-    onRegister({name: values["registername"], email: values["registeremail"], password: values["registerpassword"]})
+    onRegister({
+      name: values["registername"],
+      email: values["registeremail"],
+      password: values["registerpassword"],
+    });
   }
 
   function handleInputChange(e) {
@@ -28,7 +31,9 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
           <input
             id="registerename"
             type="text"
-            className={`auth-form__input ${errors["registername"] && "auth-form__input_type_error"} auth-form__input_register_name`}
+            className={`auth-form__input ${
+              errors["registername"] && "auth-form__input_type_error"
+            } auth-form__input_register_name`}
             name="registername"
             required
             minLength="2"
@@ -36,10 +41,9 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
             value={values["registername"] || ""}
             onChange={handleInputChange}
           />
-          <span
-            id="error-registername"
-            className="auth-form__input-error"
-          >{errors["registername"] || ""}</span>
+          <span id="error-registername" className="auth-form__input-error">
+            {errors["registername"] || ""}
+          </span>
         </fieldset>
         <fieldset className="auth-form__field">
           <label htmlFor="registeremail" className="auth-form__label">
@@ -48,7 +52,9 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
           <input
             id="registeremail"
             type="email"
-            className={`auth-form__input ${errors["registeremail"] && "auth-form__input_type_error"} auth-form__input_register_email`}
+            className={`auth-form__input ${
+              errors["registeremail"] && "auth-form__input_type_error"
+            } auth-form__input_register_email`}
             name="registeremail"
             required
             minLength="2"
@@ -56,10 +62,9 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
             value={values["registeremail"] || ""}
             onChange={handleInputChange}
           />
-          <span
-            id="error-registeremail"
-            className="auth-form__input-error"
-          >{errors["registeremail"] || ""}</span>
+          <span id="error-registeremail" className="auth-form__input-error">
+            {errors["registeremail"] || ""}
+          </span>
         </fieldset>
         <fieldset className="auth-form__field">
           <label htmlFor="registerpassword" className="auth-form__label">
@@ -68,7 +73,9 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
           <input
             id="registerpassword"
             type="password"
-            className={`auth-form__input ${errors["registerpassword"] && "auth-form__input_type_error"} auth-form__input_register_password`}
+            className={`auth-form__input ${
+              errors["registerpassword"] && "auth-form__input_type_error"
+            } auth-form__input_register_password`}
             name="registerpassword"
             required
             minLength="2"
@@ -77,20 +84,32 @@ function Register({onInputChange, values, errors, isValid, onRegister}) {
             onChange={handleInputChange}
           />
           <span id="error-registerpassword" className="auth-form__input-error">
-          {errors["registerpassword"] || ""}
+            {errors["registerpassword"] || ""}
           </span>
         </fieldset>
-        <button className={`auth-form__submit ${!isValid && "auth-form__submit_disable"}`} type="submit" disabled={!isValid}>
-          Зарегистрироваться
-        </button>
-        <div className="auth-form__signin">
-          <div className="auth-form__redirect">
-            <p className="auth-form__question">Уже зарегистрированы?</p>
-            <Link to="/signin" className="auth-form__login-link">
-              Войти
-            </Link>
+
+        <fieldset className="auth-form__submit-fieldset">
+          <span id="error-submitregister" className="auth-form__submit-error">
+            При обновлении профиля произошла ошибка.
+          </span>
+          <button
+            className={`auth-form__submit ${
+              !isValid && "auth-form__submit_disable"
+            }`}
+            type="submit"
+            disabled={!isValid}
+          >
+            Зарегистрироваться
+          </button>
+          <div className="auth-form__signin">
+            <div className="auth-form__redirect">
+              <p className="auth-form__question">Уже зарегистрированы?</p>
+              <Link to="/signin" className="auth-form__login-link">
+                Войти
+              </Link>
+            </div>
           </div>
-        </div>
+        </fieldset>
       </form>
     </div>
   );
