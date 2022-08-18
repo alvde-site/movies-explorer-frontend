@@ -7,12 +7,12 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-// import { cardsData } from "../../utils/constants";
 import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import { MainApiSet } from "../../utils/MainApi";
+import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
 import { useFormWithValidation } from "../../utils/formValidator";
+import { /*Route, Switch, Redirect,*/ useHistory } from "react-router-dom";
 
 function App() {
   const loggedIn = false;
@@ -31,7 +31,8 @@ function App() {
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
 
-  const { values, handleChange, errors, isValid, resetForm } =
+  const history = useHistory();
+  const { values, handleChange, errors, isValid, /*resetForm*/} =
     useFormWithValidation();
 
   const updateDeviceWidth = () => {
@@ -60,6 +61,54 @@ function App() {
       setNumberOfMovies(8);
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // сейчас работаю
+  function onRegister({ name, email, password }) {
+    // setIsLoading(true);
+    MainApiSet
+      .register({ name, email, password })
+      .then((res) => {
+         console.log(res)
+         history.push("/signin");
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  }
+// сейчас работаю конец
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     if (loggedIn) {
@@ -329,6 +378,7 @@ function App() {
               values={values}
               errors={errors}
               isValid={isValid}
+              onRegister={onRegister}
             />
           </Route>
           <Route path="*">

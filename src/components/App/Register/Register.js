@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
-function Register({onInputChange, values, errors, isValid}) {
+function Register({onInputChange, values, errors, isValid, onRegister}) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    onRegister({name: values["registername"], email: values["registeremail"], password: values["registerpassword"]})
   }
 
   function handleInputChange(e) {

@@ -1,29 +1,3 @@
-
-  //   addLike(cardId) {
-  //     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-  //       method: "PUT",
-  //       headers: this._headers,
-  //       credentials: 'include',
-  //     }).then(this._checkResponse);
-  //   }
-
-  //   removeLike(cardId) {
-  //     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-  //       method: "DELETE",
-  //       headers: this._headers,
-  //       credentials: 'include',
-  //     }).then(this._checkResponse);
-  //   }
-
-  //   changeLikeCardStatus(cardId, notLiked) {
-  //     if (notLiked) {
-  //       return this.addLike(cardId);
-  //     } else {
-  //       return this.removeLike(cardId);
-  //     }
-  //   }
-
-
 class MainApi {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
