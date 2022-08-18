@@ -63,13 +63,31 @@ function App() {
     }
   }
 
-  function handleLogin({email, password}) {
-    console.log("логин");
+  function handleLogin({ password, email }) {
+    // setIsLoading(true);
+    MainApiSet.login({ email, password })
+      .then((res) => {
+        if(res.message) {
+          setSubmitError(res.message);
+          return;
+        }
+        if (res.token) {
+          console.log(res);
+          localStorage.setItem("token", res.token);
+          history.push("/movies");
+        }
+      })
+      .catch((err) => {
+        setSubmitError(`На сервере произошла ошибка: ${err}`);
+      })
+      .finally(() => {
+        //   setIsLoading(false);
+      });
   }
 
-  function handleRegister({ name, email, password }) {
+  function handleRegister({ name, password, email }) {
     // setIsLoading(true);
-    MainApiSet.register({ name, email, password })
+    MainApiSet.register({ name, password, email })
       .then((res) => {
         console.log(res);
         setLoggedIn(true);
