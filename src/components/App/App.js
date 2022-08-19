@@ -446,6 +446,8 @@ function App() {
               onEditButton={onEditProfileButton}
               isEditProfile={isEditProfile}
               onEditProfile={handleEditProfile}
+              values={values}
+              onInputChange={handleChange}
             />
           </Route>
           <Route path="/signin">

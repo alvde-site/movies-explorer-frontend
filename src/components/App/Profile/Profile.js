@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
@@ -10,35 +10,40 @@ function Profile({
   onEditButton,
   isEditProfile,
   onEditProfile,
+  values,
+  onInputChange,
 }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
   // Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
 
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
-  useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, [currentUser, loggedIn]);
+  // useEffect(() => {
+  //   setName(currentUser.name);
+  //   setEmail(currentUser.email);
+  // }, [currentUser, loggedIn]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onEditProfile({
-      // name: values["registername"],
-      // email: values["registeremail"],
-      name, email
+      name: values["profilename"],
+      email: values["profileemail"],
     });
   }
 
-  function handleNameChange(e) {
-    setName(e.target.value);
+  function handleInputChange(e) {
+    onInputChange(e);
   }
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+  // function handleNameChange(e) {
+  //   setName(e.target.value);
+  // }
+
+  // function handleEmailChange(e) {
+  //   setEmail(e.target.value);
+  // }
 
   function handleEditButton() {
     onEditButton();
@@ -73,8 +78,8 @@ function Profile({
             required
             minLength="2"
             maxLength="30"
-            value={name || ""}
-            onChange={handleNameChange}
+            value={values["profilename"] || ""}
+            onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
           />
@@ -92,8 +97,8 @@ function Profile({
             required
             minLength="2"
             maxLength="30"
-            value={email || ""}
-            onChange={handleEmailChange}
+            value={values["profileemail"] || ""}
+            onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
           />
