@@ -58,8 +58,8 @@ function App() {
         MainApiSet.getCurrentUser()
           .then((res) => {
             if (res) {
-              console.log("Проверка токена", res.email, " ", res.name)
-             // setEmail(res.email);
+              console.log("Проверка токена", res.email, " ", res.name);
+              // setEmail(res.email);
               // авторизуем пользователя
               setLoggedIn(true);
             }
@@ -79,23 +79,21 @@ function App() {
 
           setCurrentUser(userData);
           const formattedMovies = moviesData.map((movie) => {
-           return {
-             ...movie,
-             isClicked: true,
-           };
+            return {
+              ...movie,
+              isClicked: true,
+            };
           });
           setIsSavedCards(formattedMovies);
 
-          console.log(userData)
-          console.log(formattedMovies)
-
+          console.log(userData);
+          console.log(formattedMovies);
         })
         .catch((err) => {
           console.log(`${err}`);
         });
     }
   }, [loggedIn]);
-
 
   useEffect(() => {
     if (loggedIn) {
@@ -116,11 +114,8 @@ function App() {
           setSearch(JSON.parse(localStorage.moviessetting).value);
         }
       }
-
-
     }
   }, [loggedIn, numberOfMovies]);
-
 
   useEffect(() => {
     window.addEventListener("resize", updateDeviceWidth);
@@ -237,7 +232,7 @@ function App() {
     if (!card.isClicked) {
       MainApiSet.createMovie(card)
         .then((cardData) => {
-          console.log(cardData)
+          console.log(cardData);
           // const newCard = { ...cardData, isOpen: false };
           // setCards([newCard, ...cards]);
           // closeAllPopups();
@@ -381,18 +376,19 @@ function App() {
     setIsEditProfile(true);
   }
 
-  function handleEditProfile({name, email}) {
-     // setIsLoading(true);
-    MainApiSet.updateUser({name, email})
-    .then((res) => {
-      setCurrentUser(res);
-    })
-    .catch((err) => {
-      console.log(`${err}`);
-    })
-    .finally(() => {
-      // setIsLoading(false);
-    });
+  function handleEditProfile({ name, email }) {
+    // setIsLoading(true);
+    MainApiSet.updateUser({ name, email })
+      .then((res) => {
+        setCurrentUser(res);
+        setIsEditProfile(false);
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
   }
 
   return (
