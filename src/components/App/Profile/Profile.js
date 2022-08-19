@@ -78,7 +78,7 @@ function Profile({
             required
             minLength="2"
             maxLength="30"
-            value={values["profilename"] || ""}
+            value={values["profilename"] || currentUser.name || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
@@ -97,7 +97,7 @@ function Profile({
             required
             minLength="2"
             maxLength="30"
-            value={values["profileemail"] || ""}
+            value={values["profileemail"] || currentUser.email || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
