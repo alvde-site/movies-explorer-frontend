@@ -62,14 +62,17 @@ function Profile({
       >
         <h2 className="profileform__title">{`Привет, ${currentUser.name}!`}</h2>
         <fieldset className="profileform__fieldset profileform__fieldset_type_name">
-          <label htmlFor="nameprofileform" className="profileform__field">
+          <label htmlFor="profilename" className="profileform__field">
             Имя
           </label>
           <input
-            id="nameprofileform"
+            id="profilename"
             type="text"
             className="profileform__input"
-            name="name"
+            name="profilename"
+            required
+            minLength="2"
+            maxLength="30"
             value={name || ""}
             onChange={handleNameChange}
             readOnly={!isEditProfile}
@@ -78,14 +81,17 @@ function Profile({
           <span className="profileform__input_focus"></span>
         </fieldset>
         <fieldset className="profileform__fieldset">
-          <label htmlFor="emailprofileform" className="profileform__field">
+          <label htmlFor="profileemail" className="profileform__field">
             E-mail
           </label>
           <input
-            id="emailprofileform"
+            id="profileemail"
             type="email"
             className="profileform__input"
-            name="email"
+            name="profileemail"
+            required
+            minLength="2"
+            maxLength="30"
             value={email || ""}
             onChange={handleEmailChange}
             readOnly={!isEditProfile}
