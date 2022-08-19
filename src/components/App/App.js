@@ -58,9 +58,6 @@ function App() {
         MainApiSet.getCurrentUser()
           .then((res) => {
             if (res) {
-              console.log("Проверка токена", res.email, " ", res.name);
-              // setEmail(res.email);
-              // авторизуем пользователя
               setLoggedIn(true);
             }
           })
@@ -384,6 +381,9 @@ function App() {
         setIsEditProfile(false);
       })
       .catch((err) => {
+        if(err){
+          setSubmitError("При обновлении профиля произошла ошибка")
+        }
         console.log(`${err}`);
       })
       .finally(() => {
@@ -449,6 +449,7 @@ function App() {
               values={values}
               onInputChange={handleChange}
               isValid={isValid}
+              submitError={submitError}
             />
           </Route>
           <Route path="/signin">

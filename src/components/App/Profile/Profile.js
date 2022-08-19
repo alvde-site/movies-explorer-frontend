@@ -13,6 +13,7 @@ function Profile({
   values,
   onInputChange,
   isValid,
+  submitError
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -90,8 +91,10 @@ function Profile({
           <span className="profileform__input_focus"></span>
         </fieldset>
         <fieldset className="profileform__submit-fieldset">
-          <span id="error-submitprofile" className="profileform__submit-error">
-            При обновлении профиля произошла ошибка.
+          <span id="error-submitprofile" className={`profileform__submit-error ${
+              submitError && "profileform__submit-error_active"
+            }`}>
+            {submitError}
           </span>
           <button
             className={`profileform__submit ${
