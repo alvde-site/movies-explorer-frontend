@@ -7,7 +7,6 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-// import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
@@ -44,10 +43,6 @@ function App() {
     return () => clearTimeout(timer);
   };
 
-  // копия рабочая
-
-
-
   useEffect(() => {
     tokenCheck();
   });
@@ -67,7 +62,6 @@ function App() {
              // setEmail(res.email);
               // авторизуем пользователя
               setLoggedIn(true);
-              history.push("/movies");
             }
           })
           .catch((err) => {
@@ -76,15 +70,6 @@ function App() {
       }
     }
   }
-
-  // конец копии рабочая
-
-  useEffect(() => {
-    if (loggedIn) {
-      history.push("/movies");
-    }
-  });
-
 
   useEffect(() => {
     if (loggedIn) {
