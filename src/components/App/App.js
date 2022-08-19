@@ -47,34 +47,34 @@ function App() {
 
 
 
-  // useEffect(() => {
-  //   tokenCheck();
-  // });
+  useEffect(() => {
+    tokenCheck();
+  });
 
-  // function tokenCheck() {
-  //   // если у пользователя есть токен в localStorage,
-  //   // эта функция проверит, действующий он или нет
-  //   if (localStorage.getItem("token")) {
-  //     const jwt = localStorage.getItem("token");
-  //     // здесь будем проверять токен
-  //     if (jwt) {
-  //       // проверим токен
-  //       mestoAuth
-  //         .getContent(jwt)
-  //         .then((res) => {
-  //           if (res) {
-  //             setEmail(res.email);
-  //             // авторизуем пользователя
-  //             setLoggedIn(true);
-  //             history.push("/");
-  //           }
-  //         })
-  //         .catch((err) => {
-  //           console.log(`${err}`);
-  //         });
-  //     }
-  //   }
-  // }
+  function tokenCheck() {
+    // если у пользователя есть токен в localStorage,
+    // эта функция проверит, действующий он или нет
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+      // здесь будем проверять токен
+      if (jwt) {
+        // проверим токен
+        MainApiSet.getCurrentUser()
+          .then((res) => {
+            if (res) {
+              console.log("Проверка токена", res.email, " ", res.name)
+             // setEmail(res.email);
+              // авторизуем пользователя
+              setLoggedIn(true);
+              history.push("/movies");
+            }
+          })
+          .catch((err) => {
+            console.log(`${err}`);
+          });
+      }
+    }
+  }
 
   // конец копии рабочая
 
