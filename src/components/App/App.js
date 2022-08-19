@@ -381,6 +381,10 @@ function App() {
     setIsEditProfile(true);
   }
 
+  function handleEditProfile({name, email}) {
+    console.log({name, email})
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -435,6 +439,7 @@ function App() {
               isToggleBurger={isToggleBurger}
               onEditButton={onEditProfileButton}
               isEditProfile={isEditProfile}
+              onEditProfile={handleEditProfile}
             />
           </Route>
           <Route path="/signin">

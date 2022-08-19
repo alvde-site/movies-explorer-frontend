@@ -7,9 +7,9 @@ function Profile({
   loggedIn,
   onToggleBurger,
   isToggleBurger,
-  onSubmit,
   onEditButton,
   isEditProfile,
+  onEditProfile,
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,12 +23,21 @@ function Profile({
     setEmail(currentUser.email);
   }, [currentUser, loggedIn]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onEditProfile({
+      // name: values["registername"],
+      // email: values["registeremail"],
+      name, email
+    });
+  }
+
   function handleNameChange(e) {
     setName(e.target.value);
   }
 
   function handleEmailChange(e) {
-    setName(e.target.value);
+    setEmail(e.target.value);
   }
 
   function handleEditButton() {
@@ -49,7 +58,7 @@ function Profile({
         action="#"
         name="profileform"
         className="profileform"
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         <h2 className="profileform__title">{`Привет, ${currentUser.name}!`}</h2>
         <fieldset className="profileform__fieldset profileform__fieldset_type_name">
