@@ -7,7 +7,7 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-import { usersData } from "../../utils/constants";
+// import { usersData } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
@@ -42,6 +42,98 @@ function App() {
     }, 1000);
     return () => clearTimeout(timer);
   };
+
+  // копия рабочая
+
+
+
+  // useEffect(() => {
+  //   tokenCheck();
+  // });
+
+  // function tokenCheck() {
+  //   // если у пользователя есть токен в localStorage,
+  //   // эта функция проверит, действующий он или нет
+  //   if (localStorage.getItem("token")) {
+  //     const jwt = localStorage.getItem("token");
+  //     // здесь будем проверять токен
+  //     if (jwt) {
+  //       // проверим токен
+  //       mestoAuth
+  //         .getContent(jwt)
+  //         .then((res) => {
+  //           if (res) {
+  //             setEmail(res.email);
+  //             // авторизуем пользователя
+  //             setLoggedIn(true);
+  //             history.push("/");
+  //           }
+  //         })
+  //         .catch((err) => {
+  //           console.log(`${err}`);
+  //         });
+  //     }
+  //   }
+  // }
+
+  // конец копии рабочая
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push("/movies");
+    }
+  });
+
+
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([MainApiSet.getCurrentUser(), MainApiSet.getMovies()])
+        .then(([userData, moviesData]) => {
+          // moviesData = массив объектов карточке с сервера
+          setCurrentUser(userData);
+          const formattedMovies = moviesData.map((movie) => {
+           return {
+             ...movie,
+             isClicked: true,
+           };
+          });
+          setIsSavedCards(formattedMovies);
+
+          console.log(userData)
+          console.log(formattedMovies)
+
+        })
+        .catch((err) => {
+          console.log(`${err}`);
+        });
+    }
+  }, [loggedIn]);
+
+
+  useEffect(() => {
+    if (loggedIn) {
+      if (JSON.parse(localStorage.getItem("movies"))) {
+        setCards(
+          JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
+        );
+      } else {
+        setIsDisableMoreButton(true);
+      }
+      if (localStorage.moviessetting) {
+        if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
+          setIsToggleMoviesFilter(
+            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
+          );
+          setSearch(JSON.parse(localStorage.moviessetting).value);
+        } else {
+          setSearch(JSON.parse(localStorage.moviessetting).value);
+        }
+      }
+
+
+    }
+  }, [loggedIn, numberOfMovies]);
+
 
   useEffect(() => {
     window.addEventListener("resize", updateDeviceWidth);
@@ -103,30 +195,6 @@ function App() {
         // setIsLoading(false);
       });
   }
-
-  useEffect(() => {
-    if (loggedIn) {
-      if (JSON.parse(localStorage.getItem("movies"))) {
-        setCards(
-          JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
-        );
-      } else {
-        setIsDisableMoreButton(true);
-      }
-      if (localStorage.moviessetting) {
-        if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
-          setIsToggleMoviesFilter(
-            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
-          );
-          setSearch(JSON.parse(localStorage.moviessetting).value);
-        } else {
-          setSearch(JSON.parse(localStorage.moviessetting).value);
-        }
-      }
-
-      setCurrentUser(usersData);
-    }
-  }, [loggedIn, numberOfMovies]);
 
   useEffect(() => {
     setIsDisableMoreButton(() => numberOfMovies > cards.length);
@@ -263,7 +331,7 @@ function App() {
                 image: `https://api.nomoreparties.co${image.url}`,
                 trailerLink,
                 thumbnail: `https://api.nomoreparties.co${image.url}`,
-                owner: "62e64f626edb3e7531ece9fd",
+                owner: currentUser,
                 nameRU,
                 nameEN,
               };
