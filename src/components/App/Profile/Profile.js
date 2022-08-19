@@ -56,8 +56,9 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
             name="name"
             value={name || ""}
             onChange={handleNameChange}
-            readOnly
+            readOnly={!isEditProfile}
           />
+          <span className="profileform__input_focus"></span>
         </fieldset>
         <fieldset className="profileform__fieldset">
           <label htmlFor="emailprofileform" className="profileform__field">
@@ -70,8 +71,9 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
             name="email"
             value={email || ""}
             onChange={handleEmailChange}
-            readOnly
+            readOnly={!isEditProfile}
           />
+          <span className="profileform__input_focus"></span>
         </fieldset>
         <fieldset className="profileform__submit-fieldset">
           <span id="error-submitprofile" className="profileform__submit-error">

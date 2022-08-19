@@ -19,6 +19,7 @@
 }
 
 .profileform__fieldset {
+  position: relative;
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -48,6 +49,21 @@
   outline: none;
   text-align: right;
 }
+
+.profileform__input:focus + .profileform__input_focus {
+  display: block;
+}
+
+.profileform__input_focus {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #3456f3;
+}
+
 
 .profileform__fieldset_type_name {
   border-bottom: 1px solid #e8e8e8;
