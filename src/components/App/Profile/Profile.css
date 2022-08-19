@@ -93,6 +93,10 @@
   cursor: pointer;
 }
 
+.profileform__submit_active {
+  display: block;
+}
+
 .profileform__submit_disable {
   background-color: #f8f8f8;
   color: #c2c2c2;
@@ -100,7 +104,6 @@
 }
 
 .profileform__edit {
-  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -113,12 +116,15 @@
   background-color: transparent;
 }
 
+.profileform__edit_disabled {
+  display: none;
+}
+
 .profileform__edit:hover {
   opacity: 0.7;
 }
 
 .profileform__logout {
-  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -126,6 +132,10 @@
   line-height: 16px;
   color: #ee3465;
   text-decoration: none;
+}
+
+.profileform__logout_disabled {
+  display: none;
 }
 
 .profileform__logout:hover {

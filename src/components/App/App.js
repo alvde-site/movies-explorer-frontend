@@ -31,6 +31,7 @@ function App() {
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [isEditProfile, setIsEditProfile] = useState(false);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid /*resetForm*/ } =
@@ -390,6 +391,10 @@ function App() {
     console.log(value);
   }
 
+  function handleEditProfileButton() {
+    setIsEditProfile(true);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -442,6 +447,8 @@ function App() {
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
               isToggleBurger={isToggleBurger}
+              onEdit={handleEditProfileButton}
+              isEditProfile={isEditProfile}
             />
           </Route>
           <Route path="/signin">

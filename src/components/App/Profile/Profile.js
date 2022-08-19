@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
-function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
+function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   // Подписка на контекст
@@ -22,6 +22,10 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
 
   function handleEmailChange(e) {
     setName(e.target.value);
+  }
+
+  function handleEditButton() {
+    onEdit();
   }
 
   return (
@@ -76,7 +80,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
           <button className="profileform__submit" type="submit">
             Сохранить
           </button>
-          <button className="profileform__edit" type="button">
+          <button className="profileform__edit" type="button" onClick={handleEditButton}>
             Редактировать
           </button>
           <Link to="/" className="profileform__logout">
