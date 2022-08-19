@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  });
+  }, []);
 
   function tokenCheck() {
     // если у пользователя есть токен в localStorage,
@@ -76,6 +76,7 @@ function App() {
       Promise.all([MainApiSet.getCurrentUser(), MainApiSet.getMovies()])
         .then(([userData, moviesData]) => {
           // moviesData = массив объектов карточке с сервера
+
           setCurrentUser(userData);
           const formattedMovies = moviesData.map((movie) => {
            return {
@@ -376,7 +377,7 @@ function App() {
     console.log(value);
   }
 
-  function handleEditProfileButton() {
+  function onEditProfileButton() {
     setIsEditProfile(true);
   }
 
@@ -432,7 +433,7 @@ function App() {
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
               isToggleBurger={isToggleBurger}
-              onEdit={handleEditProfileButton}
+              onEditButton={onEditProfileButton}
               isEditProfile={isEditProfile}
             />
           </Route>

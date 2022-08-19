@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
-function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, isEditProfile }) {
+function Profile({
+  loggedIn,
+  onToggleBurger,
+  isToggleBurger,
+  onSubmit,
+  onEditButton,
+  isEditProfile,
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   // Подписка на контекст
@@ -25,7 +32,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
   }
 
   function handleEditButton() {
-    onEdit();
+    onEditButton();
   }
 
   return (
@@ -44,7 +51,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
         className="profileform"
         onSubmit={onSubmit}
       >
-        <h2 className="profileform__title">{`Привет, ${name}!`}</h2>
+        <h2 className="profileform__title">{`Привет, ${currentUser.name}!`}</h2>
         <fieldset className="profileform__fieldset profileform__fieldset_type_name">
           <label htmlFor="nameprofileform" className="profileform__field">
             Имя
@@ -81,13 +88,29 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
           <span id="error-submitprofile" className="profileform__submit-error">
             При обновлении профиля произошла ошибка.
           </span>
-          <button className={`profileform__submit ${isEditProfile && "profileform__submit_active"}`} type="submit">
+          <button
+            className={`profileform__submit ${
+              isEditProfile && "profileform__submit_active"
+            }`}
+            type="submit"
+          >
             Сохранить
           </button>
-          <button className={`profileform__edit ${isEditProfile && "profileform__edit_disabled"}`} type="button" onClick={handleEditButton}>
+          <button
+            className={`profileform__edit ${
+              isEditProfile && "profileform__edit_disabled"
+            }`}
+            type="button"
+            onClick={handleEditButton}
+          >
             Редактировать
           </button>
-          <Link to="/" className={`profileform__logout ${isEditProfile && "profileform__logout_disabled"}`}>
+          <Link
+            to="/"
+            className={`profileform__logout ${
+              isEditProfile && "profileform__logout_disabled"
+            }`}
+          >
             Выйти из аккаунта
           </Link>
         </fieldset>
