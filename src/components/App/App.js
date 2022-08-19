@@ -382,7 +382,17 @@ function App() {
   }
 
   function handleEditProfile({name, email}) {
-    console.log({name, email})
+     // setIsLoading(true);
+    MainApiSet.updateUser({name, email})
+    .then((res) => {
+      setCurrentUser(res);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
+    .finally(() => {
+      // setIsLoading(false);
+    });
   }
 
   return (
