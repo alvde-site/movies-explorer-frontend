@@ -4,8 +4,8 @@ import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
-  const [name, setName] = useState("Виталий");
-  const [email, setEmail] = useState("pochta@yandex.ru");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   // Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
 
@@ -50,7 +50,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
             type="text"
             className="profileform__input"
             name="name"
-            value={name || "Виталий"}
+            value={name || ""}
             onChange={handleNameChange}
             readOnly
           />
@@ -64,7 +64,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit }) {
             type="email"
             className="profileform__input"
             name="email"
-            value={email || "pochta@yandex.ru"}
+            value={email || ""}
             onChange={handleEmailChange}
             readOnly
           />
