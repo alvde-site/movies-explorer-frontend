@@ -243,8 +243,9 @@ function App() {
           // setIsLoading(false);
         });
     } else {
-      MainApiSet.deleteMovie(card._id)
-        .then((deletedCard) => {
+      MainApiSet.deleteMovie(card.movieId)
+        .then((deletedMovie) => {
+          setIsSavedCards((movies) => movies.filter((m) => (m.movieId !== deletedMovie.movieId)));
         })
         .catch((err) => {
           console.log(`${err}`);
