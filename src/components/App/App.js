@@ -229,8 +229,10 @@ function App() {
     if (!card.isClicked) {
       MainApiSet.createMovie(card)
         .then((cardData) => {
-          console.log(cardData);
-          // const newCard = { ...cardData, isOpen: false };
+          card.isClicked = true;
+          const newCard = { ...cardData, isClicked: true };
+          console.log(newCard)
+          setIsSavedCards([...isSavedCards,  newCard]);
           // setCards([newCard, ...cards]);
           // closeAllPopups();
         })
@@ -238,11 +240,18 @@ function App() {
           console.log(`${err}`);
         })
         .finally(() => {
-          setIsLoading(false);
+          // setIsLoading(false);
         });
-      card.isClicked = true;
-      setIsSavedCards([...isSavedCards, card]);
     } else {
+      MainApiSet.deleteMovie(card._id)
+        .then((deletedCard) => {
+        })
+        .catch((err) => {
+          console.log(`${err}`);
+        })
+        .finally(() => {
+          // setIsLoading(false);
+        });
       card.isClicked = false;
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
@@ -393,7 +402,7 @@ function App() {
 
   function handleSignoutProfile() {
     MainApiSet.signout()
-      .then(()=>{
+      .then(() => {
         setLoggedIn(false);
         history.push("/");
       })
