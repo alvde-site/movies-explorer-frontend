@@ -57,6 +57,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
             value={name || ""}
             onChange={handleNameChange}
             readOnly={!isEditProfile}
+            disabled={!isEditProfile}
           />
           <span className="profileform__input_focus"></span>
         </fieldset>
@@ -72,6 +73,7 @@ function Profile({ loggedIn, onToggleBurger, isToggleBurger, onSubmit, onEdit, i
             value={email || ""}
             onChange={handleEmailChange}
             readOnly={!isEditProfile}
+            disabled={!isEditProfile}
           />
           <span className="profileform__input_focus"></span>
         </fieldset>

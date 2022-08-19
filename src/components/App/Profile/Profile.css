@@ -48,6 +48,7 @@
   border: none;
   outline: none;
   text-align: right;
+  background-color: transparent;
 }
 
 .profileform__input:focus + .profileform__input_focus {
