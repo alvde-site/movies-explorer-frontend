@@ -381,8 +381,25 @@ function App() {
         setIsEditProfile(false);
       })
       .catch((err) => {
-        if(err){
-          setSubmitError("При обновлении профиля произошла ошибка")
+        if (err) {
+          setSubmitError("При обновлении профиля произошла ошибка");
+        }
+        console.log(`${err}`);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  }
+
+  function handleSignoutProfile() {
+    MainApiSet.signout()
+      .then(()=>{
+        setLoggedIn(false);
+        history.push("/");
+      })
+      .catch((err) => {
+        if (err) {
+          setSubmitError("Что-то пошло не так");
         }
         console.log(`${err}`);
       })
@@ -450,6 +467,7 @@ function App() {
               onInputChange={handleChange}
               isValid={isValid}
               submitError={submitError}
+              onSignout={handleSignoutProfile}
             />
           </Route>
           <Route path="/signin">

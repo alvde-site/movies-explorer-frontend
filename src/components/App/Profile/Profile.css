@@ -128,7 +128,7 @@
   line-height: 16px;
   color: #000;
   border: none;
-  margin: 0 0 16px;
+  margin: 20px 0 16px;
   padding: 0;
   background-color: transparent;
 }
@@ -146,9 +146,11 @@
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
+  border: none;
+  margin: 0;
+  padding: 0;
   line-height: 16px;
   color: #ee3465;
-  text-decoration: none;
 }
 
 .profileform__logout_disabled {

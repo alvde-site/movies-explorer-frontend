@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
@@ -13,7 +12,8 @@ function Profile({
   values,
   onInputChange,
   isValid,
-  submitError
+  submitError,
+  onSignout,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -33,6 +33,10 @@ function Profile({
 
   function handleEditButton() {
     onEditButton();
+  }
+
+  function handleSignout() {
+    onSignout();
   }
 
   return (
@@ -113,14 +117,15 @@ function Profile({
           >
             Редактировать
           </button>
-          <Link
-            to="/"
+          <button
             className={`profileform__logout ${
               isEditProfile && "profileform__logout_disabled"
             }`}
+            onClick={handleSignout}
+            type="button"
           >
             Выйти из аккаунта
-          </Link>
+          </button>
         </fieldset>
       </form>
     </>
