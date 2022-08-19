@@ -12,38 +12,23 @@ function Profile({
   onEditProfile,
   values,
   onInputChange,
+  isValid,
 }) {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
-
-  // После загрузки текущего пользователя из API
-  // его данные будут использованы в управляемых компонентах.
-  // useEffect(() => {
-  //   setName(currentUser.name);
-  //   setEmail(currentUser.email);
-  // }, [currentUser, loggedIn]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    let name = `${values["profilename"] || currentUser.name}`;
+    let email = `${values["profileemail"] || currentUser.email}`;
     onEditProfile({
-      name: values["profilename"],
-      email: values["profileemail"],
+      name,
+      email,
     });
   }
 
   function handleInputChange(e) {
     onInputChange(e);
   }
-
-  // function handleNameChange(e) {
-  //   setName(e.target.value);
-  // }
-
-  // function handleEmailChange(e) {
-  //   setEmail(e.target.value);
-  // }
 
   function handleEditButton() {
     onEditButton();
@@ -110,7 +95,7 @@ function Profile({
           </span>
           <button
             className={`profileform__submit ${
-              isEditProfile && "profileform__submit_active"
+              isEditProfile && `profileform__submit_active ${!isValid && "profileform__submit_disable"}`
             }`}
             type="submit"
           >
