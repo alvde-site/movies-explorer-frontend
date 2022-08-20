@@ -32,8 +32,7 @@ function App() {
   const [isEditProfile, setIsEditProfile] = useState(false);
 
   const history = useHistory();
-  const { values, handleChange, errors, isValid /*resetForm*/ } =
-    useFormWithValidation();
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(() => {
@@ -390,7 +389,6 @@ function App() {
   }
 
   function handleEditProfile({ name, email }) {
-    // setIsLoading(true);
     MainApiSet.updateUser({ name, email })
       .then((res) => {
         setCurrentUser(res);
