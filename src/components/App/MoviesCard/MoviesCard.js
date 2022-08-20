@@ -13,7 +13,7 @@ function MoviesCard({ card, index, onSelect, cardButtonClassType }) {
 
   return (
     <li key={index} className="card">
-      <img className="card__image" src={card.image} alt={card.nameRU} />
+      <a href="!#" className="card__trailer-link"><img className="card__image" src={card.image} alt={card.nameRU} /></a>
       <div className="card__desc">
         <div className="card__info">
           <p className="card__name">{card.nameRU}</p>
