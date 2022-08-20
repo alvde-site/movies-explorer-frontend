@@ -83,9 +83,6 @@ function App() {
           });
           localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
           setIsSavedCards(formattedMovies);
-
-          console.log(userData);
-          console.log(formattedMovies);
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -366,19 +363,6 @@ function App() {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   function handleSearchSavedMovie(value) {
     // Проверка на отсутствие ключевого слова для поиска фильма
     if (!value) {
@@ -393,17 +377,6 @@ function App() {
       );
       setIsSavedCards(foundMovies);
   }
-
-
-
-
-
-
-
-
-
-
-
 
   function onEditProfileButton() {
     setIsEditProfile(true);
