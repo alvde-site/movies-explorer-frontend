@@ -81,6 +81,7 @@ function App() {
               isClicked: true,
             };
           });
+          localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
           setIsSavedCards(formattedMovies);
 
           console.log(userData);
@@ -365,9 +366,44 @@ function App() {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   function handleSearchSavedMovie(value) {
-    console.log(value);
+    // Проверка на отсутствие ключевого слова для поиска фильма
+    if (!value) {
+      setIsEmptySearchValue(true);
+      return;
+    } else {
+      setIsEmptySearchValue(false);
+    }
+    const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"))
+    const foundMovies = initialFoundMovies.filter((m) =>
+        m.nameRU.toLowerCase().includes(value.toLowerCase())
+      );
+      setIsSavedCards(foundMovies);
   }
+
+
+
+
+
+
+
+
+
+
+
 
   function onEditProfileButton() {
     setIsEditProfile(true);
