@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, /*Redirect,*/ useHistory } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Movies from "./Movies/Movies";
 import SavedMovies from "./SavedMovies/SavedMovies";
 import Profile from "./Profile/Profile";
@@ -11,7 +12,6 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
 import { useFormWithValidation } from "../../utils/formValidator";
-import { /*Route, Switch, Redirect,*/ useHistory } from "react-router-dom";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -100,9 +100,7 @@ function App() {
         setIsDisableMoreButton(true);
       }
       if (localStorage.toggle) {
-        setIsToggleMoviesFilter(
-          JSON.parse(localStorage.toggle)
-        );
+        setIsToggleMoviesFilter(JSON.parse(localStorage.toggle));
       }
       if (localStorage.value) {
         setSearch(JSON.parse(localStorage.value));
@@ -371,11 +369,11 @@ function App() {
     } else {
       setIsEmptySearchValue(false);
     }
-    const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"))
+    const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"));
     const foundMovies = initialFoundMovies.filter((m) =>
-        m.nameRU.toLowerCase().includes(value.toLowerCase())
-      );
-      setIsSavedCards(foundMovies);
+      m.nameRU.toLowerCase().includes(value.toLowerCase())
+    );
+    setIsSavedCards(foundMovies);
   }
 
   function onEditProfileButton() {
@@ -433,7 +431,7 @@ function App() {
               isToggleBurger={isToggleBurger}
             />
           </Route>
-          <Route path="/movies">
+          <ProtectedRoute path="/movies">
             <Movies
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
@@ -454,8 +452,8 @@ function App() {
               numberOfMovies={numberOfMovies}
               cards={cards}
             />
-          </Route>
-          <Route path="/saved-movies">
+          </ProtectedRoute>
+          <ProtectedRoute path="/saved-movies">
             <SavedMovies
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
@@ -475,8 +473,8 @@ function App() {
               numberOfMovies={numberOfMovies}
               cards={cards}
             />
-          </Route>
-          <Route path="/profile">
+          </ProtectedRoute>
+          <ProtectedRoute path="/profile">
             <Profile
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
@@ -490,7 +488,7 @@ function App() {
               submitError={submitError}
               onSignout={handleSignoutProfile}
             />
-          </Route>
+          </ProtectedRoute>
           <Route path="/signin">
             <Login
               onInputChange={handleChange}
