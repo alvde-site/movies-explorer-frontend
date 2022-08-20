@@ -232,6 +232,9 @@ function App() {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
           setIsSavedCards([...isSavedCards,  newCard]);
+          const movies = JSON.parse(localStorage.movies);
+          const newCards = movies.map((c) => c.movieId === newCard.movieId ? newCard : c);
+          localStorage.setItem("movies", JSON.stringify(newCards));
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -244,6 +247,10 @@ function App() {
         .then((deletedMovie) => {
           card.isClicked = false;
           setIsSavedCards((movies) => movies.filter((m) => (m.movieId !== deletedMovie.movieId)));
+          const newCard = { ...deletedMovie, isClicked: false };
+          const movies = JSON.parse(localStorage.movies);
+          const newCards = movies.map((c) => c.movieId === newCard.movieId ? newCard : c);
+          localStorage.setItem("movies", JSON.stringify(newCards));
         })
         .catch((err) => {
           console.log(`${err}`);
