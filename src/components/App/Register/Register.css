@@ -126,7 +126,7 @@
 }
 
 .auth-form__submit:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .auth-form__submit_disable {

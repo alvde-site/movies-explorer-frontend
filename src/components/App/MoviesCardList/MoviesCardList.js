@@ -11,7 +11,7 @@ function MoviesCardList({
   onAddMovies,
   isDisableMoreButton,
   numberOfMovies,
-  cards
+  cards,
 }) {
   function handleAddMovies() {
     onAddMovies(numberOfMovies, cards);

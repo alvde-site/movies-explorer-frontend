@@ -4,7 +4,6 @@
 
 /* signup & signin */
 @import url(../components/App/Register/Register.css);
-@import url(../components/App/Login/Login.css);
 
 /* header */
 @import url(../components/App/Header/Header.css);

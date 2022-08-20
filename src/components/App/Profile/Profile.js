@@ -95,14 +95,20 @@ function Profile({
           <span className="profileform__input_focus"></span>
         </fieldset>
         <fieldset className="profileform__submit-fieldset">
-          <span id="error-submitprofile" className={`profileform__submit-error ${
+          <span
+            id="error-submitprofile"
+            className={`profileform__submit-error ${
               submitError && "profileform__submit-error_active"
-            }`}>
+            }`}
+          >
             {submitError}
           </span>
           <button
             className={`profileform__submit ${
-              isEditProfile && `profileform__submit_active ${!isValid && "profileform__submit_disable"}`
+              isEditProfile &&
+              `profileform__submit_active ${
+                !isValid && "profileform__submit_disable"
+              }`
             }`}
             type="submit"
           >

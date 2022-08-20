@@ -13,8 +13,12 @@ function MoviesCard({ card, index, onSelect, cardButtonClassType }) {
 
   return (
     <li key={index} className="card">
-      <a href={card.trailerLink} className="card__trailer-link" rel="noreferrer"
-              target="_blank">
+      <a
+        href={card.trailerLink}
+        className="card__trailer-link"
+        rel="noreferrer"
+        target="_blank"
+      >
         <img className="card__image" src={card.image} alt={card.nameRU} />
       </a>
       <div className="card__desc">
