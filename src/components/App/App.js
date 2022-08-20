@@ -20,7 +20,6 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isSavedCards, setIsSavedCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [initialMovies, setInitialMovies] = useState([]);
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +80,7 @@ function App() {
               isClicked: true,
             };
           });
-          localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
+          // localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
           setIsSavedCards(formattedMovies);
         })
         .catch((err) => {
@@ -316,7 +315,6 @@ function App() {
             }
           );
           localStorage.setItem("initialmovies", JSON.stringify(formattedMovies));
-          setInitialMovies(formattedMovies);
           const foundMovies = formattedMovies.filter((m) =>
             m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
@@ -345,6 +343,7 @@ function App() {
           setIsLoading(false);
         });
     } else {
+      const initialMovies = JSON.parse(localStorage.initialmovies);
       const foundMovies = initialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
