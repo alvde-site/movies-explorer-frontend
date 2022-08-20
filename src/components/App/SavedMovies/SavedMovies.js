@@ -13,7 +13,9 @@ function SavedMovies({
   cardsData,
   onSelect,
   isSelected,
-  onSearch
+  onSearchValue,
+  onSearch,
+  searchValue
 }) {
   return (
     <>
@@ -29,7 +31,9 @@ function SavedMovies({
           <SearchForm
             onToggleFilter={onToggleFilter}
             isToggleFilter={isToggleFilter}
+            onSearchValue={onSearchValue}
             onSearch={onSearch}
+            searchValue={searchValue}
           />
           <MoviesCardList
             cardsData={cardsData}

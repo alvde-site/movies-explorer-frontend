@@ -408,6 +408,10 @@ function App() {
       });
   }
 
+  function handleSetSearch(value) {
+    setSearch(value);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -432,7 +436,7 @@ function App() {
               onSearch={handleSearchMovie}
               isEmptyValue={isEmptySearchValue}
               searchValue={search}
-              onSearchValue={setSearch}
+              onSearchValue={handleSetSearch}
               isLoading={isLoading}
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
@@ -451,7 +455,9 @@ function App() {
               isToggleFilter={isToggleMoviesFilter}
               onSelect={handleSelectMovie}
               cardsData={isSavedCards}
+              onSearchValue={handleSetSearch}
               onSearch={handleSearchSavedMovie}
+              searchValue={search}
               isEmptyValue={isEmptySearchValue}
             />
           </Route>
