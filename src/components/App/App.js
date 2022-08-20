@@ -199,19 +199,15 @@ function App() {
       );
       if (isToggleMoviesFilter) {
         setCards(shortMovies);
-        localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
-        localStorage.setItem("value", JSON.stringify(JSON.parse(localStorage.value)));
       } else {
         setCards(movies.slice(0, numberOfMovies));
-        localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
-        localStorage.setItem("value", JSON.stringify(JSON.parse(localStorage.value)));
       }
     }
   }, [isToggleMoviesFilter, numberOfMovies]);
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
-    localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
+    localStorage.setItem("toggle", JSON.stringify(!isToggleMoviesFilter));
   }
 
   function handleSelectMovie(card) {
