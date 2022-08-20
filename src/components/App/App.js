@@ -231,10 +231,7 @@ function App() {
         .then((cardData) => {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
-          console.log(newCard)
           setIsSavedCards([...isSavedCards,  newCard]);
-          // setCards([newCard, ...cards]);
-          // closeAllPopups();
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -245,6 +242,7 @@ function App() {
     } else {
       MainApiSet.deleteMovie(card.movieId)
         .then((deletedMovie) => {
+          card.isClicked = false;
           setIsSavedCards((movies) => movies.filter((m) => (m.movieId !== deletedMovie.movieId)));
         })
         .catch((err) => {
