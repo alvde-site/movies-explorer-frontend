@@ -101,15 +101,13 @@ function App() {
       } else {
         setIsDisableMoreButton(true);
       }
-      if (localStorage.moviessetting) {
-        if (JSON.parse(localStorage.moviessetting).isToggleMoviesFilter) {
-          setIsToggleMoviesFilter(
-            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
-          );
-          setSearch(JSON.parse(localStorage.moviessetting).value);
-        } else {
-          setSearch(JSON.parse(localStorage.moviessetting).value);
-        }
+      if (localStorage.toggle) {
+        setIsToggleMoviesFilter(
+          JSON.parse(localStorage.toggle)
+        );
+      }
+      if (localStorage.value) {
+        setSearch(JSON.parse(localStorage.value));
       }
     }
   }, [loggedIn, numberOfMovies]);
@@ -201,28 +199,19 @@ function App() {
       );
       if (isToggleMoviesFilter) {
         setCards(shortMovies);
-        localStorage.setItem(
-          "moviessetting",
-          JSON.stringify({
-            isToggleMoviesFilter,
-            value: JSON.parse(localStorage.moviessetting).value,
-          })
-        );
+        localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
+        localStorage.setItem("value", JSON.stringify(JSON.parse(localStorage.value)));
       } else {
         setCards(movies.slice(0, numberOfMovies));
-        localStorage.setItem(
-          "moviessetting",
-          JSON.stringify({
-            isToggleMoviesFilter,
-            value: JSON.parse(localStorage.moviessetting).value,
-          })
-        );
+        localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
+        localStorage.setItem("value", JSON.stringify(JSON.parse(localStorage.value)));
       }
     }
   }, [isToggleMoviesFilter, numberOfMovies]);
 
   function handleToggleFilter() {
     setIsToggleMoviesFilter(!isToggleMoviesFilter);
+    localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
   }
 
   function handleSelectMovie(card) {
@@ -231,9 +220,11 @@ function App() {
         .then((cardData) => {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
-          setIsSavedCards([...isSavedCards,  newCard]);
+          setIsSavedCards([...isSavedCards, newCard]);
           const movies = JSON.parse(localStorage.movies);
-          const newCards = movies.map((c) => c.movieId === newCard.movieId ? newCard : c);
+          const newCards = movies.map((c) =>
+            c.movieId === newCard.movieId ? newCard : c
+          );
           localStorage.setItem("movies", JSON.stringify(newCards));
         })
         .catch((err) => {
@@ -246,10 +237,14 @@ function App() {
       MainApiSet.deleteMovie(card.movieId)
         .then((deletedMovie) => {
           card.isClicked = false;
-          setIsSavedCards((movies) => movies.filter((m) => (m.movieId !== deletedMovie.movieId)));
+          setIsSavedCards((movies) =>
+            movies.filter((m) => m.movieId !== deletedMovie.movieId)
+          );
           const newCard = { ...deletedMovie, isClicked: false };
           const movies = JSON.parse(localStorage.movies);
-          const newCards = movies.map((c) => c.movieId === newCard.movieId ? newCard : c);
+          const newCards = movies.map((c) =>
+            c.movieId === newCard.movieId ? newCard : c
+          );
           localStorage.setItem("movies", JSON.stringify(newCards));
         })
         .catch((err) => {
@@ -272,18 +267,14 @@ function App() {
     setCards(
       JSON.parse(localStorage.getItem("movies")).slice(0, numberOfMovies)
     );
-    setIsToggleMoviesFilter(
-      JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
-    );
-    setSearch(JSON.parse(localStorage.moviessetting).value);
+    setIsToggleMoviesFilter(JSON.parse(localStorage.toggle));
+    setSearch(JSON.parse(localStorage.value));
   }
 
   function handleSaveToLocalStorage(movies, val) {
     localStorage.setItem("movies", JSON.stringify(movies));
-    localStorage.setItem(
-      "moviessetting",
-      JSON.stringify({ isToggleMoviesFilter, value: val })
-    );
+    localStorage.setItem("toggle", JSON.stringify(isToggleMoviesFilter));
+    localStorage.setItem("value", JSON.stringify(val));
   }
 
   function handleSearchMovie(value) {
@@ -347,10 +338,8 @@ function App() {
           handleNumberOfMovies(deviceWidth);
           setCards(foundMovies.slice(0, numberOfMovies));
           setIsNotFoundMovies(false);
-          setIsToggleMoviesFilter(
-            JSON.parse(localStorage.moviessetting).isToggleMoviesFilter
-          );
-          setSearch(JSON.parse(localStorage.moviessetting).value);
+          setIsToggleMoviesFilter(JSON.parse(localStorage.toggle));
+          setSearch(JSON.parse(localStorage.value));
         })
         .catch((err) => {
           setIsNotFoundMoviesText(
