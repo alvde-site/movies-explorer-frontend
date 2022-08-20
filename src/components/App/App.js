@@ -87,7 +87,6 @@ function App() {
           });
 
           setIsSavedCards(formattedMovies);
-          console.log(formattedMovies)
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -154,8 +153,7 @@ function App() {
   function handleRegister({ name, password, email }) {
     MainApiSet.register({ name, password, email })
       .then(() => {
-        setLoggedIn(true);
-        history.push("/movies");
+        handleLogin({email, password});
       })
       .catch((err) => {
         if (err === "Ошибка 409") {
