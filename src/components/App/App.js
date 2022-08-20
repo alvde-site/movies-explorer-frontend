@@ -75,9 +75,9 @@ function App() {
 
           setCurrentUser(userData);
 
-          const moviesOfCurrentUser = moviesData.filter((movie) =>
-            userData._id === movie.owner
-          )
+          const moviesOfCurrentUser = moviesData.filter(
+            (movie) => userData._id === movie.owner
+          );
 
           const formattedMovies = moviesOfCurrentUser.map((movie) => {
             return {
@@ -85,6 +85,8 @@ function App() {
               isClicked: true,
             };
           });
+
+          localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
 
           setIsSavedCards(formattedMovies);
         })
@@ -147,13 +149,13 @@ function App() {
       })
       .catch((err) => {
         setSubmitError(`На сервере произошла ошибка: ${err}`);
-      })
+      });
   }
 
   function handleRegister({ name, password, email }) {
     MainApiSet.register({ name, password, email })
       .then(() => {
-        handleLogin({email, password});
+        handleLogin({ email, password });
       })
       .catch((err) => {
         if (err === "Ошибка 409") {
@@ -161,7 +163,7 @@ function App() {
         } else {
           setSubmitError("При регистрации пользователя произошла ошибка");
         }
-      })
+      });
   }
 
   useEffect(() => {
@@ -215,7 +217,6 @@ function App() {
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
 
-
           const selectedMovies = JSON.parse(localStorage.movies);
           const newSelectedCards = selectedMovies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
@@ -224,14 +225,17 @@ function App() {
         })
         .catch((err) => {
           console.log(`${err}`);
-        })
+        });
     } else {
       MainApiSet.deleteMovie(card.movieId)
         .then((deletedMovie) => {
           card.isClicked = false;
-          setIsSavedCards((movies) =>
-            movies.filter((m) => m.movieId !== deletedMovie.movieId)
+          const savedMovies = JSON.parse(localStorage.savedmovies);
+          const newSavedMovies = savedMovies.filter(
+            (m) => m.movieId !== deletedMovie.movieId
           );
+          localStorage.setItem("savedmovies", JSON.stringify(newSavedMovies));
+          setIsSavedCards(newSavedMovies);
           const newCard = { ...deletedMovie, isClicked: false };
           const movies = JSON.parse(localStorage.initialmovies);
           const newCards = movies.map((c) =>
@@ -247,7 +251,7 @@ function App() {
         })
         .catch((err) => {
           console.log(`${err}`);
-        })
+        });
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
     setCards((state) =>
@@ -316,7 +320,10 @@ function App() {
               };
             }
           );
-          localStorage.setItem("initialmovies", JSON.stringify(formattedMovies));
+          localStorage.setItem(
+            "initialmovies",
+            JSON.stringify(formattedMovies)
+          );
           const foundMovies = formattedMovies.filter((m) =>
             m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
@@ -394,7 +401,7 @@ function App() {
           setSubmitError("При обновлении профиля произошла ошибка");
         }
         console.log(`${err}`);
-      })
+      });
   }
 
   function handleSignoutProfile() {
@@ -408,7 +415,7 @@ function App() {
           setSubmitError("Что-то пошло не так");
         }
         console.log(`${err}`);
-      })
+      });
   }
 
   function handleSetSearch(value) {
