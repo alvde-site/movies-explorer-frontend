@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, /*Redirect,*/ useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
@@ -74,14 +74,20 @@ function App() {
           // moviesData = массив объектов карточке с сервера
 
           setCurrentUser(userData);
-          const formattedMovies = moviesData.map((movie) => {
+
+          const moviesOfCurrentUser = moviesData.filter((movie) =>
+            userData._id === movie.owner
+          )
+
+          const formattedMovies = moviesOfCurrentUser.map((movie) => {
             return {
               ...movie,
               isClicked: true,
             };
           });
-          // localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
+
           setIsSavedCards(formattedMovies);
+          console.log(formattedMovies)
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -128,7 +134,6 @@ function App() {
   }
 
   function handleLogin({ password, email }) {
-    // setIsLoading(true);
     MainApiSet.login({ email, password })
       .then((res) => {
         if (res.message) {
@@ -144,13 +149,9 @@ function App() {
       .catch((err) => {
         setSubmitError(`На сервере произошла ошибка: ${err}`);
       })
-      .finally(() => {
-        //   setIsLoading(false);
-      });
   }
 
   function handleRegister({ name, password, email }) {
-    // setIsLoading(true);
     MainApiSet.register({ name, password, email })
       .then(() => {
         setLoggedIn(true);
@@ -163,9 +164,6 @@ function App() {
           setSubmitError("При регистрации пользователя произошла ошибка");
         }
       })
-      .finally(() => {
-        // setIsLoading(false);
-      });
   }
 
   useEffect(() => {
@@ -229,9 +227,6 @@ function App() {
         .catch((err) => {
           console.log(`${err}`);
         })
-        .finally(() => {
-          // setIsLoading(false);
-        });
     } else {
       MainApiSet.deleteMovie(card.movieId)
         .then((deletedMovie) => {
@@ -255,9 +250,6 @@ function App() {
         .catch((err) => {
           console.log(`${err}`);
         })
-        .finally(() => {
-          // setIsLoading(false);
-        });
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
     setCards((state) =>
@@ -405,9 +397,6 @@ function App() {
         }
         console.log(`${err}`);
       })
-      .finally(() => {
-        // setIsLoading(false);
-      });
   }
 
   function handleSignoutProfile() {
@@ -422,9 +411,6 @@ function App() {
         }
         console.log(`${err}`);
       })
-      .finally(() => {
-        // setIsLoading(false);
-      });
   }
 
   function handleSetSearch(value) {
