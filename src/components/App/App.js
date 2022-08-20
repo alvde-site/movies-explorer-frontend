@@ -468,6 +468,12 @@ function App() {
               onSearch={handleSearchSavedMovie}
               searchValue={search}
               isEmptyValue={isEmptySearchValue}
+              isNotFoundMovies={isNotFoundMovies}
+              notFoundMoviesText={notFoundMoviesText}
+              onAddMovies={handleAddMovies}
+              isDisableMoreButton={isDisableMoreButton}
+              numberOfMovies={numberOfMovies}
+              cards={cards}
             />
           </Route>
           <Route path="/profile">

@@ -15,7 +15,13 @@ function SavedMovies({
   isSelected,
   onSearchValue,
   onSearch,
-  searchValue
+  searchValue,
+  isNotFoundMovies,
+  notFoundMoviesText,
+  onAddMovies,
+  isDisableMoreButton,
+  numberOfMovies,
+  cards,
 }) {
   return (
     <>
@@ -40,6 +46,12 @@ function SavedMovies({
             onSelect={onSelect}
             isSelected={isSelected}
             cardButtonClassType="card__select-button_type_remove"
+            isNotFoundMovies={isNotFoundMovies}
+            notFoundMoviesText={notFoundMoviesText}
+            onAddMovies={onAddMovies}
+            isDisableMoreButton={isDisableMoreButton}
+            numberOfMovies={numberOfMovies}
+            cards={cards}
           />
         </section>
       </main>
