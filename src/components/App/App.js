@@ -471,7 +471,7 @@ function App() {
               isNotFoundMovies={isNotFoundMovies}
               notFoundMoviesText={notFoundMoviesText}
               onAddMovies={handleAddMovies}
-              isDisableMoreButton={isDisableMoreButton}
+              isDisableMoreButton={true}
               numberOfMovies={numberOfMovies}
               cards={cards}
             />
