@@ -371,17 +371,17 @@ function App() {
   }
 
   function handleSearchSavedMovie(value) {
-    // Проверка на отсутствие ключевого слова для поиска фильма
-    if (!value) {
-      setIsEmptySearchValue(true);
-      return;
-    } else {
-      setIsEmptySearchValue(false);
-    }
     const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"));
     const foundMovies = initialFoundMovies.filter((m) =>
       m.nameRU.toLowerCase().includes(value.toLowerCase())
     );
+
+    if (!foundMovies.length) {
+      setIsNotFoundMoviesText("Ничего не найдено");
+      setIsNotFoundMovies(true);
+    } else {
+      setIsNotFoundMovies(false);
+    }
     setIsSavedCards(foundMovies);
   }
 
