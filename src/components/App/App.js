@@ -218,6 +218,13 @@ function App() {
             c.movieId === newCard.movieId ? newCard : c
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
+
+
+          const selectedMovies = JSON.parse(localStorage.movies);
+          const newSelectedCards = selectedMovies.map((c) =>
+            c.movieId === newCard.movieId ? newCard : c
+          );
+          localStorage.setItem("movies", JSON.stringify(newSelectedCards));
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -238,6 +245,12 @@ function App() {
             c.movieId === newCard.movieId ? newCard : c
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
+
+          const selectedMovies = JSON.parse(localStorage.movies);
+          const newSelectedCards = selectedMovies.map((c) =>
+            c.movieId === newCard.movieId ? newCard : c
+          );
+          localStorage.setItem("movies", JSON.stringify(newSelectedCards));
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -245,7 +258,6 @@ function App() {
         .finally(() => {
           // setIsLoading(false);
         });
-      card.isClicked = false;
     }
     setIsSavedCards((state) => state.filter((c) => c.isClicked));
     setCards((state) =>
