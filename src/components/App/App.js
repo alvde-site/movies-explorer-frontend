@@ -213,11 +213,12 @@ function App() {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
           setIsSavedCards([...isSavedCards, newCard]);
-          const movies = JSON.parse(localStorage.movies);
+          // initialmovies
+          const movies = JSON.parse(localStorage.initialmovies);
           const newCards = movies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
           );
-          localStorage.setItem("movies", JSON.stringify(newCards));
+          localStorage.setItem("initialmovies", JSON.stringify(newCards));
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -233,11 +234,11 @@ function App() {
             movies.filter((m) => m.movieId !== deletedMovie.movieId)
           );
           const newCard = { ...deletedMovie, isClicked: false };
-          const movies = JSON.parse(localStorage.movies);
+          const movies = JSON.parse(localStorage.initialmovies);
           const newCards = movies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
           );
-          localStorage.setItem("movies", JSON.stringify(newCards));
+          localStorage.setItem("initialmovies", JSON.stringify(newCards));
         })
         .catch((err) => {
           console.log(`${err}`);
@@ -280,7 +281,7 @@ function App() {
 
     setIsLoading(true);
 
-    if (!initialMovies.length) {
+    if (!localStorage.initialmovies) {
       // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
@@ -314,7 +315,7 @@ function App() {
               };
             }
           );
-
+          localStorage.setItem("initialmovies", JSON.stringify(formattedMovies));
           setInitialMovies(formattedMovies);
           const foundMovies = formattedMovies.filter((m) =>
             m.nameRU.toLowerCase().includes(value.toLowerCase())
