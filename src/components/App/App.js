@@ -46,6 +46,7 @@ function App() {
   }, []);
 
   function tokenCheck() {
+    console.log(process.env.REACT_APP_API_URL)
     // если у пользователя есть токен в localStorage,
     // эта функция проверит, действующий он или нет
     if (localStorage.getItem("token")) {
