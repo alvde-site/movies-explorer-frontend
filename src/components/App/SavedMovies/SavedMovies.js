@@ -22,6 +22,7 @@ function SavedMovies({
   isDisableMoreButton,
   numberOfMovies,
   cards,
+  onCloseNav,
 }) {
   return (
     <>
@@ -56,7 +57,7 @@ function SavedMovies({
         </section>
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger} />
+      <Navigation isToggleBurger={isToggleBurger}  onCloseNav={ onCloseNav}/>
     </>
   );
 }

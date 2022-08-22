@@ -6,7 +6,7 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main({ loggedIn, onToggleBurger, isToggleBurger }) {
+function Main({ loggedIn, onToggleBurger, isToggleBurger,  onCloseNav }) {
   return (
     <>
       <Promo
@@ -21,7 +21,7 @@ function Main({ loggedIn, onToggleBurger, isToggleBurger }) {
         <Portfolio />
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger} />
+      <Navigation isToggleBurger={isToggleBurger}  onCloseNav={onCloseNav}/>
     </>
   );
 }

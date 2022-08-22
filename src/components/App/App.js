@@ -146,6 +146,7 @@ function App() {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("token", res.token);
+          setSubmitError("");
           history.push("/movies");
         }
       })
@@ -169,6 +170,7 @@ function App() {
         } else {
           setSubmitError("При регистрации пользователя произошла ошибка");
         }
+        return;
       })
       .finally(() => {
         setIsLoading(false);
@@ -431,6 +433,10 @@ function App() {
     setSearch(value);
   }
 
+  function handleCloseNavigationMenu() {
+    setIsToggleBurger(false);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -441,6 +447,7 @@ function App() {
               loggedIn={loggedIn}
               onToggleBurger={handleToggleBurger}
               isToggleBurger={isToggleBurger}
+              onCloseNav={handleCloseNavigationMenu}
             />
           </Route>
           <ProtectedRoute
@@ -464,6 +471,7 @@ function App() {
             isDisableMoreButton={isDisableMoreButton}
             numberOfMovies={numberOfMovies}
             cards={cards}
+            onCloseNav={handleCloseNavigationMenu}
           />
           <ProtectedRoute
             path="/saved-movies"
@@ -485,6 +493,7 @@ function App() {
             isDisableMoreButton={true}
             numberOfMovies={numberOfMovies}
             cards={cards}
+            onCloseNav={handleCloseNavigationMenu}
           />
           <ProtectedRoute
             path="/profile"
@@ -500,6 +509,7 @@ function App() {
             isValid={isValid}
             submitError={submitError}
             onSignout={handleSignoutProfile}
+            onCloseNav={handleCloseNavigationMenu}
           />
           <Route path="/signin">
             <Login

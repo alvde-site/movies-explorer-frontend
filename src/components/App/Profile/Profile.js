@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import Navigation from "../Navigation/Navigation";
 
 function Profile({
   loggedIn,
@@ -14,6 +15,7 @@ function Profile({
   isValid,
   submitError,
   onSignout,
+  onCloseNav,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -134,6 +136,7 @@ function Profile({
           </button>
         </fieldset>
       </form>
+      <Navigation isToggleBurger={isToggleBurger}  onCloseNav={onCloseNav}/>
     </>
   );
 }
