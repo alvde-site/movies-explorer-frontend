@@ -220,14 +220,21 @@ function App() {
         .then((cardData) => {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
-          setIsSavedCards([...isSavedCards, newCard]);
-          // initialmovies
+
+          // Сохраняем выбранную карточку в localStorage сохраненных карточек и отображаем
+          const savedMovies = JSON.parse(localStorage.savedmovies);
+          const newSavedMovies = [...savedMovies, newCard]
+          localStorage.setItem("savedmovies", JSON.stringify(newSavedMovies));
+          setIsSavedCards(newSavedMovies);
+
+          // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
           const movies = JSON.parse(localStorage.initialmovies);
           const newCards = movies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
 
+          // Сохраняем выбранную карточку в localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
           const newSelectedCards = selectedMovies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
@@ -241,12 +248,16 @@ function App() {
       MainApiSet.deleteMovie(card.movieId)
         .then((deletedMovie) => {
           card.isClicked = false;
+
+          // Удаляем выбранную карточку из localStorage сохраненных карточек и отображаем
           const savedMovies = JSON.parse(localStorage.savedmovies);
           const newSavedMovies = savedMovies.filter(
             (m) => m.movieId !== deletedMovie.movieId
           );
           localStorage.setItem("savedmovies", JSON.stringify(newSavedMovies));
           setIsSavedCards(newSavedMovies);
+
+          // Удаляем выбранную карточку из localStorage карточек по умолчанию и отображаем
           const newCard = { ...deletedMovie, isClicked: false };
           const movies = JSON.parse(localStorage.initialmovies);
           const newCards = movies.map((c) =>
@@ -254,6 +265,7 @@ function App() {
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
 
+         // Удалеяем выбранную карточку из localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
           const newSelectedCards = selectedMovies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
