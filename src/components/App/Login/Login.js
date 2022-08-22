@@ -7,6 +7,7 @@ function Login({
   isValid,
   onLogin,
   submitError,
+  isLoading
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -95,7 +96,7 @@ function Login({
             type="submit"
             disabled={!isValid}
           >
-            Войти
+           {!isLoading ? "Войти" : "Войти..."}
         </button>
           <div className="auth-form__signin">
             <div className="auth-form__redirect">

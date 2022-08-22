@@ -46,7 +46,6 @@ function App() {
   }, []);
 
   function tokenCheck() {
-    console.log(process.env.REACT_APP_API_URL)
     // если у пользователя есть токен в localStorage,
     // эта функция проверит, действующий он или нет
     if (localStorage.getItem("token")) {
@@ -64,6 +63,8 @@ function App() {
             console.log(`${err}`);
           });
       }
+    } else {
+      return;
     }
   }
 
@@ -135,6 +136,7 @@ function App() {
   }
 
   function handleLogin({ password, email }) {
+    setIsLoading(true);
     MainApiSet.login({ email, password })
       .then((res) => {
         if (res.message) {
@@ -149,10 +151,14 @@ function App() {
       })
       .catch((err) => {
         setSubmitError(`На сервере произошла ошибка: ${err}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleRegister({ name, password, email }) {
+    setIsLoading(true);
     MainApiSet.register({ name, password, email })
       .then(() => {
         handleLogin({ email, password });
@@ -163,6 +169,9 @@ function App() {
         } else {
           setSubmitError("При регистрации пользователя произошла ошибка");
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -407,6 +416,7 @@ function App() {
     MainApiSet.signout()
       .then(() => {
         setLoggedIn(false);
+        localStorage.removeItem("token");
         history.push("/");
       })
       .catch((err) => {
@@ -499,6 +509,7 @@ function App() {
               isValid={isValid}
               onLogin={handleLogin}
               submitError={submitError}
+              isLoading={isLoading}
             />
           </Route>
           <Route path="/signup">
@@ -509,6 +520,7 @@ function App() {
               isValid={isValid}
               onRegister={handleRegister}
               submitError={submitError}
+              isLoading={isLoading}
             />
           </Route>
           <Route path="*">

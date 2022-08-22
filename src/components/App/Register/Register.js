@@ -7,6 +7,7 @@ function Register({
   isValid,
   onRegister,
   submitError,
+  isLoading
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -111,7 +112,7 @@ function Register({
             type="submit"
             disabled={!isValid}
           >
-            Зарегистрироваться
+            {!isLoading ? "Зарегистрироваться" : "Регистрация..."}
           </button>
           <div className="auth-form__signin">
             <div className="auth-form__redirect">
