@@ -47,27 +47,17 @@ function App() {
   }, []);
 
   function tokenCheck() {
-    // если у пользователя есть токен в localStorage,
-    // эта функция проверит, действующий он или нет
-    if (localStorage.getItem("token")) {
-      const jwt = localStorage.getItem("token");
-      // здесь будем проверять токен
-      if (jwt) {
-        // проверим токен
-        MainApiSet.getCurrentUser()
-          .then((res) => {
-            if (res) {
-              setLoggedIn(true);
-            }
-          })
-          .catch((err) => {
-            console.log(`${err}`);
-          });
-      }
-    } else {
-      return;
-    }
+    MainApiSet.getCurrentUser()
+      .then((res) => {
+        if (res._id) {
+          setLoggedIn(true);
+        }
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      });
   }
+
 
   useEffect(() => {
     if (loggedIn) {
