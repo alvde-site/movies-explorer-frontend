@@ -41,23 +41,31 @@ function App() {
     return () => clearTimeout(timer);
   };
 
-
   useEffect(() => {
     tokenCheck();
-  }, []);
+  });
 
   function tokenCheck() {
-    MainApiSet.getCurrentUser()
-      .then((res) => {
-        if (res._id) {
-          setLoggedIn(true);
-        }
-      })
-      .catch((err) => {
-        console.log(`${err}`);
-      });
+    // если у пользователя есть токен в localStorage,
+    // эта функция проверит, действующий он или нет
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+      // здесь будем проверять токен
+      if (jwt) {
+        // проверим токен
+        MainApiSet.getContent(jwt)
+          .then((res) => {
+            if (res) {
+              console.log(res);
+              setLoggedIn(true);
+            }
+          })
+          .catch((err) => {
+            console.log(`${err}`);
+          });
+      }
+    }
   }
-
 
   useEffect(() => {
     if (loggedIn) {
@@ -134,10 +142,17 @@ function App() {
           setSubmitError(res.message);
           return;
         }
-        if (res.token) {
-          setLoggedIn(true);
+        if(res.token) {
           localStorage.setItem("token", res.token);
+          return res;
+        } else {
+          return;
+        }
+      })
+      .then((res) => {
+        if (res.token) {
           setSubmitError("");
+          setLoggedIn(true);
           history.push("/movies");
         }
       })
@@ -152,8 +167,10 @@ function App() {
   function handleRegister({ name, password, email }) {
     setIsLoading(true);
     MainApiSet.register({ name, password, email })
-      .then(() => {
-        handleLogin({ email, password });
+      .then((res) => {
+        if (res.email) {
+          handleLogin({ email, password });
+        }
       })
       .catch((err) => {
         if (err === "Ошибка 409") {
@@ -214,7 +231,7 @@ function App() {
 
           // Сохраняем выбранную карточку в localStorage сохраненных карточек и отображаем
           const savedMovies = JSON.parse(localStorage.savedmovies);
-          const newSavedMovies = [...savedMovies, newCard]
+          const newSavedMovies = [...savedMovies, newCard];
           localStorage.setItem("savedmovies", JSON.stringify(newSavedMovies));
           setIsSavedCards(newSavedMovies);
 
@@ -256,7 +273,7 @@ function App() {
           );
           localStorage.setItem("initialmovies", JSON.stringify(newCards));
 
-         // Удалеяем выбранную карточку из localStorage найденных карточек на странице /movies и отображаем
+          // Удалеяем выбранную карточку из localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
           const newSelectedCards = selectedMovies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c

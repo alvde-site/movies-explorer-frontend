@@ -77,9 +77,7 @@ class MainApi {
   register({ name, password, email }) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         name,
@@ -92,9 +90,7 @@ class MainApi {
   login({ password, email }) {
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         password,
@@ -104,6 +100,17 @@ class MainApi {
       return res.json();
     });
   }
+
+  getContent = (token) => {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res.json());
+  };
 
   signout() {
     return fetch(`${this._baseUrl}/signout`, {
@@ -122,7 +129,9 @@ export const MainApiSet = new MainApi({
     process.env.REACT_APP_API_URL || "//localhost:3001"
   }`,
   headers: {
-    "Content-Type": "application/json",
+    authorization: `Bearer ${localStorage.getItem('token')}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
   },
   credentials: "include",
 });
