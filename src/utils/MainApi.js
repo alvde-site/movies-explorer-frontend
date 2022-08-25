@@ -7,9 +7,13 @@ class MainApi {
   test() {
     console.log(process.env);
   }
-  getMovies() {
+  getMovies(token) {
     return fetch(`${this._baseUrl}/movies`, {
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     }).then(this._checkResponse);
   }
@@ -26,10 +30,14 @@ class MainApi {
     movieId,
     nameRU,
     nameEN,
-  }) {
+  }, token) {
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
       body: JSON.stringify({
         country,
@@ -47,25 +55,37 @@ class MainApi {
     }).then(this._checkResponse);
   }
 
-  deleteMovie(movieId) {
+  deleteMovie(movieId, token) {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     }).then(this._checkResponse);
   }
 
-  getCurrentUser() {
+  getCurrentUser(token) {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     }).then(this._checkResponse);
   }
 
-  updateUser({ name, email }) {
+  updateUser({ name, email }, token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
       body: JSON.stringify({
         name,
@@ -112,9 +132,13 @@ class MainApi {
     }).then((res) => res.json());
   };
 
-  signout() {
+  signout(token) {
     return fetch(`${this._baseUrl}/signout`, {
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     }).then(this._checkResponse);
   }

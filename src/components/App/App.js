@@ -30,6 +30,7 @@ function App() {
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [isEditProfile, setIsEditProfile] = useState(false);
+  const [token, setToken] = useState('');
 
   const history = useHistory();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -43,20 +44,20 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  });
+  }, []);
 
   function tokenCheck() {
     // если у пользователя есть токен в localStorage,
     // эта функция проверит, действующий он или нет
     if (localStorage.getItem("token")) {
       const jwt = localStorage.getItem("token");
+      setToken(jwt);
       // здесь будем проверять токен
       if (jwt) {
         // проверим токен
         MainApiSet.getContent(jwt)
           .then((res) => {
             if (res) {
-              console.log(res);
               setLoggedIn(true);
             }
           })
@@ -69,7 +70,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([MainApiSet.getCurrentUser(), MainApiSet.getMovies()])
+      Promise.all([MainApiSet.getCurrentUser(token), MainApiSet.getMovies(token)])
         .then(([userData, moviesData]) => {
           // moviesData = массив объектов карточке с сервера
 
@@ -94,7 +95,7 @@ function App() {
           console.log(`${err}`);
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, token]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -144,6 +145,7 @@ function App() {
         }
         if(res.token) {
           localStorage.setItem("token", res.token);
+          setToken(res.token);
           return res;
         } else {
           return;
@@ -224,7 +226,7 @@ function App() {
 
   function handleSelectMovie(card) {
     if (!card.isClicked) {
-      MainApiSet.createMovie(card)
+      MainApiSet.createMovie(card, token)
         .then((cardData) => {
           card.isClicked = true;
           const newCard = { ...cardData, isClicked: true };
@@ -253,7 +255,7 @@ function App() {
           console.log(`${err}`);
         });
     } else {
-      MainApiSet.deleteMovie(card.movieId)
+      MainApiSet.deleteMovie(card.movieId, token)
         .then((deletedMovie) => {
           card.isClicked = false;
 
@@ -421,7 +423,7 @@ function App() {
   }
 
   function handleEditProfile({ name, email }) {
-    MainApiSet.updateUser({ name, email })
+    MainApiSet.updateUser({ name, email }, token)
       .then((res) => {
         setCurrentUser(res);
         setIsEditProfile(false);
@@ -435,7 +437,7 @@ function App() {
   }
 
   function handleSignoutProfile() {
-    MainApiSet.signout()
+    MainApiSet.signout(token)
       .then(() => {
         setLoggedIn(false);
         localStorage.removeItem("token");
