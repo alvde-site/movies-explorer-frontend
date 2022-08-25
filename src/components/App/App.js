@@ -159,7 +159,7 @@ function App() {
         }
       })
       .catch((err) => {
-        setSubmitError(`На сервере произошла ошибка: ${err}`);
+        console.log("err", err);
       })
       .finally(() => {
         setIsLoading(false);
