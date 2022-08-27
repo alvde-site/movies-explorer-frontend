@@ -21,10 +21,10 @@ function App() {
   const [isSavedCards, setIsSavedCards] = useState([]); // Сохраненные фильмы текущего пользователя
   const [currentUser, setCurrentUser] = useState({});
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
+  const [isEmptySavedMoviesSearchValue, setIsEmptySavedMoviesSearchValue] = useState(false);
   const [search, setSearch] = useState(""); //  value на странице /movies
   const [savedSearch, setSavedSearch] = useState(""); // value на странице /saved-movies
-  const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] =
-    useState("");
+  const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
@@ -467,10 +467,11 @@ function App() {
   function handleSearchSavedMovie(value) {
     // Проверка на отсутствие ключевого слова в поиске фильма
     if (!value) {
-      setIsEmptySearchValue(true);
+      setIsEmptySavedMoviesSearchValue(true);
+      console.log("фыва")
       return;
     } else {
-      setIsEmptySearchValue(false);
+      setIsEmptySavedMoviesSearchValue(false);
     }
     const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"));
     const foundMovies = initialFoundMovies.filter((m) =>
@@ -604,7 +605,7 @@ function App() {
             onSearchValue={handleSetSavedMovieSearch}
             onSearch={handleSearchSavedMovie}
             searchValue={savedSearch}
-            isEmptyValue={isEmptySearchValue}
+            isEmptyValue={isEmptySavedMoviesSearchValue}
             isNotFoundMovies={isNotFoundMovies}
             notFoundMoviesText={notFoundMoviesText}
             onAddMovies={handleAddMovies}

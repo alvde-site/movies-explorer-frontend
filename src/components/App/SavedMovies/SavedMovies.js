@@ -23,6 +23,7 @@ function SavedMovies({
   numberOfMovies,
   cards,
   onCloseNav,
+  isEmptyValue,
 }) {
   return (
     <>
@@ -41,6 +42,7 @@ function SavedMovies({
             onSearchValue={onSearchValue}
             onSearch={onSearch}
             searchValue={searchValue}
+            isEmptyValue={isEmptyValue}
           />
           <MoviesCardList
             cardsData={cardsData}
