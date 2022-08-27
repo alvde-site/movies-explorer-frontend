@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, useHistory, Redirect } from "react-router-dom";
+import { Route, Switch, useHistory, Redirect, } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
@@ -562,6 +562,10 @@ function App() {
     }
   }
 
+  function handleReturnPage() {
+    history.goBack();
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -669,7 +673,7 @@ function App() {
             )}
           </Route>
           <Route path="*">
-            <PageNotFound />
+            <PageNotFound onBack={handleReturnPage}/>
           </Route>
         </Switch>
       </div>

@@ -33,7 +33,10 @@
   font-size: 14px;
   line-height: 17px;
   color: #3456f3;
-  text-decoration: none;
+  margin: 0 0 60px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
 }
 
 .not-found__to-main:hover {
@@ -43,6 +46,10 @@
 @media (max-width: 768px) {
   .not-found__title {
     margin: 408px 0 5px;
+  }
+
+  .not-found__to-main {
+    margin: 0 0 222px;
   }
 }
 
@@ -62,5 +69,6 @@
   .not-found__to-main {
     font-size: 12px;
     line-height: 15px;
+    margin: 0 0 30px;
   }
 }
