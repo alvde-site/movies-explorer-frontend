@@ -95,7 +95,7 @@ function App() {
           const initialMovies = JSON.parse(
             localStorage.getItem("initialmovies")
           );
-          if (formattedMovies.length > 1) {
+          if (formattedMovies.length > 0) {
             let newCurrentInitialMovies = initialMovies;
 
             for (let i = 0; i < formattedMovies.length; i++) {
