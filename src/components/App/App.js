@@ -18,10 +18,12 @@ function App() {
   const [isToggleBurger, setIsToggleBurger] = useState(false);
   const [isToggleMoviesFilter, setIsToggleMoviesFilter] = useState(false);
   const [cards, setCards] = useState([]);
-  const [isSavedCards, setIsSavedCards] = useState([]);
+  const [isSavedCards, setIsSavedCards] = useState([]);          // Сохраненные фильмы текущего пользователя
   const [currentUser, setCurrentUser] = useState({});
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");         //  value на странице /movies
+  const [savedSearch, setSavedSearch] = useState("");   // value на странице /saved-movies
+  const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
@@ -80,7 +82,7 @@ function App() {
 
           setCurrentUser(userData);
 
-          const moviesOfCurrentUser = moviesData.filter(
+          const moviesOfCurrentUser = moviesData.filter(  // Сохраненные фильмы текущего пользователя
             (movie) => userData._id === movie.owner
           );
 
@@ -109,13 +111,13 @@ function App() {
                 );
               }
             }
-            console.log(newCurrentInitialMovies);
+
             setCurrentInitialMovies(newCurrentInitialMovies);
           } else {
             setCurrentInitialMovies(initialMovies);
           }
 
-          localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
+          localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));   // Сохраненные фильмы текущего пользователя
 
           setIsSavedCards(formattedMovies);
         })
@@ -252,6 +254,13 @@ function App() {
     localStorage.setItem("toggle", JSON.stringify(!isToggleMoviesFilter));
   }
 
+
+  function handleSavedMovieTopggleFilter() {
+    setIsSavedMoviesToggleFilter(!isSavedMoviesToggleFilter);
+
+  }
+
+
   function handleSelectMovie(card) {
     if (!card.isClicked) {
       MainApiSet.createMovie(card, token)
@@ -266,12 +275,6 @@ function App() {
           localStorage.setItem("savedmovies", JSON.stringify(newSavedMovies));
           setIsSavedCards(newSavedMovies);
 
-          // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
-          // const movies = JSON.parse(localStorage.initialmovies);
-          // const newCards = currentInitialMovies.map((c) =>
-          //   c.movieId === newCard.movieId ? newCard : c
-          // );
-          // localStorage.setItem("initialmovies", JSON.stringify(newCards));
           setCurrentInitialMovies((movies) =>
             movies.map((c) => (c.movieId === newCard.movieId ? newCard : c))
           );
@@ -301,13 +304,6 @@ function App() {
 
           // Удаляем выбранную карточку из localStorage карточек по умолчанию и отображаем
           const newCard = { ...deletedMovie, isClicked: false };
-
-          // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
-          // const movies = JSON.parse(localStorage.initialmovies);
-          // const newCards = currentInitialMovies.map((c) =>
-          //   c.movieId === newCard.movieId ? newCard : c
-          // );
-          // localStorage.setItem("initialmovies", JSON.stringify(newCards));
           setCurrentInitialMovies((movies) =>
             movies.map((c) => (c.movieId === newCard.movieId ? newCard : c))
           );
@@ -345,7 +341,7 @@ function App() {
     localStorage.setItem("value", JSON.stringify(val));
   }
 
-  function handleSearchMovie(value) {
+  function handleSearchFormEmptyValue(value) {
     // Проверка на отсутствие ключевого слова для поиска фильма
     if (!value) {
       setIsEmptySearchValue(true);
@@ -353,6 +349,11 @@ function App() {
     } else {
       setIsEmptySearchValue(false);
     }
+  }
+
+  function handleSearchMovie(value) {
+    // Проверка на отсутствие ключевого слова для поиска фильма
+    handleSearchFormEmptyValue(value);
 
     setIsLoading(true);
 
@@ -424,9 +425,6 @@ function App() {
           setIsLoading(false);
         });
     } else {
-      // const initialMovies = JSON.parse(localStorage.initialmovies);
-      // setCurrentInitialMovies(initialMovies);
-      console.log(currentInitialMovies);
       const foundMovies = currentInitialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
@@ -457,6 +455,9 @@ function App() {
   }
 
   function handleSearchSavedMovie(value) {
+    // Проверка на отсутствие ключевого слова в поиске фильма
+    handleSearchFormEmptyValue(value);
+
     const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"));
     const foundMovies = initialFoundMovies.filter((m) =>
       m.nameRU.toLowerCase().includes(value.toLowerCase())
@@ -465,10 +466,11 @@ function App() {
     if (!foundMovies.length) {
       setIsNotFoundMoviesText("Ничего не найдено");
       setIsNotFoundMovies(true);
+      setIsSavedCards([]);
     } else {
       setIsNotFoundMovies(false);
+      setIsSavedCards(foundMovies);
     }
-    setIsSavedCards(foundMovies);
   }
 
   function onEditProfileButton() {
@@ -499,6 +501,7 @@ function App() {
         localStorage.removeItem("toggle");
         localStorage.removeItem("value");
         setCards([]);
+        setIsSavedCards([]);
         setIsNotFoundMovies(false);
         setIsToggleMoviesFilter(false);
         setSearch("");
@@ -514,6 +517,10 @@ function App() {
 
   function handleSetSearch(value) {
     setSearch(value);
+  }
+
+  function handleSetSavedMovieSearch(value) {
+    setSavedSearch(value);
   }
 
   function handleCloseNavigationMenu() {
@@ -562,13 +569,13 @@ function App() {
             loggedIn={loggedIn}
             onToggleBurger={handleToggleBurger}
             isToggleBurger={isToggleBurger}
-            onToggleFilter={handleToggleFilter}
-            isToggleFilter={isToggleMoviesFilter}
+            onToggleFilter={handleSavedMovieTopggleFilter}
+            isToggleFilter={isSavedMoviesToggleFilter}
             onSelect={handleSelectMovie}
             cardsData={isSavedCards}
-            onSearchValue={handleSetSearch}
+            onSearchValue={handleSetSavedMovieSearch}
             onSearch={handleSearchSavedMovie}
-            searchValue={search}
+            searchValue={savedSearch}
             isEmptyValue={isEmptySearchValue}
             isNotFoundMovies={isNotFoundMovies}
             notFoundMoviesText={notFoundMoviesText}
