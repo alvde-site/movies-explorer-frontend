@@ -30,8 +30,8 @@ function App() {
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [isEditProfile, setIsEditProfile] = useState(false);
-  const [token, setToken] = useState('');
-  const [currentInitialMovies, setCurrentInitialMovies] = useState([])
+  const [token, setToken] = useState("");
+  const [currentInitialMovies, setCurrentInitialMovies] = useState([]);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -71,7 +71,10 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([MainApiSet.getCurrentUser(token), MainApiSet.getMovies(token)])
+      Promise.all([
+        MainApiSet.getCurrentUser(token),
+        MainApiSet.getMovies(token),
+      ])
         .then(([userData, moviesData]) => {
           // moviesData = массив объектов карточке с сервера
 
@@ -89,7 +92,6 @@ function App() {
           });
 
           localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
-
 
           setIsSavedCards(formattedMovies);
         })
@@ -145,7 +147,7 @@ function App() {
           setSubmitError(res.message);
           return;
         }
-        if(res.token) {
+        if (res.token) {
           localStorage.setItem("token", res.token);
           setToken(res.token);
           return res;
@@ -241,12 +243,13 @@ function App() {
 
           // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
           // const movies = JSON.parse(localStorage.initialmovies);
-          const newCards = currentInitialMovies.map((c) =>
-            c.movieId === newCard.movieId ? newCard : c
-          );
+          // const newCards = currentInitialMovies.map((c) =>
+          //   c.movieId === newCard.movieId ? newCard : c
+          // );
           // localStorage.setItem("initialmovies", JSON.stringify(newCards));
-          setCurrentInitialMovies(newCards);
-
+          setCurrentInitialMovies((movies) =>
+            movies.map((c) => (c.movieId === newCard.movieId ? newCard : c))
+          );
 
           // Сохраняем выбранную карточку в localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
@@ -390,9 +393,9 @@ function App() {
           setIsLoading(false);
         });
     } else {
-      const initialMovies = JSON.parse(localStorage.initialmovies);
-      setCurrentInitialMovies(initialMovies);
-      const foundMovies = initialMovies.filter((m) =>
+      // const initialMovies = JSON.parse(localStorage.initialmovies);
+      // setCurrentInitialMovies(initialMovies);
+      const foundMovies = currentInitialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
       handleSaveToLocalStorage(foundMovies, value);
@@ -448,7 +451,7 @@ function App() {
         setLoggedIn(false);
         localStorage.removeItem("token");
         localStorage.removeItem("movies");
-        localStorage.removeItem("savedmovies")
+        localStorage.removeItem("savedmovies");
         localStorage.removeItem("toggle");
         localStorage.removeItem("value");
         setCards([]);
