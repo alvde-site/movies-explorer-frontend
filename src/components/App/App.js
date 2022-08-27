@@ -293,11 +293,18 @@ function App() {
 
           // Удаляем выбранную карточку из localStorage карточек по умолчанию и отображаем
           const newCard = { ...deletedMovie, isClicked: false };
-          const movies = JSON.parse(localStorage.initialmovies);
-          const newCards = movies.map((c) =>
-            c.movieId === newCard.movieId ? newCard : c
+
+
+           // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
+          // const movies = JSON.parse(localStorage.initialmovies);
+          // const newCards = currentInitialMovies.map((c) =>
+          //   c.movieId === newCard.movieId ? newCard : c
+          // );
+          // localStorage.setItem("initialmovies", JSON.stringify(newCards));
+          setCurrentInitialMovies((movies) =>
+            movies.map((c) => (c.movieId === newCard.movieId ? newCard : c))
           );
-          localStorage.setItem("initialmovies", JSON.stringify(newCards));
+
 
           // Удалеяем выбранную карточку из localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
