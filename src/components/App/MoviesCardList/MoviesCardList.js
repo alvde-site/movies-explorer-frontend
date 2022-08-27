@@ -24,11 +24,11 @@ function MoviesCardList({
       ) : (
         <>
           <ul className="movies-list__cards">
-            {cardsData.map((card, index) => {
+            {cardsData.map((card) => {
               return (
                 <MoviesCard
                   card={card}
-                  key={index}
+                  key={card.movieId}
                   onSelect={onSelect}
                   isSelected={isSelected}
                   cardButtonClassType={cardButtonClassType}
