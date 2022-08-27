@@ -92,13 +92,21 @@ function App() {
             };
           });
 
-          const initialMovies = JSON.parse(localStorage.getItem("initialmovies"));
+          const initialMovies = JSON.parse(
+            localStorage.getItem("initialmovies")
+          );
 
-          for(let i = 0; i < formattedMovies.length; i++) {
-            let newCurrentInitialMovies = initialMovies.map((m)=> m.movieId === formattedMovies[i].movieId ? formattedMovies[i] : m);
-            console.log(newCurrentInitialMovies)
+          let newCurrentInitialMovies;
+
+          for (let i = 0; i < formattedMovies.length; i++) {
+            newCurrentInitialMovies = initialMovies.map((m) =>
+              m.movieId === formattedMovies[i].movieId ? formattedMovies[i] : m
+            );
+            console.log(newCurrentInitialMovies);
           }
 
+          console.log(newCurrentInitialMovies);
+          setCurrentInitialMovies(newCurrentInitialMovies);
 
           localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
 
@@ -381,6 +389,7 @@ function App() {
           if (!foundMovies.length) {
             handleNumberOfMovies(deviceWidth);
             setCards(foundMovies.slice(0, numberOfMovies));
+            setCurrentInitialMovies(formattedMovies);
             setIsNotFoundMoviesText("Ничего не найдено");
             setIsNotFoundMovies(true);
             return;
@@ -404,10 +413,23 @@ function App() {
     } else {
       // const initialMovies = JSON.parse(localStorage.initialmovies);
       // setCurrentInitialMovies(initialMovies);
+      console.log(currentInitialMovies)
       const foundMovies = currentInitialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
       handleSaveToLocalStorage(foundMovies, value);
+      let newCurrentInitialMovies;
+
+      if(foundMovies.length > 1) {
+        for (let i = 0; i < foundMovies.length; i++) {
+          newCurrentInitialMovies = currentInitialMovies.map((m) =>
+            m.movieId === foundMovies[i].movieId ? foundMovies[i] : m
+          );
+        }
+        console.log(newCurrentInitialMovies);
+        setCurrentInitialMovies(newCurrentInitialMovies);
+      }
+
       setIsLoading(false);
 
       if (!foundMovies.length) {
