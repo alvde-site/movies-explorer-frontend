@@ -468,7 +468,6 @@ function App() {
     // Проверка на отсутствие ключевого слова в поиске фильма
     if (!value) {
       setIsEmptySavedMoviesSearchValue(true);
-      console.log("фыва")
       return;
     } else {
       setIsEmptySavedMoviesSearchValue(false);
@@ -523,8 +522,10 @@ function App() {
         setIsSavedCards([]);
         setIsNotFoundMovies(false);
         setIsToggleMoviesFilter(false);
+        setIsSavedMoviesToggleFilter(false);
         setSubmitSuccess(false);
         setSearch("");
+        setSavedSearch("");
         history.push("/");
       })
       .catch((err) => {
