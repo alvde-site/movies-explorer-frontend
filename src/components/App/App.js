@@ -88,8 +88,17 @@ function App() {
             return {
               ...movie,
               isClicked: true,
+              _id: movie._id,
             };
           });
+
+          const initialMovies = JSON.parse(localStorage.getItem("initialmovies"));
+
+          for(let i = 0; i < formattedMovies.length; i++) {
+            let newCurrentInitialMovies = initialMovies.map((m)=> m.movieId === formattedMovies[i].movieId ? formattedMovies[i] : m);
+            console.log(newCurrentInitialMovies)
+          }
+
 
           localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
 
