@@ -255,6 +255,21 @@ function App() {
   }
 
 
+  useEffect(() => {
+    if (localStorage.savedmovies) {
+      const savedMovies = JSON.parse(localStorage.savedmovies);
+      const shortSavedMovies = JSON.parse(localStorage.savedmovies).filter(
+        (m) => m.duration <= 40
+      );
+      if (isSavedMoviesToggleFilter) {
+        setIsSavedCards(shortSavedMovies);
+      } else {
+        setIsSavedCards(savedMovies.slice(0, numberOfMovies));
+      }
+    }
+
+  }, [isSavedMoviesToggleFilter, numberOfMovies]);
+
   function handleSavedMovieTopggleFilter() {
     setIsSavedMoviesToggleFilter(!isSavedMoviesToggleFilter);
 
@@ -341,7 +356,8 @@ function App() {
     localStorage.setItem("value", JSON.stringify(val));
   }
 
-  function handleSearchFormEmptyValue(value) {
+
+  function handleSearchMovie(value) {
     // Проверка на отсутствие ключевого слова для поиска фильма
     if (!value) {
       setIsEmptySearchValue(true);
@@ -349,11 +365,6 @@ function App() {
     } else {
       setIsEmptySearchValue(false);
     }
-  }
-
-  function handleSearchMovie(value) {
-    // Проверка на отсутствие ключевого слова для поиска фильма
-    handleSearchFormEmptyValue(value);
 
     setIsLoading(true);
 
@@ -456,7 +467,12 @@ function App() {
 
   function handleSearchSavedMovie(value) {
     // Проверка на отсутствие ключевого слова в поиске фильма
-    handleSearchFormEmptyValue(value);
+    if (!value) {
+      setIsEmptySearchValue(true);
+      return;
+    } else {
+      setIsEmptySearchValue(false);
+    }
 
     const initialFoundMovies = JSON.parse(localStorage.getItem("savedmovies"));
     const foundMovies = initialFoundMovies.filter((m) =>
