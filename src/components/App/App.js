@@ -213,6 +213,9 @@ function App() {
         }
       })
       .catch((err) => {
+        if(err === "Ошибка 401") {
+          setSubmitError("Неверный логин или пароль")
+        }
         console.log("err", err);
       })
       .finally(() => {
