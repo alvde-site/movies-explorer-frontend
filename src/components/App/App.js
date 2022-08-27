@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, Redirect } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
@@ -21,10 +21,12 @@ function App() {
   const [isSavedCards, setIsSavedCards] = useState([]); // Сохраненные фильмы текущего пользователя
   const [currentUser, setCurrentUser] = useState({});
   const [isEmptySearchValue, setIsEmptySearchValue] = useState(false);
-  const [isEmptySavedMoviesSearchValue, setIsEmptySavedMoviesSearchValue] = useState(false);
+  const [isEmptySavedMoviesSearchValue, setIsEmptySavedMoviesSearchValue] =
+    useState(false);
   const [search, setSearch] = useState(""); //  value на странице /movies
   const [savedSearch, setSavedSearch] = useState(""); // value на странице /saved-movies
-  const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] = useState("");
+  const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] =
+    useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
   const [isNotFoundSavedMovies, setIsNotFoundSavedMovies] = useState(false);
@@ -637,26 +639,34 @@ function App() {
             onSameValue={handleProfileSameValue}
           />
           <Route path="/signin">
-            <Login
-              onInputChange={handleChange}
-              values={values}
-              errors={errors}
-              isValid={isValid}
-              onLogin={handleLogin}
-              submitError={submitError}
-              isLoading={isLoading}
-            />
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <Login
+                onInputChange={handleChange}
+                values={values}
+                errors={errors}
+                isValid={isValid}
+                onLogin={handleLogin}
+                submitError={submitError}
+                isLoading={isLoading}
+              />
+            )}
           </Route>
           <Route path="/signup">
-            <Register
-              onInputChange={handleChange}
-              values={values}
-              errors={errors}
-              isValid={isValid}
-              onRegister={handleRegister}
-              submitError={submitError}
-              isLoading={isLoading}
-            />
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <Register
+                onInputChange={handleChange}
+                values={values}
+                errors={errors}
+                isValid={isValid}
+                onRegister={handleRegister}
+                submitError={submitError}
+                isLoading={isLoading}
+              />
+            )}
           </Route>
           <Route path="*">
             <PageNotFound />
