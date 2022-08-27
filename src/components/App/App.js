@@ -90,6 +90,7 @@ function App() {
 
           localStorage.setItem("savedmovies", JSON.stringify(formattedMovies));
 
+
           setIsSavedCards(formattedMovies);
         })
         .catch((err) => {
@@ -239,11 +240,13 @@ function App() {
           setIsSavedCards(newSavedMovies);
 
           // Сохраняем выбранную карточку в localStorage карточек по умолчанию и отображаем
-          const movies = JSON.parse(localStorage.initialmovies);
-          const newCards = movies.map((c) =>
+          // const movies = JSON.parse(localStorage.initialmovies);
+          const newCards = currentInitialMovies.map((c) =>
             c.movieId === newCard.movieId ? newCard : c
           );
-          localStorage.setItem("initialmovies", JSON.stringify(newCards));
+          // localStorage.setItem("initialmovies", JSON.stringify(newCards));
+          setCurrentInitialMovies(newCards);
+
 
           // Сохраняем выбранную карточку в localStorage найденных карточек на странице /movies и отображаем
           const selectedMovies = JSON.parse(localStorage.movies);
@@ -445,6 +448,7 @@ function App() {
         setLoggedIn(false);
         localStorage.removeItem("token");
         localStorage.removeItem("movies");
+        localStorage.removeItem("savedmovies")
         localStorage.removeItem("toggle");
         localStorage.removeItem("value");
         setCards([]);
