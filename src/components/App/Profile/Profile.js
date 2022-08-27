@@ -17,6 +17,7 @@ function Profile({
   submitSuccess,
   onSignout,
   onCloseNav,
+  onSameValue
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -32,6 +33,7 @@ function Profile({
 
   function handleInputChange(e) {
     onInputChange(e);
+    onSameValue(e)
   }
 
   function handleEditButton() {

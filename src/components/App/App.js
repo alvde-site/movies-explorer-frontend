@@ -37,7 +37,7 @@ function App() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const history = useHistory();
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
+  const { values, handleChange, errors, isValid, setIsValid } = useFormWithValidation();
 
   const updateDeviceWidth = () => {
     const timer = setTimeout(() => {
@@ -548,6 +548,12 @@ function App() {
     setIsToggleBurger(false);
   }
 
+  function handleProfileSameValue(e) {
+    if(e.target.value === currentUser.name || e.target.value === currentUser.email) {
+      setIsValid(false);
+    }
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {/* Поддерево, в котором будет доступен контекст */}
@@ -622,6 +628,7 @@ function App() {
             submitSuccess={submitSuccess}
             onSignout={handleSignoutProfile}
             onCloseNav={handleCloseNavigationMenu}
+            onSameValue={handleProfileSameValue}
           />
           <Route path="/signin">
             <Login
