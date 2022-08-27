@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, useHistory, Redirect, } from "react-router-dom";
+import { Route, Switch, useHistory, Redirect } from "react-router-dom";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Main from "./Main/Main";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
@@ -12,6 +12,17 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
 import { useFormWithValidation } from "../../utils/formValidator";
+import {
+  shortMoviesDuration,
+  countOfMoviesForBigDevice,
+  countOfMoviesForMediumDevice,
+  countOfMoviesForSmallDevice,
+  countOfAddedMoviesForBigDevice,
+  countOfAddedMoviesForMediumDevice,
+  countOfAddedMoviesForSmallDevice,
+  widthOfBigDevice,
+  widthOfMediumDevice,
+} from "../../utils/constants";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -67,11 +78,11 @@ function App() {
         // проверим токен
         MainApiSet.getContent(jwt)
           .then((res) => {
-            if(res.message) {
+            if (res.message) {
               setLoggedIn(false);
-              setSubmitError("Что-то пошло не так...");
+              setSubmitError(res.message);
             }
-            if(res._id) {
+            if (res._id) {
               setLoggedIn(true);
               setSubmitError("");
             }
@@ -170,11 +181,11 @@ function App() {
 
   function handleNumberOfMovies(width) {
     if (width >= 1280) {
-      setNumberOfMovies(16);
+      setNumberOfMovies(countOfMoviesForBigDevice);
     } else if (1280 < width || width >= 990) {
-      setNumberOfMovies(12);
+      setNumberOfMovies(countOfMoviesForMediumDevice);
     } else {
-      setNumberOfMovies(8);
+      setNumberOfMovies(countOfMoviesForSmallDevice);
     }
   }
 
@@ -235,12 +246,12 @@ function App() {
   }, [numberOfMovies, cards]);
 
   function handleAddMovies(number, cards) {
-    if (deviceWidth >= 1280) {
-      setNumberOfMovies(number + 4);
-    } else if (1280 < deviceWidth || deviceWidth >= 990) {
-      setNumberOfMovies(number + 3);
+    if (deviceWidth >= widthOfBigDevice) {
+      setNumberOfMovies(number + countOfAddedMoviesForBigDevice);
+    } else if (widthOfBigDevice < deviceWidth || deviceWidth >= widthOfMediumDevice) {
+      setNumberOfMovies(number + countOfAddedMoviesForMediumDevice);
     } else {
-      setNumberOfMovies(number + 2);
+      setNumberOfMovies(number + countOfAddedMoviesForSmallDevice);
     }
   }
 
@@ -252,7 +263,7 @@ function App() {
     if (localStorage.movies) {
       const movies = JSON.parse(localStorage.movies);
       const shortMovies = JSON.parse(localStorage.movies).filter(
-        (m) => m.duration <= 40
+        (m) => m.duration <= shortMoviesDuration
       );
       if (isToggleMoviesFilter) {
         setCards(shortMovies);
@@ -271,7 +282,7 @@ function App() {
     if (localStorage.savedmovies) {
       const savedMovies = JSON.parse(localStorage.savedmovies);
       const shortSavedMovies = JSON.parse(localStorage.savedmovies).filter(
-        (m) => m.duration <= 40
+        (m) => m.duration <= shortMoviesDuration
       );
       if (isSavedMoviesToggleFilter) {
         setIsSavedCards(shortSavedMovies);
@@ -678,7 +689,7 @@ function App() {
             )}
           </Route>
           <Route path="*">
-            <PageNotFound onBack={handleReturnPage}/>
+            <PageNotFound onBack={handleReturnPage} />
           </Route>
         </Switch>
       </div>
