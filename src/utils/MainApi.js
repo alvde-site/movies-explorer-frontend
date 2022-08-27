@@ -4,9 +4,6 @@ class MainApi {
     this._headers = headers;
   }
 
-  test() {
-    console.log(process.env);
-  }
   getMovies(token) {
     return fetch(`${this._baseUrl}/movies`, {
       headers: {
@@ -116,9 +113,7 @@ class MainApi {
         password,
         email,
       }),
-    }).then((res) => {
-      return res.json();
-    });
+    }).then(this._checkResponse);
   }
 
   getContent = (token) => {

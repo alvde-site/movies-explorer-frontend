@@ -69,7 +69,7 @@ function App() {
           .then((res) => {
             if(res.message) {
               setLoggedIn(false);
-              setSubmitError(res.message);
+              setSubmitError("Что-то пошло не так...");
             }
             if(res._id) {
               setLoggedIn(true);
