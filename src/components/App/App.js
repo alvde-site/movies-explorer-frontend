@@ -27,7 +27,9 @@ function App() {
   const [isSavedMoviesToggleFilter, setIsSavedMoviesToggleFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundMovies, setIsNotFoundMovies] = useState(false);
+  const [isNotFoundSavedMovies, setIsNotFoundSavedMovies] = useState(false);
   const [notFoundMoviesText, setIsNotFoundMoviesText] = useState("");
+  const [notFoundSavedMoviesText, setIsNotSavedFoundMoviesText] = useState("");
   const [numberOfMovies, setNumberOfMovies] = useState(16);
   const [deviceWidth, setDeviceWidth] = useState(1280);
   const [isDisableMoreButton, setIsDisableMoreButton] = useState(false);
@@ -478,11 +480,11 @@ function App() {
     );
 
     if (!foundMovies.length) {
-      setIsNotFoundMoviesText("Ничего не найдено");
-      setIsNotFoundMovies(true);
+      setIsNotSavedFoundMoviesText("Ничего не найдено");
+      setIsNotFoundSavedMovies(true);
       setIsSavedCards([]);
     } else {
-      setIsNotFoundMovies(false);
+      setIsNotFoundSavedMovies(false);
       setIsSavedCards(foundMovies);
     }
     setIsSavedMoviesToggleFilter(false);
@@ -521,6 +523,7 @@ function App() {
         setCards([]);
         setIsSavedCards([]);
         setIsNotFoundMovies(false);
+        setIsNotFoundSavedMovies(false);
         setIsToggleMoviesFilter(false);
         setIsSavedMoviesToggleFilter(false);
         setSubmitSuccess(false);
@@ -607,8 +610,8 @@ function App() {
             onSearch={handleSearchSavedMovie}
             searchValue={savedSearch}
             isEmptyValue={isEmptySavedMoviesSearchValue}
-            isNotFoundMovies={isNotFoundMovies}
-            notFoundMoviesText={notFoundMoviesText}
+            isNotFoundMovies={isNotFoundSavedMovies}
+            notFoundMoviesText={notFoundSavedMoviesText}
             onAddMovies={handleAddMovies}
             isDisableMoreButton={true}
             numberOfMovies={numberOfMovies}
