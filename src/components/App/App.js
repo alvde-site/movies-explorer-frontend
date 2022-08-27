@@ -257,7 +257,8 @@ function App() {
       MainApiSet.createMovie(card, token)
         .then((cardData) => {
           card.isClicked = true;
-          const newCard = { ...cardData, isClicked: true };
+          card._id = cardData._id;
+          const newCard = { ...cardData, isClicked: true, _id: cardData._id };
 
           // Сохраняем выбранную карточку в localStorage сохраненных карточек и отображаем
           const savedMovies = JSON.parse(localStorage.savedmovies);
@@ -286,7 +287,7 @@ function App() {
           console.log(`${err}`);
         });
     } else {
-      MainApiSet.deleteMovie(card.movieId, token)
+      MainApiSet.deleteMovie(card._id, token)
         .then((deletedMovie) => {
           card.isClicked = false;
 
