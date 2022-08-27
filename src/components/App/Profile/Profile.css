@@ -92,6 +92,20 @@
   display: block;
 }
 
+.profileform__submit-success {
+  display: none;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: rgb(69, 226, 69);
+}
+
+.profileform__submit-success_active {
+  display: block;
+}
+
 .profileform__submit {
   display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;

@@ -14,6 +14,7 @@ function Profile({
   onInputChange,
   isValid,
   submitError,
+  submitSuccess,
   onSignout,
   onCloseNav,
 }) {
@@ -99,6 +100,14 @@ function Profile({
         </fieldset>
         <fieldset className="profileform__submit-fieldset">
           <span
+            id="success-submitprofile"
+            className={`profileform__submit-success ${
+              submitSuccess && "profileform__submit-success_active"
+            }`}
+          >
+            Успешно!
+          </span>
+          <span
             id="error-submitprofile"
             className={`profileform__submit-error ${
               submitError && "profileform__submit-error_active"
@@ -137,7 +146,7 @@ function Profile({
           </button>
         </fieldset>
       </form>
-      <Navigation isToggleBurger={isToggleBurger}  onCloseNav={onCloseNav}/>
+      <Navigation isToggleBurger={isToggleBurger} onCloseNav={onCloseNav} />
     </>
   );
 }

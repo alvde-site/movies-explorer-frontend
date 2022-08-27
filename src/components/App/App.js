@@ -34,6 +34,7 @@ function App() {
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [token, setToken] = useState("");
   const [currentInitialMovies, setCurrentInitialMovies] = useState([]);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -491,6 +492,7 @@ function App() {
 
   function onEditProfileButton() {
     setIsEditProfile(true);
+    setSubmitSuccess(false);
   }
 
   function handleEditProfile({ name, email }) {
@@ -498,11 +500,13 @@ function App() {
       .then((res) => {
         setCurrentUser(res);
         setIsEditProfile(false);
+        setSubmitSuccess(true);
       })
       .catch((err) => {
         if (err) {
           setSubmitError("При обновлении профиля произошла ошибка");
         }
+        setSubmitSuccess(false);
         console.log(`${err}`);
       });
   }
@@ -520,6 +524,7 @@ function App() {
         setIsSavedCards([]);
         setIsNotFoundMovies(false);
         setIsToggleMoviesFilter(false);
+        setSubmitSuccess(false);
         setSearch("");
         history.push("/");
       })
@@ -614,6 +619,7 @@ function App() {
             onInputChange={handleChange}
             isValid={isValid}
             submitError={submitError}
+            submitSuccess={submitSuccess}
             onSignout={handleSignoutProfile}
             onCloseNav={handleCloseNavigationMenu}
           />
