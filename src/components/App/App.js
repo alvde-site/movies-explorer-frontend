@@ -67,8 +67,13 @@ function App() {
         // проверим токен
         MainApiSet.getContent(jwt)
           .then((res) => {
-            if (res) {
+            if(res.message) {
+              setLoggedIn(false);
+              setSubmitError(res.message);
+            }
+            if(res._id) {
               setLoggedIn(true);
+              setSubmitError("");
             }
           })
           .catch((err) => {
