@@ -7,7 +7,7 @@ function Register({
   isValid,
   onRegister,
   submitError,
-  isLoading
+  isLoading,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -69,6 +69,7 @@ function Register({
             maxLength="30"
             value={values["registeremail"] || ""}
             onChange={handleInputChange}
+            pattern="[a-z0-9]+@[a-z]+.[a-z]{2,3}"
           />
           <span id="error-registeremail" className="auth-form__input-error">
             {errors["registeremail"] || ""}

@@ -47,6 +47,7 @@ function Login({
             maxLength="30"
             value={values["loginemail"] || ""}
             onChange={handleInputChange}
+            pattern="[a-z0-9]+@[a-z]+.[a-z]{2,3}"
           />
           <span id="error-loginemail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
