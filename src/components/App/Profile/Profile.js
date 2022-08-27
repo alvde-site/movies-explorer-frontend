@@ -96,7 +96,7 @@ function Profile({
             onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
-            pattern="[a-z0-9]+@[a-z]+.[a-z]{2,3}"
+            pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
           />
           <span className="profileform__input_focus"></span>
         </fieldset>
