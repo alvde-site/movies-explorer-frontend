@@ -248,7 +248,10 @@ function App() {
   function handleAddMovies(number, cards) {
     if (deviceWidth >= widthOfBigDevice) {
       setNumberOfMovies(number + countOfAddedMoviesForBigDevice);
-    } else if (widthOfBigDevice < deviceWidth || deviceWidth >= widthOfMediumDevice) {
+    } else if (
+      widthOfBigDevice < deviceWidth ||
+      deviceWidth >= widthOfMediumDevice
+    ) {
       setNumberOfMovies(number + countOfAddedMoviesForMediumDevice);
     } else {
       setNumberOfMovies(number + countOfAddedMoviesForSmallDevice);

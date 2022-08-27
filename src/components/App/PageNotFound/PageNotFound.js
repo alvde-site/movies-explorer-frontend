@@ -2,7 +2,7 @@ import React from "react";
 
 import "./PageNotFound.css";
 
-function PageNotFound({onBack}) {
+function PageNotFound({ onBack }) {
   function handleBack() {
     onBack();
   }
