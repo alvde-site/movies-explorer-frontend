@@ -31,6 +31,7 @@ function App() {
   const [submitError, setSubmitError] = useState("");
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [token, setToken] = useState('');
+  const [currentInitialMovies, setCurrentInitialMovies] = useState([])
 
   const history = useHistory();
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -357,6 +358,7 @@ function App() {
             "initialmovies",
             JSON.stringify(formattedMovies)
           );
+          setCurrentInitialMovies(formattedMovies);
           const foundMovies = formattedMovies.filter((m) =>
             m.nameRU.toLowerCase().includes(value.toLowerCase())
           );
@@ -386,6 +388,7 @@ function App() {
         });
     } else {
       const initialMovies = JSON.parse(localStorage.initialmovies);
+      setCurrentInitialMovies(initialMovies);
       const foundMovies = initialMovies.filter((m) =>
         m.nameRU.toLowerCase().includes(value.toLowerCase())
       );
@@ -441,6 +444,13 @@ function App() {
       .then(() => {
         setLoggedIn(false);
         localStorage.removeItem("token");
+        localStorage.removeItem("movies");
+        localStorage.removeItem("toggle");
+        localStorage.removeItem("value");
+        setCards([]);
+        setIsNotFoundMovies(false);
+        setIsToggleMoviesFilter(false);
+        setSearch("");
         history.push("/");
       })
       .catch((err) => {
