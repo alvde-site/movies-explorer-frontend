@@ -13,16 +13,16 @@ import { MainApiSet } from "../../utils/MainApi";
 import { MoviesApiSet } from "../../utils/MoviesApi";
 import { useFormWithValidation } from "../../utils/formValidator";
 import {
-  shortMoviesDuration,
-  countOfMoviesForBigDevice,
-  countOfMoviesForMediumDevice,
-  countOfMoviesForSmallDevice,
-  countOfAddedMoviesForBigDevice,
-  countOfAddedMoviesForMediumDevice,
-  countOfAddedMoviesForSmallDevice,
-  widthOfBigDevice,
-  widthOfMediumDevice,
-} from "../../utils/constants";
+  COUNTOFADDEDMOVIESFORBIGDEVICE,
+  COUNTOFADDEDMOVIESFORMEDIUMDEVICE,
+  COUNTOFADDEDMOVIESFORSMALLDEVICE,
+  COUNTOFMOVIESFORBIGDEVICE,
+  COUNTOFMOVIESFORMEDIUMDEVICE,
+  COUNTOFMOVIESFORSMALLDEVICE,
+  SHORTMOVIESDURATION,
+  WIDTHOFBIGDEVICE,
+  WIDTHOMEDIUMDEVICE,
+} from "../../utils/config";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -180,12 +180,12 @@ function App() {
   }, [deviceWidth]);
 
   function handleNumberOfMovies(width) {
-    if (width >= 1280) {
-      setNumberOfMovies(countOfMoviesForBigDevice);
-    } else if (1280 < width || width >= 990) {
-      setNumberOfMovies(countOfMoviesForMediumDevice);
+    if (width >= WIDTHOFBIGDEVICE) {
+      setNumberOfMovies(COUNTOFMOVIESFORBIGDEVICE);
+    } else if (WIDTHOFBIGDEVICE < width || width >= WIDTHOMEDIUMDEVICE) {
+      setNumberOfMovies(COUNTOFMOVIESFORMEDIUMDEVICE);
     } else {
-      setNumberOfMovies(countOfMoviesForSmallDevice);
+      setNumberOfMovies(COUNTOFMOVIESFORSMALLDEVICE);
     }
   }
 
@@ -213,8 +213,8 @@ function App() {
         }
       })
       .catch((err) => {
-        if(err === "Ошибка 401") {
-          setSubmitError("Неверный логин или пароль")
+        if (err === "Ошибка 401") {
+          setSubmitError("Неверный логин или пароль");
         }
         console.log("err", err);
       })
@@ -249,15 +249,15 @@ function App() {
   }, [numberOfMovies, cards]);
 
   function handleAddMovies(number, cards) {
-    if (deviceWidth >= widthOfBigDevice) {
-      setNumberOfMovies(number + countOfAddedMoviesForBigDevice);
+    if (deviceWidth >= WIDTHOFBIGDEVICE) {
+      setNumberOfMovies(number + COUNTOFADDEDMOVIESFORBIGDEVICE);
     } else if (
-      widthOfBigDevice < deviceWidth ||
-      deviceWidth >= widthOfMediumDevice
+      WIDTHOFBIGDEVICE < deviceWidth ||
+      deviceWidth >= WIDTHOMEDIUMDEVICE
     ) {
-      setNumberOfMovies(number + countOfAddedMoviesForMediumDevice);
+      setNumberOfMovies(number + COUNTOFADDEDMOVIESFORMEDIUMDEVICE);
     } else {
-      setNumberOfMovies(number + countOfAddedMoviesForSmallDevice);
+      setNumberOfMovies(number + COUNTOFADDEDMOVIESFORSMALLDEVICE);
     }
   }
 
@@ -269,7 +269,7 @@ function App() {
     if (localStorage.movies) {
       const movies = JSON.parse(localStorage.movies);
       const shortMovies = JSON.parse(localStorage.movies).filter(
-        (m) => m.duration <= shortMoviesDuration
+        (m) => m.duration <= SHORTMOVIESDURATION
       );
       if (isToggleMoviesFilter) {
         setCards(shortMovies);
@@ -288,7 +288,7 @@ function App() {
     if (localStorage.savedmovies) {
       const savedMovies = JSON.parse(localStorage.savedmovies);
       const shortSavedMovies = JSON.parse(localStorage.savedmovies).filter(
-        (m) => m.duration <= shortMoviesDuration
+        (m) => m.duration <= SHORTMOVIESDURATION
       );
       if (isSavedMoviesToggleFilter) {
         setIsSavedCards(shortSavedMovies);

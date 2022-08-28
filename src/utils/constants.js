@@ -1,9 +1,0 @@
-export const shortMoviesDuration = 40;
-export const countOfMoviesForBigDevice = 16;
-export const countOfMoviesForMediumDevice = 12;
-export const countOfMoviesForSmallDevice = 8;
-export const countOfAddedMoviesForBigDevice = 4;
-export const countOfAddedMoviesForMediumDevice = 3;
-export const countOfAddedMoviesForSmallDevice = 2;
-export const widthOfBigDevice = 1280;
-export const widthOfMediumDevice = 990;
