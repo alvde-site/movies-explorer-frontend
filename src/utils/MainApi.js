@@ -127,7 +127,8 @@ class MainApi {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => res.json());
+      credentials: "include",
+    }).then(this._checkResponse);
   };
 
   signout(token) {
