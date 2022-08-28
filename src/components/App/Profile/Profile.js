@@ -77,6 +77,7 @@ function Profile({
             onChange={handleInputChange}
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
+            formNoValidate
           />
           <span className="profileform__input_focus"></span>
         </fieldset>
@@ -97,6 +98,7 @@ function Profile({
             readOnly={!isEditProfile}
             disabled={!isEditProfile}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
+            formNoValidate
           />
           <span className="profileform__input_focus"></span>
         </fieldset>
