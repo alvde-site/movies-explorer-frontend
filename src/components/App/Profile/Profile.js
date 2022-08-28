@@ -125,6 +125,7 @@ function Profile({
               }`
             }`}
             type="submit"
+            disabled={!isValid}
           >
             Сохранить
           </button>
