@@ -69,10 +69,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(isInvalidToken) {
+    if (isInvalidToken) {
       history.push("/signin");
     }
-  }, [isInvalidToken, history])
+  }, [isInvalidToken, history]);
 
   function tokenCheck() {
     // если у пользователя есть токен в localStorage,
@@ -406,9 +406,20 @@ function App() {
       // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
-          // const filteredCrashedMovies = movies.filter((m) => m.trailerLink.startsWith('https'));
-          // console.log(filteredCrashedMovies)
-          const formattedMovies = movies.map(
+          const filterCrashMovies = movies.filter(
+            (m) =>
+              m.id &&
+              m.country &&
+              m.director &&
+              m.duration &&
+              m.year &&
+              m.description &&
+              m.image &&
+              m.trailerLink &&
+              m.nameRU &&
+              m.nameEN
+          );
+          const formattedMovies = filterCrashMovies.map(
             //  Сохраняем массив фильмом в нужном формате
             ({
               id,
@@ -438,6 +449,7 @@ function App() {
               };
             }
           );
+
           localStorage.setItem(
             "initialmovies",
             JSON.stringify(formattedMovies)
