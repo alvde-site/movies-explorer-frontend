@@ -52,6 +52,7 @@ function App() {
   const [currentInitialMovies, setCurrentInitialMovies] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isInvalidToken, setIsInvalidToken] = useState(false);
+  const [isSubmiting, setIsSubmiting] = useState(true);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid, setIsValid } =
@@ -655,6 +656,7 @@ function App() {
             numberOfMovies={numberOfMovies}
             cards={cards}
             onCloseNav={handleCloseNavigationMenu}
+            isSubmiting={isSubmiting}
           />
           <ProtectedRoute
             exact
@@ -678,6 +680,7 @@ function App() {
             numberOfMovies={numberOfMovies}
             cards={cards}
             onCloseNav={handleCloseNavigationMenu}
+            isSubmiting={isSubmiting}
           />
           <ProtectedRoute
             exact
@@ -697,6 +700,7 @@ function App() {
             onSignout={handleSignoutProfile}
             onCloseNav={handleCloseNavigationMenu}
             onSameValue={handleProfileSameValue}
+            isSubmiting={isSubmiting}
           />
           <Route exact path="/signin">
             {loggedIn ? (
@@ -710,6 +714,7 @@ function App() {
                 onLogin={handleLogin}
                 submitError={submitError}
                 isLoading={isLoading}
+                isSubmiting={isSubmiting}
               />
             )}
           </Route>
@@ -725,6 +730,7 @@ function App() {
                 onRegister={handleRegister}
                 submitError={submitError}
                 isLoading={isLoading}
+                isSubmiting={isSubmiting}
               />
             )}
           </Route>

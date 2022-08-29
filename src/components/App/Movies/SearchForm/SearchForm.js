@@ -7,6 +7,7 @@ function SearchForm({
   isEmptyValue,
   searchValue,
   onSearchValue,
+  isSubmiting
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,6 +30,7 @@ function SearchForm({
           value={searchValue || ""}
           onChange={handleSearchChange}
           formNoValidate
+          disabled={isSubmiting}
         />
         <span className="form__input_focus"></span>
         <span
@@ -39,7 +41,7 @@ function SearchForm({
         >
           Нужно ввести ключевое слово
         </span>
-        <button className="form__submit" type="submit"></button>
+        <button className="form__submit" type="submit" disabled={isSubmiting}></button>
       </label>
       <FilterCheckbox
         onToggleFilter={onToggleFilter}
