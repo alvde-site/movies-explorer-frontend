@@ -48,6 +48,7 @@ function Register({
             maxLength="30"
             value={values["registername"] || ""}
             onChange={handleInputChange}
+            formNoValidate
           />
           <span id="error-registername" className="auth-form__input-error">
             {errors["registername"] || ""}
@@ -70,6 +71,7 @@ function Register({
             value={values["registeremail"] || ""}
             onChange={handleInputChange}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
+            formNoValidate
           />
           <span id="error-registeremail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
@@ -91,6 +93,7 @@ function Register({
             maxLength="30"
             value={values["registerpassword"] || ""}
             onChange={handleInputChange}
+            formNoValidate
           />
           <span id="error-registerpassword" className="auth-form__input-error">
             {errors["registerpassword"] || ""}

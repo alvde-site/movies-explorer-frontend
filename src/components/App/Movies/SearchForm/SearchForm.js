@@ -28,6 +28,7 @@ function SearchForm({
           placeholder="Фильм"
           value={searchValue || ""}
           onChange={handleSearchChange}
+          formNoValidate
         />
         <span className="form__input_focus"></span>
         <span

@@ -48,6 +48,7 @@ function Login({
             value={values["loginemail"] || ""}
             onChange={handleInputChange}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
+            formNoValidate
           />
           <span id="error-loginemail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
@@ -69,6 +70,7 @@ function Login({
             maxLength="30"
             value={values["loginpassword"] || ""}
             onChange={handleInputChange}
+            formNoValidate
           />
           <span id="error-loginpassword" className="auth-form__input-error">
           {errors["loginpassword"] || ""}
