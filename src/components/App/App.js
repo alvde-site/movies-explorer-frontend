@@ -294,6 +294,25 @@ function App() {
     localStorage.setItem("toggle", JSON.stringify(!isToggleMoviesFilter));
   }
 
+  function filterCrashedMovies(movies) {
+    const filterCrashMovies = movies.filter(
+      (m) =>
+        m.id &&
+        m.country &&
+        m.director &&
+        m.duration &&
+        m.year &&
+        m.description &&
+        m.image &&
+        m.trailerLink &&
+        m.nameRU &&
+        m.nameEN
+    );
+    const filterCrashTrailerLink = filterCrashMovies.filter((m) => m.trailerLink.startsWith('https'));
+    return filterCrashTrailerLink;
+
+  }
+
   useEffect(() => {
     if (localStorage.savedmovies) {
       const savedMovies = JSON.parse(localStorage.savedmovies);
@@ -406,20 +425,8 @@ function App() {
       // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
-          const filterCrashMovies = movies.filter(
-            (m) =>
-              m.id &&
-              m.country &&
-              m.director &&
-              m.duration &&
-              m.year &&
-              m.description &&
-              m.image &&
-              m.trailerLink &&
-              m.nameRU &&
-              m.nameEN
-          );
-          const formattedMovies = filterCrashMovies.map(
+          const isNotCrashMovies = filterCrashedMovies(movies);
+          const formattedMovies = isNotCrashMovies.map(
             //  Сохраняем массив фильмом в нужном формате
             ({
               id,
