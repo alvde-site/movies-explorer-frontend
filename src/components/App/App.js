@@ -85,12 +85,6 @@ function App() {
         // проверим токен
         MainApiSet.getContent(jwt)
           .then((res) => {
-            // if (res.message) {
-            //   setLoggedIn(false);
-            //   setSubmitError(res.message);
-            //   setIsInvalidToken(true);
-            //   console.log(isInvalidToken);
-            // }
             if (res._id) {
               setLoggedIn(true);
               setSubmitError("");
@@ -136,7 +130,7 @@ function App() {
           const initialMovies = JSON.parse(
             localStorage.getItem("initialmovies")
           );
-          if (formattedMovies.length > 0) {
+          if (initialMovies && formattedMovies.length > 0) {
             let newCurrentInitialMovies = initialMovies;
 
             for (let i = 0; i < formattedMovies.length; i++) {
@@ -412,6 +406,8 @@ function App() {
       // Проверяем - загружены ли фильмы по умолчанию
       MoviesApiSet.getInitialMovies()
         .then((movies) => {
+          // const filteredCrashedMovies = movies.filter((m) => m.trailerLink.startsWith('https'));
+          // console.log(filteredCrashedMovies)
           const formattedMovies = movies.map(
             //  Сохраняем массив фильмом в нужном формате
             ({
