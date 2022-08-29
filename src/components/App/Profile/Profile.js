@@ -18,7 +18,6 @@ function Profile({
   onSignout,
   onCloseNav,
   onSameValue,
-  isSubmiting,
   isLoading
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -61,6 +60,7 @@ function Profile({
         name="profileform"
         className="profileform"
         onSubmit={handleSubmit}
+        noValidate
       >
         <h2 className="profileform__title">{`Привет, ${currentUser.name}!`}</h2>
         <fieldset className="profileform__fieldset profileform__fieldset_type_name">
@@ -78,7 +78,7 @@ function Profile({
             value={values["profilename"] || currentUser.name || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
-            disabled={isSubmiting || !isEditProfile}
+            disabled={isLoading || !isEditProfile}
             formNoValidate
           />
           <span className="profileform__input_focus"></span>
@@ -98,7 +98,7 @@ function Profile({
             value={values["profileemail"] || currentUser.email || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
-            disabled={isSubmiting || !isEditProfile}
+            disabled={isLoading || !isEditProfile}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
             formNoValidate
           />
@@ -129,7 +129,7 @@ function Profile({
               }`
             }`}
             type="submit"
-            disabled={!isValid ? (isSubmiting ? true : false) : false}
+            disabled={!isValid ? true : (isLoading ? true : false)}
           >
             {!isLoading ? "Сохранить" : "Сохранение..."}
           </button>
@@ -148,7 +148,7 @@ function Profile({
             }`}
             onClick={handleSignout}
             type="button"
-            disabled={isSubmiting}
+            disabled={isLoading}
           >
             {!isLoading ? "Выйти из аккаунта" : "Выходим..."}
           </button>

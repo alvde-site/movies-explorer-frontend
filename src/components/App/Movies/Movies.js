@@ -26,7 +26,6 @@ function Movies({
   numberOfMovies,
   cards,
   onCloseNav,
-  isSubmiting
 }) {
   return (
     <>
@@ -46,7 +45,7 @@ function Movies({
             isEmptyValue={isEmptyValue}
             searchValue={searchValue}
             onSearchValue={onSearchValue}
-            isSubmiting={isSubmiting}
+            isLoading={isLoading}
           />
           {isLoading ? (
             <Preloader />

@@ -30,6 +30,7 @@ function Login({
         name="authform"
         className="auth-form auth-form_handle_auth"
         onSubmit={handleSubmit}
+        noValidate
       >
         <h2 className="auth-form__title">Рады видеть!</h2>
         <fieldset className="auth-form__field">
@@ -50,7 +51,7 @@ function Login({
             onChange={handleInputChange}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
             formNoValidate
-            disabled={isSubmiting}
+            disabled={isLoading}
           />
           <span id="error-loginemail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
@@ -73,7 +74,7 @@ function Login({
             value={values["loginpassword"] || ""}
             onChange={handleInputChange}
             formNoValidate
-            disabled={isSubmiting}
+            disabled={isLoading}
           />
           <span id="error-loginpassword" className="auth-form__input-error">
           {errors["loginpassword"] || ""}
@@ -95,7 +96,7 @@ function Login({
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={!isValid ? (isSubmiting ? true : false) : false}
+            disabled={!isValid ? true : (isLoading ? true : false)}
           >
            {!isLoading ? "Войти" : "Войти..."}
         </button>

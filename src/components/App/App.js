@@ -52,7 +52,6 @@ function App() {
   const [currentInitialMovies, setCurrentInitialMovies] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isInvalidToken, setIsInvalidToken] = useState(false);
-  const [isSubmiting, setIsSubmiting] = useState(false);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid, setIsValid } =
@@ -201,7 +200,7 @@ function App() {
 
   function handleLogin({ password, email }) {
     setIsLoading(true);
-    setIsSubmiting(true);
+    setSubmitError("");
     MainApiSet.login({ email, password })
       .then((res) => {
         if (res.message) {
@@ -232,13 +231,12 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-        setIsSubmiting(false);
       });
   }
 
   function handleRegister({ name, password, email }) {
     setIsLoading(true);
-    setIsSubmiting(true);
+    setSubmitError("");
     MainApiSet.register({ name, password, email })
       .then((res) => {
         if (res.email) {
@@ -255,7 +253,6 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-        setIsSubmiting(false);
       });
   }
 
@@ -425,7 +422,6 @@ function App() {
       setIsEmptySearchValue(false);
     }
     setIsLoading(true);
-    setIsSubmiting(true);
 
     if (!localStorage.initialmovies) {
       // Проверяем - загружены ли фильмы по умолчанию
@@ -495,7 +491,6 @@ function App() {
         })
         .finally(() => {
           setIsLoading(false);
-          setIsSubmiting(false);
           setIsToggleMoviesFilter(false);
         });
     } else {
@@ -515,7 +510,6 @@ function App() {
       }
 
       setIsLoading(false);
-      setIsSubmiting(false);
 
       if (!foundMovies.length) {
         handleSavedStates(foundMovies);
@@ -560,7 +554,6 @@ function App() {
 
   function handleEditProfile({ name, email }) {
       setIsLoading(true);
-      setIsSubmiting(true);
     MainApiSet.updateUser({ name, email }, token)
       .then((res) => {
         setCurrentUser(res);
@@ -576,13 +569,11 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-        setIsSubmiting(false);
       });
   }
 
   function handleSignoutProfile() {
       setIsLoading(true);
-      setIsSubmiting(true);
     MainApiSet.signout(token)
       .then(() => {
         setLoggedIn(false);
@@ -610,7 +601,6 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-        setIsSubmiting(false);
       });
   }
 
@@ -675,7 +665,6 @@ function App() {
             numberOfMovies={numberOfMovies}
             cards={cards}
             onCloseNav={handleCloseNavigationMenu}
-            isSubmiting={isSubmiting}
           />
           <ProtectedRoute
             exact
@@ -699,7 +688,7 @@ function App() {
             numberOfMovies={numberOfMovies}
             cards={cards}
             onCloseNav={handleCloseNavigationMenu}
-            isSubmiting={isSubmiting}
+            isLoading={isLoading}
           />
           <ProtectedRoute
             exact
@@ -719,7 +708,6 @@ function App() {
             onSignout={handleSignoutProfile}
             onCloseNav={handleCloseNavigationMenu}
             onSameValue={handleProfileSameValue}
-            isSubmiting={isSubmiting}
             isLoading={isLoading}
           />
           <Route exact path="/signin">
@@ -734,7 +722,6 @@ function App() {
                 onLogin={handleLogin}
                 submitError={submitError}
                 isLoading={isLoading}
-                isSubmiting={isSubmiting}
               />
             )}
           </Route>
@@ -750,7 +737,6 @@ function App() {
                 onRegister={handleRegister}
                 submitError={submitError}
                 isLoading={isLoading}
-                isSubmiting={isSubmiting}
               />
             )}
           </Route>

@@ -24,7 +24,8 @@ function SavedMovies({
   cards,
   onCloseNav,
   isEmptyValue,
-  isSubmiting
+  isSubmiting,
+  isLoading
 }) {
   return (
     <>
@@ -44,7 +45,7 @@ function SavedMovies({
             onSearch={onSearch}
             searchValue={searchValue}
             isEmptyValue={isEmptyValue}
-            isSubmiting={isSubmiting}
+            iisLoading={isLoading}
           />
           <MoviesCardList
             cardsData={cardsData}

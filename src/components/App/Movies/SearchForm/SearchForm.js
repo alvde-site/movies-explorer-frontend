@@ -7,7 +7,7 @@ function SearchForm({
   isEmptyValue,
   searchValue,
   onSearchValue,
-  isSubmiting
+  isLoading
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +19,7 @@ function SearchForm({
   }
 
   return (
-    <form action="#" name="form" className="form" onSubmit={handleSubmit}>
+    <form action="#" name="form" className="form" onSubmit={handleSubmit} noValidate>
       <label htmlFor="searchmovie" className="form__field">
         <input
           id="searchmovie"
@@ -30,7 +30,7 @@ function SearchForm({
           value={searchValue || ""}
           onChange={handleSearchChange}
           formNoValidate
-          disabled={isSubmiting}
+          disabled={isLoading}
         />
         <span className="form__input_focus"></span>
         <span
@@ -41,7 +41,7 @@ function SearchForm({
         >
           Нужно ввести ключевое слово
         </span>
-        <button className="form__submit" type="submit" disabled={isSubmiting}></button>
+        <button className="form__submit" type="submit" disabled={isLoading}></button>
       </label>
       <FilterCheckbox
         onToggleFilter={onToggleFilter}
