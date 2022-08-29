@@ -8,6 +8,7 @@ function Register({
   onRegister,
   submitError,
   isLoading,
+  isSubmiting
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -49,6 +50,7 @@ function Register({
             value={values["registername"] || ""}
             onChange={handleInputChange}
             formNoValidate
+            disabled={isSubmiting}
           />
           <span id="error-registername" className="auth-form__input-error">
             {errors["registername"] || ""}
@@ -72,6 +74,7 @@ function Register({
             onChange={handleInputChange}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
             formNoValidate
+            disabled={isSubmiting}
           />
           <span id="error-registeremail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
@@ -94,6 +97,7 @@ function Register({
             value={values["registerpassword"] || ""}
             onChange={handleInputChange}
             formNoValidate
+            disabled={isSubmiting}
           />
           <span id="error-registerpassword" className="auth-form__input-error">
             {errors["registerpassword"] || ""}
@@ -114,7 +118,7 @@ function Register({
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={!isValid}
+            disabled={isSubmiting || !isValid}
           >
             {!isLoading ? "Зарегистрироваться" : "Регистрация..."}
           </button>

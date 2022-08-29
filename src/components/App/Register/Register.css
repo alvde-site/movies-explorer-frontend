@@ -67,6 +67,7 @@
   border: none;
   border-bottom: 1px solid #e8e8e8;
   outline: none;
+  background-color: transparent;
 }
 
 .auth-form__input_type_error {

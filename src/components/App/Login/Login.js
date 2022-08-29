@@ -7,7 +7,8 @@ function Login({
   isValid,
   onLogin,
   submitError,
-  isLoading
+  isLoading,
+  isSubmiting
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -49,6 +50,7 @@ function Login({
             onChange={handleInputChange}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
             formNoValidate
+            disabled={isSubmiting}
           />
           <span id="error-loginemail" className="auth-form__input-error">
             {errors["registeremail"] || ""}
@@ -71,15 +73,12 @@ function Login({
             value={values["loginpassword"] || ""}
             onChange={handleInputChange}
             formNoValidate
+            disabled={isSubmiting}
           />
           <span id="error-loginpassword" className="auth-form__input-error">
           {errors["loginpassword"] || ""}
           </span>
         </fieldset>
-
-
-
-
 
         <fieldset className="auth-form__submit-fieldset">
           <span
@@ -91,13 +90,12 @@ function Login({
             {submitError}
           </span>
 
-
           <button
             className={`auth-form__submit ${
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={!isValid}
+            disabled={isSubmiting || !isValid}
           >
            {!isLoading ? "Войти" : "Войти..."}
         </button>

@@ -18,6 +18,8 @@ function Profile({
   onSignout,
   onCloseNav,
   onSameValue,
+  isSubmiting,
+  isLoading
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -76,7 +78,7 @@ function Profile({
             value={values["profilename"] || currentUser.name || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
-            disabled={!isEditProfile}
+            disabled={isSubmiting || !isEditProfile}
             formNoValidate
           />
           <span className="profileform__input_focus"></span>
@@ -96,7 +98,7 @@ function Profile({
             value={values["profileemail"] || currentUser.email || ""}
             onChange={handleInputChange}
             readOnly={!isEditProfile}
-            disabled={!isEditProfile}
+            disabled={isSubmiting || !isEditProfile}
             pattern="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
             formNoValidate
           />
@@ -127,9 +129,9 @@ function Profile({
               }`
             }`}
             type="submit"
-            disabled={!isValid}
+            disabled={isSubmiting || !isValid}
           >
-            Сохранить
+            Сохранить{!isLoading ? "Сохранить" : "Сохранение..."}
           </button>
           <button
             className={`profileform__edit ${
