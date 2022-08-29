@@ -310,9 +310,10 @@ function App() {
         m.nameRU &&
         m.nameEN
     );
-    const filterCrashTrailerLink = filterCrashMovies.filter((m) => m.trailerLink.startsWith('https'));
+    const filterCrashTrailerLink = filterCrashMovies.filter((m) =>
+      m.trailerLink.startsWith("https")
+    );
     return filterCrashTrailerLink;
-
   }
 
   useEffect(() => {
@@ -553,7 +554,7 @@ function App() {
   }
 
   function handleEditProfile({ name, email }) {
-      setIsLoading(true);
+    setIsLoading(true);
     MainApiSet.updateUser({ name, email }, token)
       .then((res) => {
         setCurrentUser(res);
@@ -573,7 +574,7 @@ function App() {
   }
 
   function handleSignoutProfile() {
-      setIsLoading(true);
+    setIsLoading(true);
     MainApiSet.signout(token)
       .then(() => {
         setLoggedIn(false);

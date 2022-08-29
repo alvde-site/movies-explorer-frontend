@@ -24,8 +24,7 @@ function SavedMovies({
   cards,
   onCloseNav,
   isEmptyValue,
-  isSubmiting,
-  isLoading
+  isLoading,
 }) {
   return (
     <>

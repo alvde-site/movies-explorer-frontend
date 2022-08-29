@@ -66,7 +66,7 @@ function Movies({
         </section>
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger}  onCloseNav={onCloseNav}/>
+      <Navigation isToggleBurger={isToggleBurger} onCloseNav={onCloseNav} />
     </>
   );
 }

@@ -8,7 +8,7 @@ function Login({
   onLogin,
   submitError,
   isLoading,
-  isSubmiting
+  isSubmiting,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -77,7 +77,7 @@ function Login({
             disabled={isLoading}
           />
           <span id="error-loginpassword" className="auth-form__input-error">
-          {errors["loginpassword"] || ""}
+            {errors["loginpassword"] || ""}
           </span>
         </fieldset>
 
@@ -96,16 +96,16 @@ function Login({
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={!isValid ? true : (isLoading ? true : false)}
+            disabled={!isValid ? true : isLoading ? true : false}
           >
-           {!isLoading ? "Войти" : "Войти..."}
-        </button>
+            {!isLoading ? "Войти" : "Войти..."}
+          </button>
           <div className="auth-form__signin">
             <div className="auth-form__redirect">
-            <p className="auth-form__question">Ещё не зарегистрированы?</p>
-            <Link to="/signup" className="auth-form__login-link">
-              Регистрация
-            </Link>
+              <p className="auth-form__question">Ещё не зарегистрированы?</p>
+              <Link to="/signup" className="auth-form__login-link">
+                Регистрация
+              </Link>
             </div>
           </div>
         </fieldset>

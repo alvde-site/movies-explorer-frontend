@@ -18,7 +18,7 @@ function Profile({
   onSignout,
   onCloseNav,
   onSameValue,
-  isLoading
+  isLoading,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -129,7 +129,7 @@ function Profile({
               }`
             }`}
             type="submit"
-            disabled={!isValid ? true : (isLoading ? true : false)}
+            disabled={!isValid ? true : isLoading ? true : false}
           >
             {!isLoading ? "Сохранить" : "Сохранение..."}
           </button>
