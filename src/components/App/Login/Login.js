@@ -95,7 +95,7 @@ function Login({
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={isSubmiting || !isValid}
+            disabled={!isValid ? (isSubmiting ? true : false) : false}
           >
            {!isLoading ? "Войти" : "Войти..."}
         </button>

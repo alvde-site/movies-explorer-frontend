@@ -129,9 +129,9 @@ function Profile({
               }`
             }`}
             type="submit"
-            disabled={isSubmiting || !isValid}
+            disabled={!isValid ? (isSubmiting ? true : false) : false}
           >
-            Сохранить{!isLoading ? "Сохранить" : "Сохранение..."}
+            {!isLoading ? "Сохранить" : "Сохранение..."}
           </button>
           <button
             className={`profileform__edit ${
@@ -148,8 +148,9 @@ function Profile({
             }`}
             onClick={handleSignout}
             type="button"
+            disabled={isSubmiting}
           >
-            Выйти из аккаунта
+            {!isLoading ? "Выйти из аккаунта" : "Выходим..."}
           </button>
         </fieldset>
       </form>

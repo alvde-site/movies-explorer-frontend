@@ -8,7 +8,7 @@ function Register({
   onRegister,
   submitError,
   isLoading,
-  isSubmiting
+  isSubmiting,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -118,7 +118,7 @@ function Register({
               !isValid && "auth-form__submit_disable"
             }`}
             type="submit"
-            disabled={isSubmiting || !isValid}
+            disabled={!isValid ? (isSubmiting ? true : false) : false}
           >
             {!isLoading ? "Зарегистрироваться" : "Регистрация..."}
           </button>
