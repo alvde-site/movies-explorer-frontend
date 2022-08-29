@@ -51,6 +51,7 @@ function App() {
   const [token, setToken] = useState("");
   const [currentInitialMovies, setCurrentInitialMovies] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isInvalidToken, setIsInvalidToken] = useState(false);
 
   const history = useHistory();
   const { values, handleChange, errors, isValid, setIsValid } =
@@ -67,6 +68,12 @@ function App() {
     tokenCheck();
   }, []);
 
+  useEffect(() => {
+    if(isInvalidToken) {
+      history.push("/signin");
+    }
+  }, [isInvalidToken, history])
+
   function tokenCheck() {
     // если у пользователя есть токен в localStorage,
     // эта функция проверит, действующий он или нет
@@ -78,16 +85,24 @@ function App() {
         // проверим токен
         MainApiSet.getContent(jwt)
           .then((res) => {
-            if (res.message) {
-              setLoggedIn(false);
-              setSubmitError(res.message);
-            }
+            // if (res.message) {
+            //   setLoggedIn(false);
+            //   setSubmitError(res.message);
+            //   setIsInvalidToken(true);
+            //   console.log(isInvalidToken);
+            // }
             if (res._id) {
               setLoggedIn(true);
               setSubmitError("");
+              setIsInvalidToken(false);
             }
           })
           .catch((err) => {
+            if (err === "Ошибка 401") {
+              setLoggedIn(false);
+              setSubmitError("Неверный логин или пароль");
+              setIsInvalidToken(true);
+            }
             console.log(`${err}`);
           });
       }
@@ -200,6 +215,7 @@ function App() {
         if (res.token) {
           localStorage.setItem("token", res.token);
           setToken(res.token);
+          setIsInvalidToken(false);
           return res;
         } else {
           return;
