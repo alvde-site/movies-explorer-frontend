@@ -633,6 +633,7 @@ function App() {
             />
           </Route>
           <ProtectedRoute
+            exact
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
@@ -656,6 +657,7 @@ function App() {
             onCloseNav={handleCloseNavigationMenu}
           />
           <ProtectedRoute
+            exact
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
@@ -678,6 +680,7 @@ function App() {
             onCloseNav={handleCloseNavigationMenu}
           />
           <ProtectedRoute
+            exact
             path="/profile"
             component={Profile}
             loggedIn={loggedIn}
@@ -695,7 +698,7 @@ function App() {
             onCloseNav={handleCloseNavigationMenu}
             onSameValue={handleProfileSameValue}
           />
-          <Route path="/signin">
+          <Route exact path="/signin">
             {loggedIn ? (
               <Redirect to="/" />
             ) : (
@@ -710,7 +713,7 @@ function App() {
               />
             )}
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             {loggedIn ? (
               <Redirect to="/" />
             ) : (
