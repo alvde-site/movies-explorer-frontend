@@ -2,6 +2,9 @@ import shortFilmsDisableIcon from "../../../../../images/svg/shortfilmstumb-disa
 import shortFilmsActiveIcon from "../../../../../images/svg/shortfilmstumb-active.svg";
 
 function FilterCheckbox({ isToggleFilter, onToggleFilter }) {
+  function handleToggleMovies() {
+    onToggleFilter();
+  }
   return (
     <label htmlFor="filtermovies" className="form__filter-field">
       <input
@@ -12,7 +15,7 @@ function FilterCheckbox({ isToggleFilter, onToggleFilter }) {
       />
       <span
         className="form__filter-item"
-        onClick={onToggleFilter}
+        onClick={handleToggleMovies}
         style={
           isToggleFilter
             ? { backgroundImage: `url(${shortFilmsActiveIcon})` }

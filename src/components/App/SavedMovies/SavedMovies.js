@@ -13,6 +13,18 @@ function SavedMovies({
   cardsData,
   onSelect,
   isSelected,
+  onSearchValue,
+  onSearch,
+  searchValue,
+  isNotFoundMovies,
+  notFoundMoviesText,
+  onAddMovies,
+  isDisableMoreButton,
+  numberOfMovies,
+  cards,
+  onCloseNav,
+  isEmptyValue,
+  isLoading,
 }) {
   return (
     <>
@@ -28,17 +40,28 @@ function SavedMovies({
           <SearchForm
             onToggleFilter={onToggleFilter}
             isToggleFilter={isToggleFilter}
+            onSearchValue={onSearchValue}
+            onSearch={onSearch}
+            searchValue={searchValue}
+            isEmptyValue={isEmptyValue}
+            iisLoading={isLoading}
           />
           <MoviesCardList
             cardsData={cardsData}
             onSelect={onSelect}
             isSelected={isSelected}
             cardButtonClassType="card__select-button_type_remove"
+            isNotFoundMovies={isNotFoundMovies}
+            notFoundMoviesText={notFoundMoviesText}
+            onAddMovies={onAddMovies}
+            isDisableMoreButton={isDisableMoreButton}
+            numberOfMovies={numberOfMovies}
+            cards={cards}
           />
         </section>
       </main>
       <Footer />
-      <Navigation isToggleBurger={isToggleBurger} />
+      <Navigation isToggleBurger={isToggleBurger} onCloseNav={onCloseNav} />
     </>
   );
 }

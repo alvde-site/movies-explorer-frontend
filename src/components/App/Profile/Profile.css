@@ -19,6 +19,7 @@
 }
 
 .profileform__fieldset {
+  position: relative;
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -47,6 +48,21 @@
   border: none;
   outline: none;
   text-align: right;
+  background-color: transparent;
+}
+
+.profileform__input:focus + .profileform__input_focus {
+  display: block;
+}
+
+.profileform__input_focus {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #3456f3;
 }
 
 .profileform__fieldset_type_name {
@@ -72,6 +88,24 @@
   color: #ff004c;
 }
 
+.profileform__submit-error_active {
+  display: block;
+}
+
+.profileform__submit-success {
+  display: none;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: rgb(69, 226, 69);
+}
+
+.profileform__submit-success_active {
+  display: block;
+}
+
 .profileform__submit {
   display: none;
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -86,15 +120,20 @@
   background-color: #3456f3;
   border-radius: 3px;
   width: 100%;
+  cursor: pointer;
+}
+
+.profileform__submit_active {
+  display: block;
 }
 
 .profileform__submit_disable {
   background-color: #f8f8f8;
   color: #c2c2c2;
+  cursor: default;
 }
 
 .profileform__edit {
-  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -102,9 +141,13 @@
   line-height: 16px;
   color: #000;
   border: none;
-  margin: 0 0 16px;
+  margin: 20px 0 16px;
   padding: 0;
   background-color: transparent;
+}
+
+.profileform__edit_disabled {
+  display: none;
 }
 
 .profileform__edit:hover {
@@ -112,14 +155,19 @@
 }
 
 .profileform__logout {
-  /* display: none; */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
+  border: none;
+  margin: 0;
+  padding: 0;
   line-height: 16px;
   color: #ee3465;
-  text-decoration: none;
+}
+
+.profileform__logout_disabled {
+  display: none;
 }
 
 .profileform__logout:hover {

@@ -14,8 +14,7 @@
 * React, useState, useEffect, useHistory
 
 ## ССылки
-* [Ссылка на проект в GitHub](https://github.com/alvde-site/movies-explorer-frontend)
-* [Ссылка на домен: https://alvdediploma.nomoredomains.xyz](https://alvdediploma.nomoredomains.xyz)
-* [Ссылка на домен: http://alvdediploma.nomoredomains.xyz](http://alvdediploma.nomoredomains.xyz)
-* [Ссылка на api https://api.alvdediploma.nomoredomains.xyz](https://api.alvdediploma.nomoredomains.xyz)
-* [Публичный IP-адрес сервера: 51.250.76.199](http://51.250.76.199)
+* [Ссылка на выложенную на сервер работающую фронтенд часть приложения](https://alvde-mesto.nomoredomains.sbs/)
+* [Ссылка на api: https://api.alvde-mesto.nomorepartiesxyz.ru](https://api.alvde-mesto.nomorepartiesxyz.ru)
+* [Ссылка на пулл реквест бэкенда](https://github.com/alvde-site/movies-explorer-api/pull/2)
+* [Ссылка на пулл реквест фронтенда](https://github.com/alvde-site/movies-explorer-frontend/pull/2)

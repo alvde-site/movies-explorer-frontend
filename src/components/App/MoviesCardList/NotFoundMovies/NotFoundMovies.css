@@ -1,0 +1,19 @@
+.movies-list__not-found {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #000;
+  margin: 0 0 70px;
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  .movies-list__not-found {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 60px;
+  }
+}

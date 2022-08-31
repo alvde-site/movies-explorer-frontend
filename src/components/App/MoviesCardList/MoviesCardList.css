@@ -34,6 +34,10 @@
   opacity: 0.7;
 }
 
+.movies-list__more-button_disable {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .movies-list {
     padding: 70px 30px 80px;
