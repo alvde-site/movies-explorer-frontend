@@ -4,7 +4,7 @@
 ## Ссылки
 * [Ссылка на выложенную на сервер работающую фронтенд часть приложения](https://alvde-mesto.nomoredomains.sbs/)
 * [Ссылка на api](https://api.alvde-mesto.nomorepartiesxyz.ru)
-*[Ссылка на макет figma](https://www.figma.com/file/HEX9uP5kYlglU6LHRzMyZq/Diploma-(Copy)?node-id=932%3A2618)
+* [Ссылка на макет figma](https://www.figma.com/file/HEX9uP5kYlglU6LHRzMyZq/Diploma-(Copy)?node-id=932%3A2618)
 
 Технологии используемые в проекте:
 * Flexbox, Grid
