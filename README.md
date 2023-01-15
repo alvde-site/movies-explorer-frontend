@@ -4,6 +4,7 @@
 ## Ссылки
 * [Ссылка на выложенную на сервер работающую фронтенд часть приложения](https://alvde-mesto.nomoredomains.sbs/)(Если ссылка не работает, приложение можно протестировать локально. [Ниже](#инструкция-по-развертыванию) инструкция по развертыванию).
 * [Ссылка на макет figma](https://www.figma.com/file/HEX9uP5kYlglU6LHRzMyZq/Diploma-(Copy)?node-id=932%3A2618)
+* [Ссылка на аналогичный проект](https://github.com/alvde-site/movies-explorer-typescript), который был переписан с React.js v.16 на v.18 и добавлен TypeScript.
 
 Технологии используемые в проекте:
 * Flexbox, Grid
